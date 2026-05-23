@@ -1,0 +1,125 @@
+@use '../base/tokens' as *;
+@use '../base/mixins' as *;
+
+.site-footer {
+	display: grid;
+	// Content-width columns (brand, 3 menus, social) with the free space
+	// distributed between them — matches Figma's "Auto" gaps. The 24px is a
+	// safety floor so columns never touch.
+	grid-template-columns: repeat(5, auto);
+	justify-content: space-between;
+	column-gap: 24px;
+	row-gap: 32px;
+	align-items: start;
+	padding: 32px;
+	border-radius: $radius-shell;
+	background-color: $color-contrast;
+	color: $color-base;
+	margin: 0 4px;
+	box-sizing: border-box;
+
+	&__brand {
+		display: inline-flex;
+		align-items: center;
+		height: 40px;
+		max-width: 240px;
+		text-decoration: none;
+		color: $color-base;
+
+		img {
+			display: block;
+			height: 100%;
+			width: auto;
+			max-width: 100%;
+			object-fit: contain;
+			// No color filter — the uploaded logo renders as-is. Upload a
+			// light/white logo since the footer background is dark.
+		}
+	}
+
+	&__brand-text {
+		font-size: var(--wp--preset--font-size--title-36);
+		letter-spacing: -0.04em;
+		line-height: 1;
+		text-transform: uppercase;
+		color: $color-base;
+	}
+
+	&__column {
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+	}
+
+	&__heading {
+		font-size: var(--wp--preset--font-size--body-20);
+		line-height: 22px;
+		letter-spacing: -0.04em;
+		color: #787b83;
+		margin: 0;
+		text-transform: none;
+		font-weight: 400;
+	}
+
+	&__social {
+		display: flex;
+		gap: 16px;
+		align-items: center;
+
+		// Social icons share the icon-button--light variant with the event
+		// arrows (red on hover) but must not spin — cancel the rotation.
+		.icon-button:hover svg,
+		.icon-button:focus-visible svg {
+			transform: none;
+		}
+	}
+
+	// Bottom bar — spans all columns: copyright + studio credit, centered so
+	// they clear the floating chat widget pinned to the bottom-right corner.
+	&__bottom {
+		grid-column: 1 / -1;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		gap: 8px;
+		margin-top: 8px;
+		padding-top: 24px;
+		border-top: 1px solid rgba(255, 255, 255, 0.12);
+		font-size: var(--wp--preset--font-size--body-16);
+		line-height: 20px;
+		letter-spacing: -0.04em;
+		color: #787b83;
+	}
+
+	&__copyright,
+	&__credit {
+		margin: 0;
+	}
+
+	&__credit a {
+		color: #787b83;
+		text-decoration: none;
+		transition: color 0.2s ease;
+
+		&:hover,
+		&:focus-visible {
+			color: $color-base;
+			text-decoration: underline;
+		}
+	}
+
+	@include breakpoint-down(desktop) {
+		grid-template-columns: 1fr 1fr;
+		gap: 32px;
+
+		&__brand,
+		&__social {
+			grid-column: 1 / -1;
+		}
+	}
+
+	@include breakpoint-down(mobile) {
+		grid-template-columns: 1fr;
+	}
+}

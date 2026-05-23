@@ -1,0 +1,198 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"settings": {
+		"appearanceTools": true,
+		"layout": {
+			"contentSize": "1200px",
+			"wideSize": "1432px"
+		},
+		"useRootPaddingAwareAlignments": true,
+		"color": {
+			"defaultPalette": false,
+			"defaultGradients": false,
+			"defaultDuotone": false,
+			"palette": [
+				{ "slug": "base", "color": "#ffffff", "name": "Base" },
+				{ "slug": "contrast", "color": "#151515", "name": "Contrast" },
+				{ "slug": "primary", "color": "#515faa", "name": "Primary" },
+				{ "slug": "accent-light", "color": "#5abdeb", "name": "Accent Light" },
+				{ "slug": "accent-red", "color": "#ee4150", "name": "Accent Red" },
+				{ "slug": "subtle", "color": "#abb1bb", "name": "Subtle" },
+				{ "slug": "muted-fg", "color": "#6b7484", "name": "Muted Foreground" },
+				{ "slug": "card-bg", "color": "#f7f8fa", "name": "Card Background" },
+				{ "slug": "card-border", "color": "#dadde2", "name": "Card Border" },
+				{ "slug": "card-chip", "color": "#eaedf3", "name": "Card Chip" },
+				{ "slug": "muted-bg", "color": "#f7f7f5", "name": "Muted Background" },
+				{ "slug": "decor", "color": "#eef0f3", "name": "Decorative Text" }
+			]
+		},
+		"typography": {
+			"defaultFontSizes": false,
+			"fluid": true,
+			"fontFamilies": [
+				{
+					"slug": "questrial",
+					"name": "Questrial",
+					"fontFamily": "Questrial, system-ui, -apple-system, sans-serif",
+					"fontFace": [
+						{
+							"fontFamily": "Questrial",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"fontDisplay": "swap",
+							"src": ["file:./assets/fonts/questrial-regular.woff2"]
+						}
+					]
+				}
+			],
+			"fontSizes": [
+				{ "slug": "x-small", "size": "0.75rem", "name": "XS", "fluid": false },
+				{ "slug": "small", "size": "1rem", "name": "Small", "fluid": false },
+				{ "slug": "medium", "size": "1.25rem", "name": "Medium", "fluid": false },
+				{ "slug": "large", "size": "1.5rem", "name": "Large", "fluid": false },
+				{
+					"slug": "x-large",
+					"size": "clamp(1.75rem, 1.4rem + 1.5vw, 2.25rem)",
+					"name": "Extra Large"
+				},
+				{
+					"slug": "xx-large",
+					"size": "clamp(2rem, 1.5rem + 2vw, 3rem)",
+					"name": "Display Small"
+				},
+				{
+					"slug": "display",
+					"size": "clamp(2.5rem, 1.8rem + 3vw, 4rem)",
+					"name": "Display"
+				},
+				{
+					"slug": "huge",
+					"size": "clamp(3rem, 2rem + 5vw, 8rem)",
+					"name": "Huge"
+				},
+				{
+					"slug": "title-128",
+					"size": "8rem",
+					"name": "Title 128",
+					"fluid": { "min": "3.5rem", "max": "8rem" }
+				},
+				{
+					"slug": "title-64",
+					"size": "4rem",
+					"name": "Title 64",
+					"fluid": { "min": "2.25rem", "max": "4rem" }
+				},
+				{ "slug": "title-48", "size": "3rem", "name": "Title 48", "fluid": false },
+				{ "slug": "title-36", "size": "2.25rem", "name": "Title 36", "fluid": false },
+				{ "slug": "body-24", "size": "1.5rem", "name": "Body 24", "fluid": false },
+				{ "slug": "body-20", "size": "1.25rem", "name": "Body 20", "fluid": false },
+				{ "slug": "body-16", "size": "1rem", "name": "Body 16", "fluid": false },
+				{ "slug": "body-12", "size": "0.75rem", "name": "Body 12", "fluid": false }
+			]
+		},
+		"spacing": {
+			"units": ["px", "em", "rem", "%", "vh", "vw"],
+			"spacingScale": { "steps": 0 },
+			"spacingSizes": [
+				{ "slug": "10", "size": "0.25rem", "name": "3XS" },
+				{ "slug": "20", "size": "0.5rem", "name": "2XS" },
+				{ "slug": "30", "size": "1rem", "name": "XS" },
+				{ "slug": "40", "size": "1.5rem", "name": "S" },
+				{ "slug": "50", "size": "2rem", "name": "M" },
+				{ "slug": "60", "size": "3rem", "name": "L" },
+				{ "slug": "70", "size": "4rem", "name": "XL" },
+				{ "slug": "80", "size": "6rem", "name": "2XL" },
+				{ "slug": "90", "size": "8rem", "name": "3XL" }
+			]
+		}
+	},
+	"styles": {
+		"color": {
+			"background": "var(--wp--preset--color--base)",
+			"text": "var(--wp--preset--color--contrast)"
+		},
+		"typography": {
+			"fontFamily": "var(--wp--preset--font-family--questrial)",
+			"fontSize": "var(--wp--preset--font-size--small)",
+			"lineHeight": "1.4",
+			"letterSpacing": "0.01em"
+		},
+		"elements": {
+			"h1": {
+				"typography": {
+					"fontFamily": "var(--wp--preset--font-family--questrial)",
+					"fontSize": "var(--wp--preset--font-size--title-128)",
+					"lineHeight": "1.02",
+					"fontWeight": "400",
+					"letterSpacing": "-0.04em",
+					"textTransform": "uppercase"
+				}
+			},
+			"h2": {
+				"typography": {
+					"fontFamily": "var(--wp--preset--font-family--questrial)",
+					"fontSize": "var(--wp--preset--font-size--title-64)",
+					"lineHeight": "1.05",
+					"fontWeight": "400",
+					"letterSpacing": "-0.04em",
+					"textTransform": "uppercase"
+				}
+			},
+			"h3": {
+				"typography": {
+					"fontFamily": "var(--wp--preset--font-family--questrial)",
+					"fontSize": "var(--wp--preset--font-size--title-48)",
+					"lineHeight": "1.1",
+					"fontWeight": "400",
+					"letterSpacing": "-0.04em",
+					"textTransform": "uppercase"
+				}
+			},
+			"h4": {
+				"typography": {
+					"fontFamily": "var(--wp--preset--font-family--questrial)",
+					"fontSize": "var(--wp--preset--font-size--title-36)",
+					"lineHeight": "1.1",
+					"fontWeight": "400",
+					"letterSpacing": "-0.04em",
+					"textTransform": "uppercase"
+				}
+			},
+			"link": {
+				"color": { "text": "currentColor" },
+				"typography": { "textDecoration": "none" }
+			},
+			"button": {
+				"border": { "radius": "100px" },
+				"typography": {
+					"fontFamily": "var(--wp--preset--font-family--questrial)",
+					"fontSize": "var(--wp--preset--font-size--body-20)",
+					"fontWeight": "400",
+					"letterSpacing": "-0.04em"
+				},
+				"color": {
+					"background": "var(--wp--preset--color--contrast)",
+					"text": "var(--wp--preset--color--base)"
+				},
+				"spacing": {
+					"padding": {
+						"top": "0.75rem",
+						"right": "1.5rem",
+						"bottom": "0.75rem",
+						"left": "1.5rem"
+					}
+				}
+			}
+		},
+		"spacing": {
+			"blockGap": "var(--wp--preset--spacing--40)",
+			"padding": {
+				"top": "4px",
+				"right": "0",
+				"bottom": "4px",
+				"left": "0"
+			}
+		}
+	}
+}

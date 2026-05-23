@@ -1,0 +1,235 @@
+@use '../base/tokens' as *;
+@use '../base/mixins' as *;
+
+// ============================================================================
+// Event / Promotion detail page (single-hbd_event.php): a full-bleed hero image
+// with the title, then a two-column body — information (left) and a meta card
+// with date / time / location + map (right).
+// ============================================================================
+
+.event-hero {
+	position: relative;
+	min-height: 70vh;
+	display: flex;
+	align-items: flex-end;
+	padding: 0 24px 64px;
+	background-size: cover;
+	background-position: center;
+	color: $color-base;
+
+	&__scrim {
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.65) 100%);
+	}
+
+	&__inner {
+		position: relative;
+		z-index: 1;
+		width: 100%;
+		max-width: 1432px;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 24px;
+	}
+
+	&__title {
+		margin: 0;
+		color: $color-base;
+		font-size: var(--wp--preset--font-size--title-64);
+		letter-spacing: -0.04em;
+		line-height: 1.02;
+		text-transform: uppercase;
+	}
+}
+
+.event-detail {
+
+	&__body {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) 360px;
+		gap: 64px;
+		padding: 96px 0;
+		align-items: start;
+	}
+
+	&__main {
+		font-size: var(--wp--preset--font-size--body-20);
+		line-height: 1.6;
+		letter-spacing: -0.01em;
+
+		> * + * {
+			margin-top: 1em;
+		}
+	}
+
+	&__cta {
+		margin-top: 40px;
+	}
+
+	// Meta card — date / time / location + map.
+	&__meta {
+		position: sticky;
+		top: 96px;
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+		padding: 32px;
+		border-radius: $radius-shell;
+		background-color: $color-card-bg;
+	}
+
+	&__map {
+		border-radius: $radius-card;
+		overflow: hidden;
+		aspect-ratio: 4 / 3;
+		background-color: $color-card-chip;
+
+		iframe {
+			width: 100%;
+			height: 100%;
+			border: 0;
+			display: block;
+		}
+	}
+
+	@include breakpoint-down(desktop) {
+		&__body {
+			grid-template-columns: 1fr;
+			gap: 40px;
+			padding: 56px 0;
+		}
+
+		&__meta {
+			position: static;
+		}
+	}
+}
+
+.event-meta-item {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+
+	&__label {
+		font-size: var(--wp--preset--font-size--body-16);
+		letter-spacing: 0.014em;
+		color: $color-muted-fg;
+	}
+
+	&__value {
+		font-size: var(--wp--preset--font-size--body-20);
+		letter-spacing: -0.04em;
+		line-height: 1.3;
+		color: $color-contrast;
+	}
+}
+
+// ============================================================================
+// Listing detail page (single-hbd_listing.php): info on the left, a contained
+// photo on the right (so modest-res photos aren't stretched), location map below.
+// ============================================================================
+.listing-detail {
+	padding: 96px 24px 100px;
+
+	&__top {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(0, 560px);
+		gap: 64px;
+		align-items: start;
+	}
+
+	&__info {
+		min-width: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+	}
+
+	&__chip-row {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+	}
+
+	&__title {
+		margin: 0;
+		font-size: var(--wp--preset--font-size--title-64);
+		letter-spacing: -0.04em;
+		line-height: 1.02;
+		text-transform: uppercase;
+	}
+
+	&__desc {
+		font-size: var(--wp--preset--font-size--body-20);
+		letter-spacing: -0.04em;
+		line-height: 1.5;
+		color: $color-subtle;
+
+		> * + * {
+			margin-top: 1em;
+		}
+	}
+
+	&__meta {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+		padding: 24px;
+		border-radius: $radius-shell;
+		background-color: $color-card-bg;
+	}
+
+	&__cta {
+		margin-top: 8px;
+	}
+
+	&__image {
+		margin: 0;
+		border-radius: $radius-shell;
+		overflow: hidden;
+		aspect-ratio: 4 / 3;
+		background-color: $color-card-bg;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			display: block;
+		}
+	}
+
+	&__map {
+		margin-top: 64px;
+		border-radius: $radius-shell;
+		overflow: hidden;
+		aspect-ratio: 24 / 7;
+		background-color: $color-card-chip;
+
+		iframe {
+			width: 100%;
+			height: 100%;
+			border: 0;
+			display: block;
+		}
+	}
+
+	@include breakpoint-down(desktop) {
+		padding: 64px 24px 80px;
+
+		&__top {
+			grid-template-columns: 1fr;
+			gap: 40px;
+		}
+
+		&__image {
+			aspect-ratio: 16 / 10;
+		}
+
+		&__map {
+			aspect-ratio: 16 / 9;
+		}
+	}
+}

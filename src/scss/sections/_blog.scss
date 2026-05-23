@@ -1,0 +1,315 @@
+@use '../base/tokens' as *;
+@use '../base/mixins' as *;
+
+// ============================================================================
+// Blog index (index.php) — a heading block over a responsive grid of
+// guide-style post cards (Card_Type_4), plus pagination. Solid-header page.
+// ============================================================================
+.blog {
+	// WordPress also puts a `blog` class on <body> for the posts index, so the
+	// block-level padding is scoped to the content wrapper (.site-content.blog)
+	// to avoid padding the whole page and pushing the header down. The BEM
+	// `&__` element rules below are suffixed and never match the body.
+	&.site-content {
+		// Match the hero-less pages (e.g. Contact): a generous top gap below the
+		// solid header, centred title, then content.
+		padding: 178px 24px 114px;
+	}
+
+	&__header {
+		max-width: 720px;
+		margin: 0 auto 64px;
+		text-align: center;
+	}
+
+	&__title {
+		margin: 0;
+		font-size: var(--wp--preset--font-size--title-64);
+		letter-spacing: -0.04em;
+		line-height: 1.05;
+		text-transform: uppercase;
+	}
+
+	&__subtitle {
+		margin-top: 20px;
+		font-size: var(--wp--preset--font-size--body-20);
+		letter-spacing: -0.01em;
+		line-height: 1.5;
+		color: $color-subtle;
+	}
+
+	&__grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+		gap: 24px;
+	}
+
+	// Card height matches the guide carousels so the absolutely-positioned image
+	// has a box to fill; the card content sits below it.
+	&__card {
+		height: 420px;
+	}
+
+	&__empty {
+		font-size: var(--wp--preset--font-size--body-20);
+		color: $color-subtle;
+	}
+
+	@include breakpoint-down(desktop) {
+		&.site-content {
+			padding: 120px 24px 88px;
+		}
+
+		&__header {
+			margin-bottom: 48px;
+		}
+	}
+
+	@include breakpoint-down(tablet) {
+		&__grid {
+			grid-template-columns: 1fr;
+		}
+	}
+}
+
+// Pagination — shared by the blog index and the fallback archive.
+.blog .pagination {
+	margin-top: 64px;
+
+	.nav-links {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 8px;
+	}
+
+	.page-numbers {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 44px;
+		height: 44px;
+		padding: 0 14px;
+		border: 1px solid $color-card-border;
+		border-radius: $radius-pill;
+		font-size: var(--wp--preset--font-size--body-16);
+		letter-spacing: -0.01em;
+		color: $color-contrast;
+		text-decoration: none;
+		transition:
+			background-color 0.2s ease,
+			color 0.2s ease,
+			border-color 0.2s ease;
+	}
+
+	a.page-numbers:hover,
+	a.page-numbers:focus-visible {
+		border-color: $color-contrast;
+		background-color: $color-contrast;
+		color: $color-base;
+	}
+
+	.page-numbers.current {
+		border-color: $color-contrast;
+		background-color: $color-contrast;
+		color: $color-base;
+	}
+
+	.page-numbers.dots {
+		border-color: transparent;
+	}
+}
+
+// ============================================================================
+// Single post (single.php) — a left-aligned editorial article: back link,
+// category, large title, meta, a divider, then a wide featured image and the
+// content in a readable measure. Everything shares the left edge. Solid header.
+// ============================================================================
+.post-single {
+	$measure: 760px; // readable body column width
+
+	padding: 120px 24px 120px;
+
+	&__inner {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	// Header spans the full content width; the divider underline runs edge-to-edge.
+	&__header {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 28px;
+		padding-bottom: 40px;
+		border-bottom: 1px solid $color-card-border;
+	}
+
+	&__back {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		font-size: var(--wp--preset--font-size--body-16);
+		letter-spacing: -0.01em;
+		color: $color-muted-fg;
+		text-decoration: none;
+		transition: color 0.2s ease;
+
+		&:hover,
+		&:focus-visible {
+			color: $color-contrast;
+		}
+	}
+
+	// Title + chip + meta sit together; the title can run wider than the body.
+	&__headline {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 20px;
+		max-width: 1040px;
+	}
+
+	&__title {
+		margin: 0;
+		font-size: var(--wp--preset--font-size--title-64);
+		letter-spacing: -0.04em;
+		line-height: 1.02;
+		text-transform: uppercase;
+	}
+
+	&__meta {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 12px;
+		font-size: var(--wp--preset--font-size--body-16);
+		letter-spacing: 0.014em;
+		color: $color-muted-fg;
+	}
+
+	&__dot {
+		color: $color-card-border;
+	}
+
+	// Wide banner image, left-aligned (matches the full-width divider above it).
+	&__image {
+		width: 100%;
+		margin: 56px 0 0;
+		border-radius: $radius-shell;
+		overflow: hidden;
+		aspect-ratio: 16 / 9;
+		background-color: $color-card-bg;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			display: block;
+		}
+	}
+
+	// Content measure for comfortable reading. Block elements inside the post
+	// editor flow get consistent rhythm; wide-aligned blocks break out rightward.
+	&__content {
+		max-width: $measure;
+		width: 100%;
+		margin: 64px 0 0;
+		font-size: var(--wp--preset--font-size--body-20);
+		line-height: 1.65;
+		letter-spacing: -0.01em;
+		color: $color-contrast;
+
+		> * + * {
+			margin-top: 1.4em;
+		}
+
+		h2,
+		h3,
+		h4 {
+			letter-spacing: -0.03em;
+			line-height: 1.15;
+			margin-top: 1.8em;
+		}
+
+		h2 {
+			font-size: var(--wp--preset--font-size--title-36);
+			text-transform: uppercase;
+		}
+
+		h3 {
+			font-size: var(--wp--preset--font-size--body-24);
+		}
+
+		h4 {
+			font-size: var(--wp--preset--font-size--body-20);
+		}
+
+		a {
+			color: $color-accent-red;
+			text-underline-offset: 3px;
+		}
+
+		img {
+			height: auto;
+			border-radius: $radius-card;
+		}
+
+		ul,
+		ol {
+			padding-left: 1.4em;
+
+			li + li {
+				margin-top: 0.5em;
+			}
+		}
+
+		blockquote {
+			margin-left: 0;
+			margin-right: 0;
+			padding-left: 24px;
+			border-left: 3px solid $color-accent-red;
+			font-style: italic;
+			color: $color-subtle;
+		}
+
+		// Wide/full editor blocks extend rightward from the left-aligned column.
+		.alignwide,
+		.alignfull {
+			width: 1080px;
+			max-width: calc(100vw - 48px);
+		}
+	}
+
+	&__pages {
+		margin-top: 2em;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+		font-size: var(--wp--preset--font-size--body-16);
+	}
+
+	&__footer {
+		width: 100%;
+		max-width: $measure;
+		margin: 64px 0 0;
+		padding-top: 32px;
+		border-top: 1px solid $color-card-border;
+	}
+
+	@include breakpoint-down(desktop) {
+		padding: 88px 24px 88px;
+
+		&__header {
+			gap: 24px;
+			padding-bottom: 32px;
+		}
+
+		&__image,
+		&__content {
+			margin-top: 40px;
+		}
+	}
+}

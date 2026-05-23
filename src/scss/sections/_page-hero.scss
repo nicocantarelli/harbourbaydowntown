@@ -1,0 +1,94 @@
+@use '../base/tokens' as *;
+@use '../base/mixins' as *;
+
+// Secondary-page hero — a simplified copy of the homepage hero (.home-hero):
+// full-screen, rounded, single background image with a bottom scrim for legibility,
+// a smaller title (64px vs ~128px), and a CTA. No foreground image, tagline, or
+// scroll parallax — those are homepage-only.
+.page-hero {
+	position: relative;
+	width: auto;
+	margin: 0 4px;
+	border-radius: $radius-shell;
+	overflow: hidden;
+	isolation: isolate;
+	height: calc(100vh - 8px);
+	min-height: 600px;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	// Top padding clears the absolute site-header overlay (~104px); the content is
+	// vertically centered like the Figma layout.
+	padding: 104px 32px 64px;
+	background-color: $color-muted-bg;
+	color: $color-base;
+
+	// Defeat WP's flow auto-spacing — vertical rhythm is handled by flex/gap.
+	&.is-layout-flow > * + * {
+		margin-block-start: 0;
+	}
+
+	// Background image (z-index 0).
+	&__background {
+		position: absolute;
+		inset: 0;
+		margin: 0;
+		z-index: 0;
+		pointer-events: none;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: center;
+			display: block;
+			image-rendering: -webkit-optimize-contrast;
+			image-rendering: high-quality;
+		}
+	}
+
+	// Bottom gradient scrim (z-index 1) so white text stays legible over any photo.
+	&::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: 1;
+		pointer-events: none;
+		background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 35%, rgba(0, 0, 0, 0.55) 100%);
+	}
+
+	&__inner {
+		position: relative;
+		z-index: 2;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 48px; // Figma: 48px between title and CTA.
+		max-width: 600px;
+	}
+
+	&__title {
+		font-size: clamp(2.5rem, 5vw, 4rem); // caps at title-64 (4rem) on desktop.
+		line-height: 1.02;
+		letter-spacing: -0.04em;
+		text-transform: uppercase;
+		color: $color-base;
+		margin: 0;
+	}
+
+	&__cta {
+		margin: 0;
+		align-self: flex-start;
+	}
+
+	@include breakpoint-down(tablet) {
+		min-height: 600px;
+		padding: 96px 16px 32px;
+
+		&__inner {
+			max-width: 100%;
+		}
+	}
+}

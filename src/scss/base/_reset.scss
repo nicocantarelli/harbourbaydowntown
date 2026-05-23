@@ -1,0 +1,54 @@
+// Minimal modern reset — extends WordPress defaults
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	// Belt-and-suspenders: clip horizontal overflow at the page level so
+	// no absolutely-positioned decorative element can ever cause page-level
+	// horizontal scroll. `clip` is preferred over `hidden` because it doesn't
+	// create a new scroll container (so sticky positioning still works).
+	overflow-x: clip;
+}
+
+// ---------------------------------------------------------------------------
+// Kill WordPress's automatic vertical block-margin everywhere.
+//
+// WP injects:
+//   :root :where(.is-layout-flow) > *        { margin-block-start: 16px; ... }
+//   :root :where(.is-layout-constrained) > * { margin-block-start: 16px; ... }
+//
+// These add 16px between siblings inside every default-layout block group
+// and quietly shift positions of absolutely-positioned children (e.g. map
+// pins) and section spacing. We control vertical rhythm explicitly via the
+// section SCSS, so zero this out globally.
+//
+// Same-specificity override; ours loads after the inline global styles so
+// the cascade picks ours.
+// ---------------------------------------------------------------------------
+.is-layout-flow > *,
+.is-layout-constrained > * {
+	margin-block-start: 0;
+	margin-block-end: 0;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}

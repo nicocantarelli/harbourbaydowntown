@@ -1,0 +1,290 @@
+@use '../base/tokens' as *;
+@use '../base/mixins' as *;
+
+// ============================================================================
+// About — "A Place for Visits, Living, and Work"
+// Centered title, a text column (tag + heading + body), and a three-image
+// collage with line captions. Collage uses % positioning inside a fixed-aspect
+// box so it scales with the available width instead of clipping.
+// ============================================================================
+.about-place {
+	padding: 100px 24px;
+	display: flex;
+	flex-direction: column;
+	gap: 64px;
+
+	// Left-aligned lines, centered as a block (fit-content + auto margins). Line 2+
+	// is indented to the right for the staggered Figma look.
+	&__title {
+		width: fit-content;
+		max-width: 100%;
+		margin: 0 auto;
+		text-align: left;
+		font-size: var(--wp--preset--font-size--title-64);
+		letter-spacing: -0.04em;
+		line-height: 1.05;
+		text-transform: uppercase;
+	}
+
+	&__title-line {
+		display: block;
+
+		&:not(:first-child) {
+			padding-left: 3em;
+		}
+	}
+
+	&__row {
+		display: flex;
+		gap: 64px;
+		// Top-align so the text column starts level with the top photo; the pill
+		// then sits 24px below that edge (the column's padding-top).
+		align-items: flex-start;
+		padding: 0 24px;
+	}
+
+	&__text {
+		width: 387px;
+		flex-shrink: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 128px; // Figma: 128px between the tag row and the copy.
+		padding: 24px 0 0; // 24px puts the pill 24px below the top photo's edge.
+	}
+
+	&__tags {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+	}
+
+	&__copy {
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+	}
+
+	&__heading {
+		font-size: var(--wp--preset--font-size--title-36);
+		letter-spacing: -0.04em;
+		line-height: 1.1;
+		text-transform: uppercase;
+		margin: 0;
+	}
+
+	&__body {
+		font-size: var(--wp--preset--font-size--body-20);
+		letter-spacing: -0.04em;
+		line-height: 22px;
+		color: $color-subtle;
+		margin: 0;
+	}
+
+	// Collage box: natural Figma size 862×554 → aspect-ratio drives the height so
+	// the % positioned children scale together.
+	&__collage {
+		position: relative;
+		flex: 1 0 0;
+		min-width: 0;
+		aspect-ratio: 862 / 554;
+	}
+
+	&__img {
+		position: absolute;
+		margin: 0;
+		border-radius: $radius-card;
+		overflow: hidden;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: bottom;
+			display: block;
+		}
+
+		// Positions/sizes as % of the 862×554 box (matches Figma coordinates).
+		&--1 { left: 0;        top: 0;       width: 36.426%; height: 75.632%; }
+		&--2 { left: 39.211%;  top: 39.711%; width: 29.002%; height: 60.289%; }
+		&--3 { left: 70.998%;  top: 12.816%; width: 29.002%; height: 60.469%; }
+	}
+
+	&__caption {
+		position: absolute;
+		display: flex;
+		align-items: center;
+		gap: 16px;
+
+		&--1 { left: 0;       top: 79.964%; }
+		&--2 { left: 70.998%; top: 4.513%; }
+	}
+
+	// Dot + 48px line decoration.
+	&__caption-line {
+		position: relative;
+		width: 52px;
+		height: 8px;
+		flex-shrink: 0;
+
+		&::before {
+			content: '';
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 8px;
+			height: 8px;
+			border-radius: 50%;
+			background-color: $color-contrast;
+		}
+
+		&::after {
+			content: '';
+			position: absolute;
+			left: 4px;
+			top: 50%;
+			width: 48px;
+			height: 1px;
+			transform: translateY(-50%);
+			background-color: $color-contrast;
+		}
+	}
+
+	&__caption-label {
+		font-size: var(--wp--preset--font-size--body-20);
+		letter-spacing: -0.04em;
+		line-height: 22px;
+		color: $color-contrast;
+		white-space: nowrap;
+	}
+
+	@include breakpoint-down(desktop) {
+		&__row {
+			flex-direction: column;
+			align-items: stretch;
+			padding: 0;
+		}
+
+		&__text {
+			width: 100%;
+			gap: 32px;
+		}
+	}
+
+	@include breakpoint-down(tablet) {
+		// Decorative labels overlap the smaller images on phones — hide them.
+		&__caption {
+			display: none;
+		}
+	}
+}
+
+// ============================================================================
+// About — "Our Story"
+// Centered title and a card: large image left, tag + body copy right.
+// ============================================================================
+.about-story {
+	padding: 100px 24px;
+	display: flex;
+	flex-direction: column;
+	gap: 64px;
+	align-items: center;
+
+	&__title {
+		text-align: center;
+		font-size: var(--wp--preset--font-size--title-64);
+		letter-spacing: -0.04em;
+		line-height: 1.05;
+		text-transform: uppercase;
+		margin: 0;
+	}
+
+	&__card {
+		width: 100%;
+		display: flex;
+		gap: 64px; // Figma: 64px between the image and the text column.
+		align-items: stretch; // image fills the full card height.
+		background-color: $color-card-bg;
+		border-radius: $radius-shell;
+		overflow: hidden;
+		padding-right: 24px; // Figma: 24px to the right edge.
+		box-sizing: border-box;
+		min-height: 426px; // Figma card height; the text column centers within it.
+	}
+
+	&__media {
+		flex: 1 1 auto;
+		margin: 0;
+		overflow: hidden;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: center;
+			display: block;
+		}
+	}
+
+	&__body {
+		width: 387px;
+		flex-shrink: 0;
+		align-self: center; // vertically center the text column within the card.
+		display: flex;
+		flex-direction: column;
+		gap: 48px;
+		padding: 24px 0;
+	}
+
+	&__tags {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+	}
+
+	&__text {
+		display: flex;
+		flex-direction: column;
+		gap: 22px;
+
+		p {
+			font-size: var(--wp--preset--font-size--body-20);
+			letter-spacing: -0.04em;
+			line-height: 22px;
+			color: $color-subtle;
+			margin: 0;
+		}
+	}
+
+	@include breakpoint-down(desktop) {
+		&__card {
+			flex-direction: column;
+			align-items: stretch;
+			padding: 0 0 24px;
+			gap: 32px;
+		}
+
+		&__media {
+			flex: none;
+			width: 100%;
+			aspect-ratio: 876 / 426;
+		}
+
+		&__body {
+			width: 100%;
+			padding: 0 24px;
+		}
+	}
+}
+
+// The "Everything Within Easy Reach" section reuses the homepage Special
+// Promotions layout (.home-promotions); normalize its homepage-tuned vertical
+// padding for the About page rhythm.
+.home-promotions.about-easy-reach {
+	padding: 100px 24px;
+}
+
+// Extra breathing room between the last About section (the reused map) and the
+// footer. Scoped to the About page so the homepage map spacing is untouched.
+.site-content--about {
+	padding-bottom: 100px;
+}

@@ -1,0 +1,253 @@
+@use '../base/tokens' as *;
+@use '../base/mixins' as *;
+
+// ============================================================================
+// What's On page. Hero reuses .page-hero--centered (see _nightlife.scss).
+// "Featured Events" = one large feature card + a column of three small cards,
+// matching the Figma (dark #151515 cards, rounded image on top of the feature,
+// title + location + round arrow below). The bottom of the page reuses the
+// homepage Special Promotions (.home-promotions).
+// ============================================================================
+
+.whats-on-events {
+	padding: 178px 24px 64px; // 178px from the hero, 64px (+64 promo top = 128) below.
+	display: flex;
+	flex-direction: column;
+	gap: 64px; // Figma: 64px between the heading block and the cards area.
+
+	&__head {
+		display: flex;
+		flex-direction: column;
+		gap: 48px;
+	}
+
+	&__title {
+		font-size: var(--wp--preset--font-size--title-64);
+		letter-spacing: -0.04em;
+		line-height: 1.05;
+		text-transform: uppercase;
+		margin: 0;
+	}
+
+	// Feature (flexible) + fixed 492px side column, 24px gap.
+	&__layout {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) 492px;
+		gap: 24px;
+		align-items: stretch;
+	}
+
+	&__side {
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+	}
+
+	@include breakpoint-down(desktop) {
+		&__layout {
+			grid-template-columns: 1fr;
+		}
+	}
+}
+
+// --- Feature card -----------------------------------------------------------
+.whats-on-feature {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	height: 100%;
+	padding: 16px 16px 24px;
+	border-radius: $radius-card;
+	background-color: $color-contrast;
+	color: $color-base;
+	text-decoration: none;
+	overflow: hidden;
+	transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease;
+
+	&:hover,
+	&:focus-visible {
+		transform: translateY(-4px);
+	}
+
+	&__media {
+		position: relative;
+		flex: 1;
+		min-height: 280px;
+		width: 100%;
+		padding: 12px;
+		border-radius: 8px;
+		overflow: hidden;
+		background-color: $color-card-border;
+		display: flex;
+		align-items: flex-start;
+
+		img {
+			position: absolute;
+			inset: 0;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+
+	&__tag {
+		position: relative;
+		z-index: 1;
+		display: inline-flex;
+		align-items: center;
+		padding: 4px 8px;
+		border-radius: 100px;
+		background-color: rgba(255, 255, 255, 0.1);
+		border: 0.5px solid #fff;
+		backdrop-filter: blur(4px);
+		color: #fff;
+		font-size: 12px;
+		line-height: 20px;
+		letter-spacing: 0.019em;
+	}
+
+	&__bottom {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 16px;
+		padding: 0 12px;
+	}
+
+	&__text {
+		min-width: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	&__title {
+		font-size: 22px;
+		line-height: 1.1;
+		letter-spacing: -0.04em;
+		text-transform: uppercase;
+		color: $color-base;
+	}
+
+	&__arrow {
+		flex: none;
+	}
+}
+
+// --- Small event card (right column) ---------------------------------------
+.event-card-sm {
+	display: flex;
+	gap: 24px;
+	align-items: center;
+	padding: 16px;
+	border-radius: $radius-card;
+	background-color: $color-contrast;
+	color: $color-base;
+	text-decoration: none;
+	overflow: hidden;
+	transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease;
+
+	&:hover,
+	&:focus-visible {
+		transform: translateY(-4px);
+	}
+
+	&__image {
+		flex: 0 0 157px;
+		width: 157px;
+		height: 98px;
+		border-radius: 8px;
+		overflow: hidden;
+		margin: 0;
+		background-color: $color-card-border;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			display: block;
+		}
+	}
+
+	&__body {
+		flex: 1 1 auto;
+		min-width: 0;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: 8px;
+	}
+
+	&__top {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 8px;
+	}
+
+	&__time {
+		font-size: 12px;
+		line-height: 20px;
+		letter-spacing: 0.019em;
+		color: $color-subtle;
+	}
+
+	&__arrow {
+		flex: none;
+		display: inline-flex;
+		color: $color-base;
+
+		svg {
+			width: 22px;
+			height: 22px;
+			display: block;
+		}
+	}
+
+	&__title {
+		font-size: 22px;
+		line-height: 1.1;
+		letter-spacing: -0.04em;
+		text-transform: uppercase;
+		color: $color-base;
+	}
+}
+
+// Dot + line + text location row (used on the feature and small event cards).
+.event-loc {
+	display: inline-flex;
+	align-items: center;
+	gap: 16px;
+	color: $color-card-border;
+
+	&__rule {
+		display: inline-flex;
+		align-items: center;
+		flex: none;
+	}
+
+	&__dot {
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		background-color: currentColor;
+	}
+
+	&__line {
+		width: 44px;
+		height: 1px;
+		background-color: currentColor;
+	}
+
+	&__text {
+		font-size: var(--wp--preset--font-size--body-16);
+		line-height: 20px;
+		letter-spacing: 0.014em;
+	}
+}
+
+// --- Special Promotions: reuse the homepage section, re-tuned for this page's
+// rhythm (64px after Featured Events → 128px gap; 128px down to the footer). ---
+.site-content--whats-on .home-promotions {
+	padding: 64px 24px 128px;
+}

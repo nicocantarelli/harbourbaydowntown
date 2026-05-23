@@ -1,0 +1,165 @@
+@use '../base/tokens' as *;
+@use '../base/mixins' as *;
+
+// Make wp-site-blocks the positioning context for the overlay header.
+.wp-site-blocks {
+	position: relative;
+
+	// WP injects `:where(.wp-site-blocks) > * { margin-block-start: var(--wp--preset--spacing--40) }`
+	// (16px in our scale) onto every direct child except the first. With our absolute-positioned
+	// header as the first child, <main> picks up the 16px and pushes the hero down. Zero it.
+	> * {
+		margin-block-start: 0;
+		margin-block-end: 0;
+	}
+}
+
+// Middle content wrapper (everything between the hero and the footer).
+// Constrained to 1440px max width and horizontally centered. The hero
+// and footer sit outside this wrapper and remain full-bleed.
+.site-content {
+	max-width: 1440px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.site-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 24px;
+	width: 100%;
+	padding: 24px 32px;
+	background-color: $color-base;
+	color: $color-contrast;
+	box-sizing: border-box;
+
+	&__logo {
+		display: inline-flex;
+		align-items: center;
+		height: 40px;
+		max-width: 240px;
+		flex-shrink: 0;
+		text-decoration: none;
+
+		img {
+			display: block;
+			height: 100%;
+			width: auto;
+			max-width: 100%;
+			object-fit: contain;
+		}
+	}
+
+	// Overlay variant — used on the front page only. Floats over the hero with
+	// 32px inset on every side, transparent background, white text.
+	&--overlay {
+		position: absolute;
+		top: 4px;        // matches wp-site-blocks padding-top (root padding)
+		left: 4px;       // matches .home-hero margin-left
+		right: 4px;      // matches .home-hero margin-right
+		// Override the base width:100% — with left+right+width all set, CSS would
+		// ignore `right` and overflow ~4px, pushing the nav off-centre. `auto`
+		// lets left:4 + right:4 define the width so the nav is symmetric (and
+		// matches the solid header on non-hero pages).
+		width: auto;
+		z-index: 10;
+		padding: 32px;
+		background-color: transparent;
+		color: $color-base;
+	}
+}
+
+// Solid header (non-hero pages, e.g. the Map page) — the pill sits on white, so
+// the translucent-white fill and white chevron disappear. Give the pill a subtle
+// tinted fill + grey outline, and a dark chevron so both read.
+.site-header:not(.site-header--overlay) {
+	// Lift the whole header into its own stacking context so the dropdown renders
+	// above the page content (e.g. the Map), not behind it.
+	position: relative;
+	z-index: 50;
+
+	// Align the logo + nav with the hero pages' floating header (which sits at
+	// 4px root inset + 32px padding = 36px) so the navbar doesn't shift between
+	// a hero page and this solid-header page.
+	padding: 32px 36px;
+
+	.hbd-menu {
+		background-color: $color-card-bg;
+		border-color: $color-card-border;
+	}
+
+	.hbd-menu__item--has-children > .hbd-menu__link::after {
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M4 6L8 10L12 6' stroke='%23151515' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+	}
+
+	// Link hover needs a darker tint here — the default translucent-white overlay
+	// is invisible on the light pill/dropdown. Covers the bar + dropdown links.
+	.hbd-menu__link:hover,
+	.hbd-menu__link:focus-visible {
+		background-color: $color-card-chip;
+	}
+
+	// Active dropdown item — same dark tint as the hover (the translucent-white
+	// default is invisible on the light dropdown).
+	.hbd-menu__submenu > .hbd-menu__item--active > .hbd-menu__link {
+		background-color: $color-card-chip;
+	}
+
+	// Dropdown matches the tinted pill (the translucent default would be
+	// invisible over the white page).
+	.hbd-menu__submenu {
+		background-color: $color-card-bg;
+		border-color: $color-card-border;
+	}
+}
+
+// Smart sticky nav (front page). No bar — just the floating menu pill, dropped
+// in at the same spot as the hero's nav. Hidden while the hero is in view; once
+// past it the pill slides in on scroll-up and hides on scroll-down (toggled in JS
+// via .is-visible — see src/js/modules/sticky-nav.js).
+.sticky-nav {
+	position: fixed;
+	top: 4px;                    // align with the hero overlay header insets
+	left: 4px;
+	right: 4px;
+	z-index: 100;
+	display: flex;
+	justify-content: space-between; // logo on the left, nav pill on the right
+	align-items: center;
+	padding: 32px;
+	color: $color-base;          // white menu text/border, like the hero
+	// Transparent wrapper — let clicks pass through everywhere except the logo + pill.
+	pointer-events: none;
+
+	// Bare logo (no chrome) on the left, matching the hero overlay header's logo.
+	&__logo {
+		pointer-events: auto;
+	}
+	transform: translateY(-100%);
+	transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+
+	// The pill is the only interactive part. Over light page content the hero's
+	// translucent-white pill is invisible, so give it dark glass here (white
+	// text/chevron already read correctly on dark).
+	.hbd-menu {
+		pointer-events: auto;
+		background-color: rgba(21, 21, 21, 0.92);
+		backdrop-filter: blur(12px);
+		border-color: rgba(255, 255, 255, 0.25);
+	}
+
+	// Match the dropdown to the dark sticky pill (the hero's translucent default
+	// would be invisible over light page content while scrolled).
+	.hbd-menu__submenu {
+		background-color: rgba(21, 21, 21, 0.92);
+		backdrop-filter: blur(12px);
+		border-color: rgba(255, 255, 255, 0.25);
+	}
+
+	&.is-visible {
+		transform: translateY(0);
+	}
+}

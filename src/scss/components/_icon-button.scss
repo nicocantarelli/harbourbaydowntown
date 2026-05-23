@@ -1,0 +1,96 @@
+@use '../base/tokens' as *;
+
+.icon-button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	padding: 0;
+	border: 0;
+	border-radius: $radius-pill;
+	background-color: $color-contrast;
+	color: $color-base;
+	cursor: pointer;
+	transition: transform 0.2s ease, background-color 0.2s ease;
+
+	svg {
+		width: 24px;
+		height: 24px;
+		display: block;
+	}
+
+	&:hover {
+		transform: translateY(-1px);
+	}
+
+	&:focus-visible {
+		outline: 2px solid $color-accent-light;
+		outline-offset: 2px;
+	}
+
+	&--outline {
+		background-color: transparent;
+		color: $color-card-border;
+		// Inset shadow instead of border so the content area stays the
+		// full button size — a real border would shrink the content box
+		// and push the SVG onto fractional margins.
+		box-shadow: inset 0 0 0 1.7px $color-card-border;
+		transition: background-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
+
+		&:hover {
+			background-color: $color-contrast;
+			color: $color-base;
+			box-shadow: inset 0 0 0 1.7px $color-contrast;
+		}
+	}
+
+	&--light {
+		background-color: $color-base;
+		color: $color-contrast;
+		transition: background-color 0.25s ease, color 0.25s ease,
+			transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+
+		svg {
+			transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+		}
+
+		// Turn red on hover; the arrow spins 45° (like the pill buttons).
+		&:hover,
+		&:focus-visible {
+			background-color: $color-accent-red;
+			color: $color-base;
+			transform: none;
+		}
+
+		&:hover svg,
+		&:focus-visible svg {
+			transform: rotate(45deg);
+		}
+	}
+
+	&--accent {
+		background-color: $color-accent-red;
+		color: $color-base;
+	}
+
+	&--lg {
+		width: 64px;
+		height: 64px;
+
+		svg {
+			width: 36px;
+			height: 36px;
+		}
+	}
+
+	&--sm {
+		width: 32px;
+		height: 32px;
+
+		svg {
+			width: 22px;
+			height: 22px;
+		}
+	}
+}

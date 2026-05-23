@@ -1,0 +1,666 @@
+@use '../base/tokens' as *;
+@use '../base/mixins' as *;
+
+// ============================================================================
+// Sales & Leasing page (slug: sales-leasing — non-hero, solid header). Why
+// Harbour Bay pairs copy + stats with a photo; Built-In Traffic and What Makes
+// This Different are stat-card sections; Integrated Environment is a labelled
+// collage with a central text card; Opportunities Available shows leasable
+// spaces + upcoming developments; the enquiry form reuses the Contact form.
+// ============================================================================
+
+// Shared stat card (Built-In Traffic + What Makes This Different): value on top,
+// label at the bottom.
+.sl-stat {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 24px;
+	min-height: 225px;
+	padding: 24px;
+	background-color: $color-card-bg;
+	border-radius: $radius-shell;
+
+	&__value {
+		font-size: var(--wp--preset--font-size--title-64);
+		letter-spacing: -0.04em;
+		line-height: 1;
+		color: $color-contrast;
+		font-variant-numeric: tabular-nums; // steady width while counting up
+	}
+
+	&__label {
+		font-size: var(--wp--preset--font-size--body-16);
+		line-height: 20px;
+		letter-spacing: 0.014em;
+		color: #9ea5af; // Figma Grey_Dark
+	}
+}
+
+// --- Why Harbour Bay Downtown: centered title + copy/stats (left) + photo -----
+.sl-why {
+	padding: 178px 24px 114px; // 178px below the header, 114px (+114 next = 228) below.
+	display: flex;
+	flex-direction: column;
+	gap: 64px;
+
+	&__title {
+		text-align: center;
+		font-size: var(--wp--preset--font-size--title-64);
+		letter-spacing: -0.04em;
+		line-height: 1.05;
+		text-transform: uppercase;
+		margin: 0;
+	}
+
+	&__row {
+		display: flex;
+		gap: 64px;
+		align-items: center;
+		padding: 0 24px;
+	}
+
+	&__text {
+		flex: 1 1 0;
+		min-width: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 64px; // tag row → copy
+	}
+
+	&__tags {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+	}
+
+	&__copy {
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+	}
+
+	&__body {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+
+		p {
+			font-size: var(--wp--preset--font-size--body-20);
+			letter-spacing: -0.04em;
+			line-height: 22px;
+			color: $color-subtle;
+			margin: 0;
+		}
+	}
+
+	&__divider {
+		display: block;
+		width: 100%;
+		height: 1px;
+		background-color: $color-card-border;
+	}
+
+	&__stats {
+		display: flex;
+		gap: 64px;
+	}
+
+	&__stat {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	&__stat-value {
+		font-size: var(--wp--preset--font-size--title-48);
+		letter-spacing: -0.04em;
+		line-height: 1;
+		color: $color-contrast;
+		font-variant-numeric: tabular-nums;
+	}
+
+	&__stat-label {
+		font-size: var(--wp--preset--font-size--body-16);
+		line-height: 20px;
+		letter-spacing: 0.014em;
+		color: #9ea5af;
+	}
+
+	&__media {
+		flex: 0 0 568px;
+		max-width: 45%;
+		margin: 0;
+		border-radius: $radius-shell;
+		overflow: hidden;
+		aspect-ratio: 568 / 470;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			display: block;
+		}
+	}
+
+	@include breakpoint-down(desktop) {
+		&__row {
+			flex-direction: column;
+			align-items: stretch;
+			padding: 0;
+		}
+
+		&__media {
+			flex: none;
+			max-width: none;
+			width: 100%;
+		}
+	}
+}
+
+// --- Built-In Traffic: tag + title (left) + two stat cards (right) -----------
+.sl-traffic {
+	padding: 114px 24px; // 114px each side → 228px gaps to the neighbours.
+	display: flex;
+	gap: 64px;
+	align-items: center;
+
+	&__intro {
+		flex: 0 0 479px;
+		max-width: 42%;
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+	}
+
+	&__tags {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+	}
+
+	&__title {
+		font-size: var(--wp--preset--font-size--title-64);
+		letter-spacing: -0.04em;
+		line-height: 1.05;
+		text-transform: uppercase;
+		margin: 0;
+	}
+
+	&__cards {
+		flex: 1 1 0;
+		min-width: 0;
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 24px;
+	}
+
+	@include breakpoint-down(desktop) {
+		flex-direction: column;
+		align-items: stretch;
+
+		&__intro {
+			flex: none;
+			max-width: none;
+		}
+	}
+
+	@include breakpoint-down(tablet) {
+		&__cards {
+			grid-template-columns: 1fr;
+		}
+	}
+}
+
+// --- Integrated Environment: collage with a central text card + place labels --
+.sl-environment {
+	padding: 114px 24px;
+	display: flex;
+	flex-direction: column;
+	gap: 64px;
+
+	&__title {
+		text-align: center;
+		font-size: var(--wp--preset--font-size--title-64);
+		letter-spacing: -0.04em;
+		line-height: 1.05;
+		text-transform: uppercase;
+		margin: 0;
+	}
+
+	&__collage {
+		position: relative;
+		width: 100%;
+		max-width: 1336px;
+		margin: 0 auto;
+		aspect-ratio: 1336 / 552;
+	}
+
+	&__img {
+		position: absolute;
+		z-index: 1; // images sit above the central card (matches the design layering)
+		margin: 0;
+		border-radius: $radius-card;
+		overflow: hidden;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			display: block;
+		}
+
+		&--1 { left: 4.79%;  top: 0;      width: 20.81%; height: 36.78%; } // top-left
+		&--2 { left: 0.30%;  top: 55.43%; width: 31.51%; height: 36.23%; } // mid-left (wide)
+		&--3 { left: 72.68%; top: 66.30%; width: 27.32%; height: 33.70%; } // bottom-right
+		&--4 { left: 82.41%; top: 8.33%;  width: 17.59%; height: 40.76%; } // top-right
+		&--5 { left: 57.41%; top: 0;      width: 18.34%; height: 40.76%; } // top-centre
+	}
+
+	// Central text card — the bottom layer, so overlapping images/labels sit on top.
+	&__card {
+		position: absolute;
+		left: 35.93%;
+		top: 31.16%;
+		width: 28.97%;
+		z-index: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 64px;
+		padding: 24px;
+		background-color: $color-card-bg;
+		border-radius: $radius-shell;
+	}
+
+	&__tags {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+	}
+
+	&__body {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+
+		p {
+			font-size: var(--wp--preset--font-size--body-20);
+			letter-spacing: -0.04em;
+			line-height: 22px;
+			color: $color-subtle;
+			margin: 0;
+		}
+	}
+
+	&__caption {
+		position: absolute;
+		z-index: 2; // labels stay above both the images and the central card
+		display: flex;
+		align-items: center;
+		gap: 16px;
+		white-space: nowrap;
+
+		&--1 { left: 4.79%;  top: 41.12%; } // Hotels
+		&--2 { left: 0.30%;  top: 96.01%; } // Mall
+		&--3 { left: 72.68%; top: 57.97%; } // Seaside restaurants
+		&--4 { left: 82.41%; top: 0;      } // Residences
+		&--5 { left: 57.41%; top: 45.11%; } // Offices
+	}
+
+	// Dot + 48px line, pointing right toward the text.
+	&__caption-line {
+		position: relative;
+		width: 52px;
+		height: 8px;
+		flex-shrink: 0;
+
+		&::before {
+			content: '';
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 8px;
+			height: 8px;
+			border-radius: 50%;
+			background-color: $color-contrast;
+		}
+
+		&::after {
+			content: '';
+			position: absolute;
+			left: 4px;
+			top: 50%;
+			width: 48px;
+			height: 1px;
+			transform: translateY(-50%);
+			background-color: $color-contrast;
+		}
+	}
+
+	&__caption-label {
+		font-size: var(--wp--preset--font-size--body-20);
+		letter-spacing: -0.04em;
+		line-height: 22px;
+		color: $color-contrast;
+	}
+
+	// The absolute collage only has room for the central text card at the widest
+	// sizes; below `wide` (1280px) the card would overflow into the next section,
+	// so switch to a simple stacked grid there.
+	@include breakpoint-down(wide) {
+		&__collage {
+			aspect-ratio: auto;
+			max-width: none;
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			gap: 16px;
+		}
+
+		&__img {
+			position: static;
+			width: auto;
+			height: auto;
+			aspect-ratio: 16 / 10;
+		}
+
+		&__card {
+			position: static;
+			width: auto;
+			grid-column: 1 / -1;
+		}
+
+		&__caption {
+			display: none;
+		}
+	}
+}
+
+// --- Opportunities Available: title + subtitle, three cards, upcoming card ----
+.sl-opportunities {
+	padding: 114px 24px 64px; // 114px after Integrated Environment (→228 gap), 64px below.
+	display: flex;
+	flex-direction: column;
+	gap: 64px;
+
+	&__head {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 12px;
+	}
+
+	&__title {
+		text-align: center;
+		font-size: var(--wp--preset--font-size--title-64);
+		letter-spacing: -0.04em;
+		line-height: 1.05;
+		text-transform: uppercase;
+		margin: 0;
+	}
+
+	&__subtitle {
+		text-align: center;
+		font-size: var(--wp--preset--font-size--body-20);
+		letter-spacing: -0.04em;
+		line-height: 22px;
+		color: $color-subtle;
+		margin: 0;
+	}
+
+	&__cards {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 24px;
+	}
+
+	// The three cards + the Upcoming card sit 24px apart (the section's 64px gap
+	// stays between the heading and this group).
+	&__leasing {
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+	}
+}
+
+// Full-image opportunity card — title + description at the top, feature chips at
+// the bottom, dark fades top and bottom for legibility.
+.sl-opp-card {
+	position: relative;
+	flex: 0 0 369px; // hold the design width so the feature chips wrap to two rows
+	max-width: 100%;
+	height: 420px;
+	padding: 24px;
+	border-radius: $radius-card;
+	overflow: hidden;
+	isolation: isolate;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 16px;
+	background-color: $color-contrast;
+	color: $color-base;
+
+	&__media {
+		position: absolute;
+		inset: 0;
+		z-index: -2;
+		margin: 0;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			display: block;
+		}
+	}
+
+	// Dark scrim, heavier at the top (title) and bottom (chips).
+	&::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		pointer-events: none;
+		background: linear-gradient(
+			to bottom,
+			rgba(0, 0, 0, 0.7) 0%,
+			rgba(0, 0, 0, 0.1) 30%,
+			rgba(0, 0, 0, 0.15) 55%,
+			rgba(0, 0, 0, 0.75) 100%
+		);
+	}
+
+	&__head {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+	}
+
+	&__title {
+		font-size: var(--wp--preset--font-size--title-36);
+		letter-spacing: -0.04em;
+		line-height: normal;
+		text-transform: uppercase;
+		color: $color-base;
+		margin: 0;
+	}
+
+	&__desc {
+		font-size: var(--wp--preset--font-size--body-16);
+		line-height: 20px;
+		letter-spacing: 0.014em;
+		color: $color-base;
+		margin: 0;
+	}
+
+	&__chips {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: flex-start;
+		gap: 8px 4px; // 8px between rows, tighter 4px between chips on a row
+
+		// Trim the chips' horizontal padding (vs the global 8px) so the first two
+		// fit on one row — e.g. "Restaurants & cafes" + "Beauty & wellness".
+		.tag-chip {
+			padding: 4px 6px;
+		}
+	}
+}
+
+// Upcoming Developments — light banner card (title left, pill + two notes right).
+.sl-opp-upcoming {
+	display: flex;
+	gap: 64px;
+	align-items: center;
+	width: 100%;
+	max-width: 1155px; // match the three cards above (3 × 369 + 2 × 24)
+	margin-left: auto;
+	margin-right: auto;
+	background-color: $color-card-bg;
+	border-radius: $radius-shell;
+	padding: 48px;
+
+	&__title {
+		flex: 0 0 352px;
+		max-width: 35%;
+		font-size: var(--wp--preset--font-size--title-48);
+		letter-spacing: -0.04em;
+		line-height: 1.05;
+		text-transform: uppercase;
+		margin: 0;
+	}
+
+	&__info {
+		flex: 1 1 0;
+		min-width: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 48px; // pill row → notes
+	}
+
+	&__tags {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+	}
+
+	&__items {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 48px;
+	}
+
+	&__item {
+		font-size: var(--wp--preset--font-size--body-20);
+		letter-spacing: -0.04em;
+		line-height: 22px;
+		color: $color-subtle;
+		margin: 0;
+	}
+
+	@include breakpoint-down(desktop) {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 32px;
+		padding: 32px;
+
+		&__title {
+			flex: none;
+			max-width: none;
+		}
+
+		&__items {
+			grid-template-columns: 1fr;
+			gap: 16px;
+		}
+	}
+}
+
+// --- What Makes This Different: title + subtitle (left) + 3 word cards (right) -
+.sl-different {
+	padding: 114px 24px;
+	display: flex;
+	gap: 64px;
+	align-items: center;
+
+	&__intro {
+		flex: 0 0 463px;
+		max-width: 42%;
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+	}
+
+	&__title {
+		font-size: var(--wp--preset--font-size--title-64);
+		letter-spacing: -0.04em;
+		line-height: 1.05;
+		text-transform: uppercase;
+		margin: 0;
+	}
+
+	&__subtitle {
+		font-size: var(--wp--preset--font-size--body-20);
+		letter-spacing: -0.04em;
+		line-height: 22px;
+		color: $color-subtle;
+		margin: 0;
+	}
+
+	&__cards {
+		flex: 1 1 0;
+		min-width: 0;
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 24px;
+	}
+
+	// Taller cards; the values here are words, so use the 48px size.
+	.sl-stat {
+		min-height: 260px;
+	}
+
+	.sl-stat__value {
+		font-size: var(--wp--preset--font-size--title-48);
+		text-transform: uppercase;
+	}
+
+	@include breakpoint-down(desktop) {
+		flex-direction: column;
+		align-items: stretch;
+
+		&__intro {
+			flex: none;
+			max-width: none;
+		}
+	}
+
+	@include breakpoint-down(tablet) {
+		&__cards {
+			grid-template-columns: 1fr;
+		}
+	}
+}
+
+// --- Enquiry form: reuses .lw-contact / .contact-message; widen title + spacing.
+.lw-contact.sl-form {
+	padding-bottom: 178px; // 178px down to the footer (114px top from .contact-message).
+
+	// Give the intro enough width that "Sales & Leasing" stays on one line.
+	.lw-contact__intro {
+		flex: 0 0 540px;
+		max-width: none;
+	}
+
+	// The intro paragraph is rich text — render each paragraph with a 16px gap.
+	.lw-contact__body {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+
+		p {
+			margin: 0;
+		}
+	}
+}

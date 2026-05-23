@@ -1,0 +1,26 @@
+.decor-flower {
+	display: inline-block;
+	width: 32px;
+	height: 32px;
+	background-image: url('../../assets/icons/flower.svg');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+}
+
+.decor-ring {
+	display: inline-block;
+	width: 32px;
+	height: 32px;
+	flex-shrink: 0;
+	background-image: url('../../assets/icons/decor-ring.svg');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+
+	// White variant for dark backgrounds (event cards) — recolors the dark
+	// ring SVG without needing a second asset.
+	&--light {
+		filter: brightness(0) invert(1);
+	}
+}

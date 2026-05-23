@@ -1,0 +1,28 @@
+@use '../base/tokens' as *;
+
+.progress-bar {
+	display: flex;
+	align-items: center;
+	flex: 1;
+	min-width: 240px;
+	position: relative;
+	height: 3px;
+
+	&__rail {
+		flex: 1;
+		height: 3px;
+		background-color: $color-card-border;
+		border-radius: 2px;
+	}
+
+	&__fill {
+		position: absolute;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		width: 25%;
+		background-color: $color-contrast;
+		border-radius: 2px;
+		transition: width 0.2s ease;
+	}
+}

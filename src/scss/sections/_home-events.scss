@@ -1,0 +1,61 @@
+@use '../base/tokens' as *;
+@use '../base/mixins' as *;
+
+.home-events {
+	position: relative;       // anchor for the absolutely-positioned decor word
+	padding: 128px 24px 100px;
+	display: flex;
+	flex-direction: column;
+	gap: 64px;
+	overflow: clip; // contain the absolutely-positioned decor text
+
+	&__head {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		// No min-height — head wraps the title tightly so the section's
+		// `gap: 64px` yields exactly 64px between the title and the cards.
+	}
+
+	// "at Harbour Bay" sub-word — below "WHAT'S ON" but offset to the LEFT (its
+	// right edge ends at section center). Mirror of the Explore decor; the cards
+	// (z-index: 1) clip the decor's lower edge.
+	&__decor {
+		position: absolute;
+		top: 206px;             // ~3px visible clip behind the cards top (y=256)
+		left: 53.5%;
+		transform: translateX(-100%);
+		z-index: 0;
+		margin: 0;
+		pointer-events: none;
+	}
+
+	&__title {
+		position: relative;
+		z-index: 2;
+		font-size: var(--wp--preset--font-size--title-64);
+		letter-spacing: -0.04em;
+		line-height: 1;
+		text-transform: uppercase;
+		margin: 0;
+	}
+
+	&__grid {
+		position: relative;
+		z-index: 1;
+		display: flex;
+		gap: 24px;
+		align-items: stretch;
+		flex-wrap: nowrap;
+	}
+
+	@include breakpoint-down(desktop) {
+		&__grid {
+			flex-wrap: wrap;
+		}
+
+		&__decor {
+			display: none;
+		}
+	}
+}

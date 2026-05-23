@@ -1,0 +1,30 @@
+// SCSS aliases for theme.json design tokens.
+// Frontend reads from CSS custom properties; SCSS uses these for media queries and computed values.
+
+$breakpoints: (
+	mobile: 480px,
+	tablet: 768px,
+	desktop: 1024px,
+	wide: 1280px,
+	max: 1440px
+);
+
+$color-base: var(--wp--preset--color--base);
+$color-contrast: var(--wp--preset--color--contrast);
+$color-primary: var(--wp--preset--color--primary);
+$color-accent-light: var(--wp--preset--color--accent-light);
+$color-accent-red: var(--wp--preset--color--accent-red);
+$color-subtle: var(--wp--preset--color--subtle);
+$color-muted-fg: var(--wp--preset--color--muted-fg);
+$color-card-bg: var(--wp--preset--color--card-bg);
+$color-card-border: var(--wp--preset--color--card-border);
+$color-card-chip: var(--wp--preset--color--card-chip);
+$color-muted-bg: var(--wp--preset--color--muted-bg);
+$color-decor: var(--wp--preset--color--decor);
+
+$radius-pill: 100px;
+$radius-card: 16px;
+$radius-shell: 24px;
+$radius-chip: 100px;
+
+$blur-card: 4px;

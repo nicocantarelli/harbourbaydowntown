@@ -1,0 +1,260 @@
+@use '../base/tokens' as *;
+@use '../base/mixins' as *;
+
+// ============================================================================
+// Wellness & Spa page. Easy to Fit reuses the Explore decor-title treatment
+// (.home-explore) with the "Our Story" card (.about-story__card) mirrored;
+// Spa & Massage is a new carousel (Card_Type_7); Beauty & Grooming reuses the
+// standard Listings grid (Card_Type_5) like the other directory pages.
+// ============================================================================
+
+// --- Easy to Fit: decor-word title + the "Our Story" card, mirrored ----------
+.home-explore.wellness-easyfit {
+	padding: 178px 24px 114px; // 178px from the hero, 114px (+114 Spa top = 228) below.
+
+	// Re-anchor the background word relative to the title. The base value (206px)
+	// assumes the homepage's 128px top padding; this section uses 178px, so push
+	// the decor down by the same 50px to keep the exact Explore Downtown offset.
+	.home-explore__decor {
+		top: 256px;
+	}
+
+	// Mirror the Our Story card: text column on the LEFT, image on the RIGHT.
+	// (The markup places the body before the media; here we just flip the card's
+	// inner padding so the text — not the image — sits 24px off the card edge.)
+	.about-story__card {
+		position: relative;
+		z-index: 1; // paint over the decor word's lower edge
+		padding-right: 0;
+		padding-left: 24px;
+	}
+
+	// The spa image is portrait — pin it (absolute) so it doesn't drive the card
+	// height. The text drives the height instead (min 426px from the base card),
+	// so all the copy stays visible while the image just crops to fit.
+	.about-story__media {
+		position: relative;
+		align-self: stretch;
+		overflow: hidden;
+
+		img {
+			position: absolute;
+			inset: 0;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+
+	@include breakpoint-down(desktop) {
+		.about-story__card {
+			padding: 0 0 24px; // match the Our Story mobile reset (stacks vertically)
+		}
+	}
+}
+
+// --- Spa & Massage: heading (+ pill) above a single-row card carousel --------
+.wellness-spa {
+	padding: 114px 24px 64px; // 114px after Easy to Fit (→228 gap), 64px (+114 Beauty top = 178) before Beauty.
+	display: flex;
+	flex-direction: column;
+	gap: 64px;
+
+	&__head {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 24px;
+		flex-wrap: wrap;
+	}
+
+	&__title {
+		font-size: var(--wp--preset--font-size--title-64);
+		letter-spacing: -0.04em;
+		line-height: 1.05;
+		text-transform: uppercase;
+		margin: 0;
+	}
+
+	&__tag {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+		flex-shrink: 0;
+	}
+
+	&__controls {
+		justify-content: flex-start;
+
+		.progress-bar {
+			flex: none;
+			width: 862px;
+			max-width: 100%;
+			min-width: 0;
+		}
+	}
+}
+
+// Card_Type_7 — full-image spa card: chip + arrow + title on top, feature tags
+// at the bottom. (A rearranged Card_Type_5.)
+.card--type-7 {
+	width: 364px;
+	height: 420px;
+	padding: 24px;
+	flex-shrink: 0;
+	align-items: flex-start;
+	justify-content: space-between; // pushes the head up and the tags down
+	background-color: $color-contrast;
+	border: 0.5px solid $color-base;
+	color: $color-base;
+
+	.card__image {
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		margin: 0;
+		border-radius: inherit;
+		overflow: hidden;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+
+	// Scrim, darker at the top (title) and bottom (tags) so white text stays legible.
+	&::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+		pointer-events: none;
+		border-radius: inherit;
+		background: linear-gradient(
+			to bottom,
+			rgba(0, 0, 0, 0.5) 0%,
+			rgba(0, 0, 0, 0.15) 38%,
+			rgba(0, 0, 0, 0.2) 62%,
+			rgba(0, 0, 0, 0.65) 100%
+		);
+	}
+
+	.card__head {
+		position: relative;
+		z-index: 1;
+		display: flex;
+		flex-direction: column;
+		gap: 12px; // Figma: 12px between the top row and the title.
+		width: 100%;
+	}
+
+	.card__top {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 16px;
+		width: 100%;
+	}
+
+	.card__arrow {
+		flex-shrink: 0;
+	}
+
+	.card__title {
+		font-size: var(--wp--preset--font-size--title-36);
+		letter-spacing: -0.04em;
+		line-height: 1;
+		text-transform: uppercase;
+		color: $color-base;
+		margin: 0;
+	}
+
+	// Feature pills (with decor dots) wrapping across up to two rows.
+	.card__tags {
+		position: relative;
+		z-index: 1;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 4px;
+		width: 100%;
+
+		// White pills on the dark image.
+		.tag-chip {
+			border-color: $color-base;
+			color: $color-base;
+			background-color: rgba(255, 255, 255, 0.1);
+		}
+	}
+
+	// Whole-card hover turns the arrow red and spins it (like the directory cards).
+	&:hover .card__arrow,
+	&:focus-within .card__arrow {
+		background-color: $color-accent-red;
+		color: $color-base;
+	}
+
+	&:hover .card__arrow svg,
+	&:focus-within .card__arrow svg {
+		transform: rotate(45deg);
+	}
+}
+
+// --- Beauty & Grooming: Card_Type_5 grid as a two-row scrolling carousel -----
+.wellness-beauty {
+	padding: 114px 24px 128px; // 114px after Spa (→178 gap), 128px to the footer.
+	display: flex;
+	flex-direction: column;
+	gap: 64px;
+
+	&__title {
+		text-align: center;
+		font-size: var(--wp--preset--font-size--title-64);
+		letter-spacing: -0.04em;
+		line-height: 1.05;
+		text-transform: uppercase;
+		margin: 0;
+	}
+
+	&__track {
+		display: grid;
+		grid-auto-flow: column;
+		grid-template-rows: repeat(2, 420px);
+		grid-auto-columns: calc((100% - 48px) / 3);
+		gap: 24px;
+		// Headroom for the card hover lift (overflow-x:auto also clips the top);
+		// the negative margin cancels it so nothing shifts.
+		padding-top: 8px;
+		margin-top: -8px;
+		overflow-x: auto;
+		overscroll-behavior-x: contain;
+		scrollbar-width: none;
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+
+		@include breakpoint-down(desktop) {
+			grid-auto-columns: calc((100% - 24px) / 2);
+		}
+
+		@include breakpoint-down(tablet) {
+			grid-auto-columns: 100%;
+		}
+	}
+
+	&__controls {
+		display: flex;
+		gap: 36px;
+		align-items: center;
+		justify-content: flex-start;
+
+		.progress-bar {
+			flex: none;
+			width: 862px;
+			max-width: 100%;
+			min-width: 0;
+		}
+	}
+}

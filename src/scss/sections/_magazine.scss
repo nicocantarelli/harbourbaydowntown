@@ -1,0 +1,234 @@
+@use '../base/tokens' as *;
+@use '../base/mixins' as *;
+
+// ============================================================================
+// Magazine page (slug: magazine — non-hero, solid header). Reuses existing
+// layouts: Discover Batam = the Explore decor-title treatment with the "Our
+// Story" card mirrored; What You'll Find Inside is new (image + flanking
+// labels); Read Online reuses the Special Promotions / Guides carousel with
+// image-only preview cards; Where to Find reuses the "Coming Soon" card.
+// ============================================================================
+
+// --- Discover Batam: decor-word title + the "Our Story" card, mirrored -------
+// (Same mirror as Wellness "Easy to Fit", but this page is non-hero so it keeps
+// the homepage's 128px top padding — and therefore the base decor offset too.)
+.home-explore.magazine-discover {
+	padding: 128px 24px 114px; // 128px below the header, 114px (+114 Inside top = 228) below.
+
+	// Mirror the Our Story card: text column on the LEFT, image on the RIGHT.
+	.about-story__card {
+		position: relative;
+		z-index: 1; // paint over the decor word's lower edge
+		padding-right: 0;
+		padding-left: 24px;
+	}
+
+	// Pin the image (absolute) so it fills the card without driving its height —
+	// the text column sets the height (min 426px from the base card).
+	.about-story__media {
+		position: relative;
+		align-self: stretch;
+		overflow: hidden;
+
+		img {
+			position: absolute;
+			inset: 0;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+
+	@include breakpoint-down(desktop) {
+		.about-story__card {
+			padding: 0 0 24px; // match the Our Story mobile reset (stacks vertically)
+		}
+	}
+}
+
+// --- What You'll Find Inside: centered title + open-magazine image with labels -
+.magazine-inside {
+	padding: 114px 24px; // 114px each side → 228px gaps to Discover and Read Online.
+	display: flex;
+	flex-direction: column;
+	gap: 64px;
+
+	&__head {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 12px; // Figma: 12px between the title and the subtitle.
+	}
+
+	&__title {
+		text-align: center;
+		font-size: var(--wp--preset--font-size--title-64);
+		letter-spacing: -0.04em;
+		line-height: 1.05;
+		text-transform: uppercase;
+		margin: 0;
+	}
+
+	&__subtitle {
+		text-align: center;
+		font-size: var(--wp--preset--font-size--body-20);
+		letter-spacing: -0.04em;
+		line-height: 22px;
+		color: $color-subtle;
+		margin: 0;
+	}
+
+	// Positioning context for the image + the flanking labels. Aspect matches the
+	// Figma stage (1336×552) so the %-positioned labels track with the image.
+	&__stage {
+		position: relative;
+		width: 100%;
+		max-width: 1336px;
+		margin: 0 auto;
+		aspect-ratio: 1336 / 552;
+	}
+
+	// The magazine spans the centre ~74% of the stage (white gutters either side
+	// hold the labels). The image overflows the stage height and is cropped to its
+	// middle band — matching the Figma composition.
+	&__media {
+		position: absolute;
+		left: 13.1%;
+		top: 0;
+		bottom: 0;
+		width: 73.8%;
+		margin: 0;
+		overflow: hidden;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: center;
+			display: block;
+		}
+	}
+
+	&__label {
+		position: absolute;
+		display: flex;
+		align-items: center;
+		gap: 16px;
+		white-space: nowrap;
+
+		// Left column: text, then a connector running right toward the image.
+		&--l1 { left: 5.69%; top: 11.23%; }
+		&--l2 { left: 0;     top: 64.13%; }
+		&--l3 { left: 8.31%; top: 86.23%; }
+
+		// Right column: a connector running left toward the image, then text.
+		&--r1 { left: 72.08%; top: 8.51%; }
+		&--r2 { left: 77.92%; top: 27.54%; }
+		&--r3 { left: 73.13%; top: 84.24%; }
+	}
+
+	&__label-text {
+		font-size: var(--wp--preset--font-size--body-20);
+		letter-spacing: -0.04em;
+		line-height: 22px;
+		color: $color-contrast;
+	}
+
+	// 48px line + dot. Default: dot on the left (the image-facing end for the
+	// right column), line extending right toward the text.
+	&__line {
+		position: relative;
+		width: 52px;
+		height: 8px;
+		flex-shrink: 0;
+
+		&::before {
+			content: '';
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 8px;
+			height: 8px;
+			border-radius: 50%;
+			background-color: $color-contrast;
+		}
+
+		&::after {
+			content: '';
+			position: absolute;
+			left: 4px;
+			top: 50%;
+			width: 48px;
+			height: 1px;
+			transform: translateY(-50%);
+			background-color: $color-contrast;
+		}
+
+		// Left column: flip so the dot sits at the image-facing (right) end.
+		&--flip {
+			transform: scaleX(-1);
+		}
+	}
+
+	// The labels overlap the image on smaller screens — hide them, keep the image.
+	@include breakpoint-down(desktop) {
+		&__label {
+			display: none;
+		}
+
+		&__media {
+			position: relative;
+			left: auto;
+			width: 100%;
+			height: 100%;
+		}
+	}
+}
+
+// --- Read Online: Special Promotions layout, intro has a button; image cards --
+.home-promotions.magazine-read {
+	padding: 114px 24px 64px; // 114px after Inside (→228 gap), 64px (+64 Where top = 128) before Where.
+
+	// Full-image preview cards (image + category chip only — no text/meta).
+	.magazine-read__card {
+		position: relative;
+		width: 328px;
+		height: 420px;
+		flex-shrink: 0;
+		border-radius: $radius-card;
+		overflow: hidden;
+		background-color: $color-card-bg;
+	}
+
+	.magazine-read__media {
+		position: absolute;
+		inset: 0;
+		margin: 0;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			display: block;
+		}
+	}
+
+	.magazine-read__chip {
+		position: absolute;
+		top: 12px;
+		left: 12px;
+		z-index: 1;
+	}
+}
+
+// --- Where to Find the Magazine: the "Coming Soon" card, with footer spacing --
+.lw-coming.magazine-where {
+	padding-bottom: 128px; // 64px after Read Online (→128 gap), 128px down to the footer.
+
+	// "Where to Find the Magazine" is longer than "Coming Soon" — widen the title
+	// column so it wraps to two lines (matching the design) instead of three.
+	.lw-coming__head {
+		flex-basis: 480px;
+		max-width: 48%;
+	}
+}

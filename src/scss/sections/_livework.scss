@@ -1,0 +1,533 @@
+@use '../base/tokens' as *;
+@use '../base/mixins' as *;
+
+// ============================================================================
+// Live & Work page. Hero reuses .page-hero--centered. Buildings, the Coming
+// Soon card, and the enquiry form are new.
+// ============================================================================
+
+// --- Hero: this title/subtitle are longer than the other pages' — widen the
+// centered column so the title fits one line and the subtitle two lines. -----
+.page-hero--livework {
+	.page-hero__inner {
+		max-width: 1040px;
+	}
+
+	.page-hero__subtitle {
+		max-width: 700px;
+	}
+}
+
+// --- Shared amenities grid (buildings + coming soon) ------------------------
+.lw-amenities {
+	display: flex;
+	gap: 64px;
+	width: 100%;
+
+	&__col {
+		flex: 1 1 0;
+		min-width: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+	}
+
+	@include breakpoint-down(tablet) {
+		flex-direction: column;
+		gap: 16px;
+	}
+}
+
+.lw-amenity {
+	display: flex;
+	align-items: flex-start;
+	gap: 8px;
+
+	&__icon {
+		flex-shrink: 0;
+		display: inline-flex;
+		color: $color-contrast;
+
+		svg {
+			width: 20px;
+			height: 20px;
+			aspect-ratio: 1 / 1;
+			display: block;
+		}
+	}
+
+	&__text {
+		font-size: var(--wp--preset--font-size--body-20);
+		letter-spacing: -0.04em;
+		line-height: 22px;
+		color: $color-subtle;
+	}
+}
+
+// --- Building section: centered title + image (left) + info (right) ----------
+.lw-building {
+	padding: 64px 24px; // 64px each side → 128px gaps between buildings.
+	display: flex;
+	flex-direction: column;
+	gap: 64px;
+
+	&__title {
+		text-align: center;
+		font-size: var(--wp--preset--font-size--title-64);
+		letter-spacing: -0.04em;
+		line-height: 1.05;
+		text-transform: uppercase;
+		margin: 0;
+	}
+
+	&__row {
+		display: flex;
+		gap: 64px;
+		align-items: stretch;
+		padding: 0 24px;
+	}
+
+	&__media {
+		flex: 0 1 568px;
+		min-width: 0;
+		position: relative;
+		overflow: hidden;
+		border-radius: $radius-shell;
+		margin: 0;
+
+		img {
+			position: absolute;
+			inset: 0;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			display: block;
+		}
+	}
+
+	&__info {
+		flex: 1 1 0;
+		min-width: 0;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: 64px;
+		padding: 24px 0;
+	}
+
+	&__head {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		gap: 16px;
+	}
+
+	&__tags {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+	}
+
+	// Corner arrow — turns red and spins 45° on hover, like the arrows elsewhere.
+	&__arrow {
+		flex-shrink: 0;
+
+		svg {
+			transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+		}
+
+		&:hover,
+		&:focus-visible {
+			transform: none;
+			background-color: $color-accent-red;
+		}
+
+		&:hover svg,
+		&:focus-visible svg {
+			transform: rotate(45deg);
+		}
+	}
+
+	&__text {
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+	}
+
+	&__body {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+
+		p {
+			font-size: var(--wp--preset--font-size--body-20);
+			letter-spacing: -0.04em;
+			line-height: 22px;
+			color: $color-subtle;
+			margin: 0;
+		}
+	}
+
+	&__divider {
+		display: block;
+		width: 100%;
+		height: 1px;
+		background-color: $color-card-border;
+	}
+
+	@include breakpoint-down(desktop) {
+		&__row {
+			flex-direction: column;
+			align-items: stretch;
+			padding: 0;
+		}
+
+		&__media {
+			flex: none;
+			width: 100%;
+			height: 320px;
+		}
+
+		&__info {
+			padding: 0;
+		}
+	}
+}
+
+// 128px from the hero down to the first building.
+.site-content--livework .lw-building:first-child {
+	padding-top: 128px;
+}
+
+// --- Coming Soon: a light card (title left, body + amenities right) ----------
+.lw-coming {
+	padding: 64px 24px;
+
+	&__card {
+		display: flex;
+		gap: 64px;
+		align-items: center;
+		background-color: $color-card-bg;
+		border-radius: $radius-shell;
+		padding: 48px;
+	}
+
+	&__head {
+		flex: 0 0 420px;
+		max-width: 42%;
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+	}
+
+	&__tags {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+	}
+
+	&__title {
+		font-size: var(--wp--preset--font-size--title-64);
+		letter-spacing: -0.04em;
+		line-height: 1.05;
+		text-transform: uppercase;
+		margin: 0;
+	}
+
+	&__info {
+		flex: 1 1 0;
+		min-width: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+	}
+
+	&__body {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+
+		p {
+			font-size: var(--wp--preset--font-size--body-20);
+			letter-spacing: -0.04em;
+			line-height: 22px;
+			color: $color-subtle;
+			margin: 0;
+		}
+	}
+
+	&__divider {
+		display: block;
+		width: 100%;
+		height: 1px;
+		background-color: $color-card-border;
+	}
+
+	@include breakpoint-down(desktop) {
+		&__card {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 32px;
+			padding: 32px;
+		}
+
+		&__head {
+			flex: none;
+			width: 100%;
+			max-width: none;
+		}
+	}
+}
+
+// --- Enquire form: intro (left) + placeholder form (right) -------------------
+.lw-contact {
+	padding: 64px 24px 128px; // 128px down to the footer.
+	display: flex;
+	gap: 64px;
+	align-items: flex-start;
+
+	&__intro {
+		flex: 0 0 415px;
+		max-width: 38%;
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+	}
+
+	&__title {
+		font-size: var(--wp--preset--font-size--title-64);
+		letter-spacing: -0.04em;
+		line-height: 1.05;
+		text-transform: uppercase;
+		margin: 0;
+	}
+
+	&__body {
+		font-size: var(--wp--preset--font-size--body-20);
+		letter-spacing: -0.04em;
+		line-height: 22px;
+		color: $color-subtle;
+		margin: 0;
+	}
+
+	&__form {
+		flex: 1 1 0;
+		min-width: 0;
+		display: flex;
+		flex-wrap: wrap; // lets the full-width status message drop below the columns
+		gap: 24px;
+		align-items: stretch;
+	}
+
+	&__col {
+		flex: 1 1 0;
+		min-width: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+	}
+
+	// Dark pill with a white circular check on the right (matches the design).
+	&__submit {
+		align-self: flex-end;
+		display: inline-flex;
+		align-items: center;
+		gap: 16px;
+		border: 0;
+		border-radius: $radius-pill;
+		background-color: $color-contrast;
+		color: $color-base;
+		padding: 4px 4px 4px 24px;
+		font-family: inherit;
+		font-size: var(--wp--preset--font-size--body-20);
+		line-height: 22px;
+		letter-spacing: -0.04em;
+		cursor: pointer;
+		transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease;
+
+		&:hover,
+		&:focus-visible {
+			transform: translateY(-2px) scale(1.02);
+			box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+		}
+	}
+
+	&__submit-icon {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+		width: 32px;
+		height: 32px;
+		border-radius: $radius-pill;
+		background-color: $color-base;
+		color: $color-contrast;
+
+		svg {
+			width: 22px;
+			height: 22px;
+			display: block;
+		}
+	}
+
+	@include breakpoint-down(desktop) {
+		flex-direction: column;
+		align-items: stretch;
+
+		&__intro {
+			flex: none;
+			width: 100%;
+			max-width: none;
+		}
+	}
+
+	@include breakpoint-down(tablet) {
+		&__form {
+			flex-direction: column;
+		}
+	}
+
+	// Submit button while the request is in flight.
+	&__submit.is-loading {
+		opacity: 0.6;
+		pointer-events: none;
+	}
+
+	// On success the fields are hidden and the confirmation card takes their place.
+	&__form.is-submitted &__col {
+		display: none;
+	}
+
+	// Inline validation / network error (sits below the fields).
+	&__status {
+		width: 100%;
+		margin: 0;
+		font-size: var(--wp--preset--font-size--body-20);
+		letter-spacing: -0.04em;
+		line-height: 22px;
+		color: $color-accent-red;
+	}
+
+	// Confirmation card shown after a successful submission.
+	&__success {
+		width: 100%;
+		min-height: 300px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		gap: 16px;
+		padding: 64px 24px;
+		background-color: $color-card-bg;
+		border-radius: $radius-shell;
+		outline: none;
+	}
+
+	&__success-icon {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 64px;
+		height: 64px;
+		border-radius: $radius-pill;
+		background-color: $color-contrast;
+		color: $color-base;
+
+		svg {
+			width: 32px;
+			height: 32px;
+			display: block;
+		}
+	}
+
+	&__success-title {
+		font-size: var(--wp--preset--font-size--title-36);
+		letter-spacing: -0.04em;
+		line-height: 1.1;
+		text-transform: uppercase;
+		margin: 0;
+	}
+
+	&__success-text {
+		max-width: 460px;
+		font-size: var(--wp--preset--font-size--body-20);
+		letter-spacing: -0.04em;
+		line-height: 22px;
+		color: $color-subtle;
+		margin: 0;
+	}
+}
+
+// Honeypot — visually hidden anti-spam field (kept in the DOM so bots fill it).
+.hbd-hp {
+	position: absolute;
+	left: -9999px;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+}
+
+// Form field (label + input/select/textarea).
+.lw-field {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+
+	&--grow {
+		flex: 1 1 auto;
+	}
+
+	&__label {
+		font-size: var(--wp--preset--font-size--body-16);
+		line-height: 20px;
+		letter-spacing: 0.014em;
+		color: $color-contrast;
+	}
+
+	&__input {
+		width: 100%;
+		box-sizing: border-box;
+		border: 0;
+		border-radius: 12px;
+		background-color: $color-card-bg;
+		padding: 12px 16px;
+		font-family: inherit;
+		font-size: var(--wp--preset--font-size--body-16);
+		line-height: 20px;
+		letter-spacing: 0.014em;
+		color: $color-contrast;
+
+		&::placeholder {
+			color: #9ea5af;
+		}
+
+		&:focus {
+			outline: 1.5px solid $color-card-border;
+			outline-offset: 0;
+		}
+	}
+
+	&__input--select {
+		appearance: none;
+		-webkit-appearance: none;
+		padding-right: 44px;
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M4 6l4 4 4-4' stroke='%239ea5af' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+		background-repeat: no-repeat;
+		background-position: right 16px center;
+		cursor: pointer;
+
+		// While the empty placeholder option is selected, show the grey placeholder
+		// colour like the text inputs. Reverts to the normal dark text once a real
+		// option is chosen.
+		&:has(option[value=""]:checked) {
+			color: #9ea5af;
+		}
+	}
+
+	&__textarea {
+		flex: 1 1 auto;
+		min-height: 180px;
+		resize: vertical;
+	}
+}

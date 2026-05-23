@@ -1,0 +1,61 @@
+@use '../base/tokens' as *;
+@use '../base/mixins' as *;
+
+.home-guides {
+	padding: 128px 24px 100px;
+	display: flex;
+	flex-direction: column;
+	gap: 48px;
+
+	&__head {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 24px;
+		flex-wrap: wrap;
+	}
+
+	&__grid {
+		display: grid;
+		// Figma proportions: 795 / 565 inside a 1384 container with a 24px gap.
+		// `fr` units preserve that ratio on any screen size.
+		grid-template-columns: 795fr 565fr;
+		gap: 24px;
+		align-items: stretch; // both columns share the same row height
+
+		// The `hidden` attribute on inactive tab panels must win over `display: grid`.
+		&[hidden] {
+			display: none;
+		}
+	}
+
+	&__feature {
+		display: flex;
+		flex-direction: column; // cross-axis = horizontal, so the card stretches to fill the column width
+	}
+
+	// With a full 3-card panel the feature card borrows its height from the
+	// two-card stack on the right. When a panel has only 1 or 2 cards there is
+	// no (or a short) stack to match, so pin the feature card to the same height
+	// it has in a full panel instead of letting it collapse or balloon.
+	&__grid--cards-1 &__feature .card,
+	&__grid--cards-2 &__feature .card {
+		min-height: 332px;
+	}
+
+	&__stack {
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+		justify-content: flex-start;
+		// Stack sizes to its content (sum of sm-card heights + 24px gap) —
+		// this is the height the feature card on the left will match.
+		align-self: start;
+	}
+
+	@include breakpoint-down(desktop) {
+		&__grid {
+			grid-template-columns: 1fr;
+		}
+	}
+}

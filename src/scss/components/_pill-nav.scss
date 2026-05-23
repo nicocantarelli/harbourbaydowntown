@@ -1,0 +1,190 @@
+@use '../base/tokens' as *;
+
+// Custom <ul class="hbd-menu hbd-menu--header"> rendered by the [hbd_menu] shortcode,
+// which calls wp_nav_menu() with our walker. No WP Navigation block selectors, no inherited
+// backgrounds, no responsive modal scaffolding to fight.
+
+.hbd-menu {
+	display: inline-flex;
+	align-items: center;
+	gap: 0;
+	margin: 0;
+	padding: 4px;
+	list-style: none;
+	border: 0.5px solid currentColor;
+	border-radius: $radius-pill;
+	background-color: rgba(255, 255, 255, 0.18);
+	backdrop-filter: blur(16px);
+
+	&__item {
+		position: relative;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		background: transparent;
+	}
+
+	// Indicate items with children via a chevron — the exact 16x16 down chevron
+	// the user spec'd, rendered as a data-URI background on a ::after pseudo,
+	// sitting 4px from the end of the label text.
+	&__item--has-children > &__link {
+		display: inline-flex;
+		align-items: center;
+
+		&::after {
+			content: '';
+			display: inline-block;
+			width: 16px;
+			height: 16px;
+			margin-left: 4px;
+			flex-shrink: 0;
+			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M4 6L8 10L12 6' stroke='white' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+			background-repeat: no-repeat;
+			background-position: center;
+		}
+	}
+
+	// Submenu dropdown — matches the navbar pill (translucent white glass) on the
+	// hero overlay header. The sticky/scroll nav re-skins it dark to match its own
+	// dark pill (see .sticky-nav in _site-header.scss). Right-edge aligned to the
+	// navbar's right edge (compensating for the navbar's 4px inner padding).
+	&__submenu {
+		display: none;
+		position: absolute;
+		top: calc(100% + 12px);
+		right: -4px;
+		left: auto;
+		min-width: 180px;
+		margin: 0;
+		padding: 4px;
+		list-style: none;
+		border: 0.5px solid currentColor;
+		border-radius: $radius-card;
+		background-color: rgba(255, 255, 255, 0.18);
+		backdrop-filter: blur(16px);
+		z-index: 100;
+
+		.hbd-menu__item {
+			display: block;
+			margin: 0;
+			padding: 0;
+		}
+
+		.hbd-menu__link {
+			display: block;
+			width: 100%;
+			height: auto;
+			padding: 8px 24px;
+			white-space: nowrap;
+			color: inherit;
+			// Concentric with the container: 16px radius − 4px padding = 12px,
+			// so a hovered first/last item nests cleanly into the rounded box.
+			border-radius: 12px;
+			text-align: left;
+			background-color: transparent;
+
+			&:hover,
+			&:focus-visible {
+				background-color: rgba(255, 255, 255, 0.15);
+			}
+		}
+	}
+
+	// Bridge the 12px gap between the parent link and the submenu so the
+	// dropdown doesn't disappear when the cursor crosses the gap.
+	&__item--has-children::before {
+		content: '';
+		position: absolute;
+		top: 100%;
+		left: 0;
+		right: 0;
+		height: 12px;
+		display: none;
+	}
+
+	&__item:hover > &__submenu,
+	&__item:focus-within > &__submenu {
+		display: block;
+	}
+
+	&__item--has-children:hover::before,
+	&__item--has-children:focus-within::before {
+		display: block;
+	}
+
+	&__link {
+		position: relative; // anchor for the active-tab underline
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		height: 36px;
+		padding: 8px 24px;
+		border-radius: $radius-pill;
+		font-size: var(--wp--preset--font-size--body-16);
+		line-height: 20px;
+		letter-spacing: 0.014em;
+		color: inherit;
+		text-decoration: none;
+		white-space: nowrap;
+		background-color: transparent;
+		transition: background-color 0.2s ease;
+
+		&:hover,
+		&:focus-visible {
+			background-color: rgba(255, 255, 255, 0.15);
+		}
+	}
+
+	// --- Active tab indicator -------------------------------------------------
+	// Underline the current top-level item (and the parent of the current page
+	// when it lives in a dropdown). currentColor adapts to every navbar context:
+	// white text on the hero/sticky pills, dark text on the solid-header pill.
+	& > &__item--active > &__link::before {
+		content: '';
+		position: absolute;
+		left: 24px;
+		right: 24px;
+		bottom: 5px;
+		height: 2px;
+		border-radius: 2px;
+		background-color: currentColor;
+		pointer-events: none;
+	}
+
+	// Inside a dropdown, mark the current page with a persistent highlight so the
+	// open menu shows where you are.
+	&__submenu > &__item--active > &__link {
+		background-color: rgba(255, 255, 255, 0.15);
+	}
+
+	// Footer menus — vertical stack, no pill chrome.
+	&--footer-explore,
+	&--footer-quick-links,
+	&--footer-others {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 24px;
+		padding: 0;
+		border: 0;
+		background: transparent;
+		backdrop-filter: none;
+
+		.hbd-menu__link {
+			height: auto;
+			padding: 0;
+			font-size: var(--wp--preset--font-size--body-20);
+			line-height: 22px;
+			letter-spacing: -0.04em;
+			color: $color-base;
+			transition: color 0.2s ease;
+
+			// Red text on hover to match the social icons' accent.
+			&:hover,
+			&:focus-visible {
+				background-color: transparent;
+				color: $color-accent-red;
+			}
+		}
+	}
+}

@@ -1,0 +1,282 @@
+@use '../base/tokens' as *;
+@use '../base/mixins' as *;
+
+// ============================================================================
+// Dine page. Dine Guides reuses .stay-guides; the sections below are new.
+// ============================================================================
+
+// --- Categories: segmented filter + a row of promo cards (static) -----------
+.dine-categories {
+	// 114px top + Guides' 64px bottom = 178px above; 64px bottom (+114 promo top = 178).
+	padding: 114px 24px 64px;
+	display: flex;
+	flex-direction: column;
+	gap: 48px; // Figma: 48px between the switch and the cards.
+
+	&__switch {
+		display: inline-flex;
+		align-self: flex-start;
+		align-items: center;
+		padding: 4px;
+		background-color: $color-card-bg;
+		border-radius: $radius-pill;
+		flex-wrap: wrap;
+	}
+
+	&__tab {
+		appearance: none;
+		border: 0;
+		background-color: transparent;
+		cursor: pointer;
+		padding: 8px 24px;
+		border-radius: $radius-pill;
+		font-size: var(--wp--preset--font-size--body-16);
+		line-height: 20px;
+		letter-spacing: 0.014em;
+		color: #9ea5af; // Main/Grey_Dark
+		white-space: nowrap;
+		transition: background-color 0.2s ease, color 0.2s ease;
+
+		&.is-active {
+			background-color: $color-card-chip;
+			color: $color-contrast;
+		}
+	}
+
+	&__cards {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 24px;
+
+		@include breakpoint-down(desktop) {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		@include breakpoint-down(tablet) {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	// Promo cards fill the grid columns instead of their fixed 320px width.
+	.card--type-3 {
+		width: auto;
+	}
+
+	// Hidden tab panels (the active panel stays a grid).
+	&__cards[hidden] {
+		display: none;
+	}
+}
+
+// --- Special Promotions: reuses .home-promotions layout; wide cards ----------
+.home-promotions.dine-promotions {
+	// 114px top + Categories' 64px bottom = 178px between the two sections.
+	padding: 114px 24px 64px;
+}
+
+// Card_Type_6 — wide dark date-range promo card.
+.card--type-6 {
+	flex-shrink: 0;
+	width: 549px;
+	max-width: 100%;
+	height: 296px;
+	flex-direction: row;
+	align-items: center;
+	gap: 24px;
+	padding: 12px 24px 12px 12px;
+	background-color: $color-contrast;
+	color: $color-base;
+
+	.card__image {
+		flex-shrink: 0;
+		width: 198px;
+		height: 272px;
+		border-radius: 8px;
+		overflow: hidden;
+		margin: 0;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			display: block;
+		}
+	}
+
+	.card__body {
+		flex: 1;
+		min-width: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+	}
+
+	.card__date {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+	}
+
+	.card__years {
+		display: flex;
+		justify-content: space-between;
+		font-size: var(--wp--preset--font-size--body-16);
+		line-height: 20px;
+		letter-spacing: 0.014em;
+	}
+
+	.card__range {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 8px;
+	}
+
+	.card__day {
+		font-size: var(--wp--preset--font-size--title-36);
+		letter-spacing: -0.04em;
+		line-height: 1;
+		text-transform: uppercase;
+	}
+
+	.card__info {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+	}
+
+	.card__title {
+		font-size: 1.375rem; // 22px
+		letter-spacing: -0.04em;
+		line-height: 1.1;
+		text-transform: uppercase;
+		color: $color-base;
+		margin: 0;
+	}
+
+	.card__desc-row {
+		display: flex;
+		gap: 16px;
+		align-items: stretch;
+	}
+
+	.card__desc {
+		font-size: var(--wp--preset--font-size--body-16);
+		line-height: 20px;
+		letter-spacing: 0.014em;
+		color: $color-card-border; // #DADDE2
+		margin: 0;
+	}
+
+	.card__cta {
+		.wp-block-button,
+		.wp-block-button__link {
+			width: 100%;
+		}
+
+		.wp-block-button__link {
+			justify-content: space-between;
+		}
+	}
+
+	// Horizontal line between the two dates.
+	.card__line--h {
+		flex: 1;
+		height: 1px;
+		min-width: 24px;
+		max-width: 52px;
+		background-color: $color-base;
+	}
+
+	// Vertical dot + line left of the description.
+	.card__line--v {
+		position: relative;
+		width: 8px;
+		flex-shrink: 0;
+		align-self: stretch;
+		min-height: 52px;
+
+		&::before {
+			content: '';
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 8px;
+			height: 8px;
+			border-radius: 50%;
+			background-color: $color-base;
+		}
+
+		&::after {
+			content: '';
+			position: absolute;
+			left: 50%;
+			top: 4px;
+			bottom: 0;
+			width: 1px;
+			transform: translateX(-50%);
+			background-color: $color-base;
+		}
+	}
+}
+
+// --- Restaurants: Hotels grid (Card_Type_5) as a two-row scrolling carousel --
+.dine-restaurants {
+	// 114px top + Promotions' 64px bottom = 178px above; 128px to the footer.
+	padding: 114px 24px 128px;
+	display: flex;
+	flex-direction: column;
+	gap: 64px;
+
+	&__title {
+		text-align: center;
+		font-size: var(--wp--preset--font-size--title-64);
+		letter-spacing: -0.04em;
+		line-height: 1.05;
+		text-transform: uppercase;
+		margin: 0;
+	}
+
+	// Two rows that flow into columns; scrolls horizontally when there are more
+	// than six cards (carousel.js drives it via native scroll).
+	&__track {
+		display: grid;
+		grid-auto-flow: column;
+		grid-template-rows: repeat(2, 420px);
+		grid-auto-columns: calc((100% - 48px) / 3);
+		gap: 24px;
+		// Headroom for the card hover lift (overflow-x:auto also clips the top);
+		// the negative margin cancels it so nothing shifts.
+		padding-top: 8px;
+		margin-top: -8px;
+		overflow-x: auto;
+		overscroll-behavior-x: contain;
+		scrollbar-width: none;
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+
+		@include breakpoint-down(desktop) {
+			grid-auto-columns: calc((100% - 24px) / 2);
+		}
+
+		@include breakpoint-down(tablet) {
+			grid-auto-columns: 100%;
+		}
+	}
+
+	&__controls {
+		display: flex;
+		gap: 36px;
+		align-items: center;
+		justify-content: flex-start;
+
+		.progress-bar {
+			flex: none;
+			width: 862px;
+			max-width: 100%;
+			min-width: 0;
+		}
+	}
+}

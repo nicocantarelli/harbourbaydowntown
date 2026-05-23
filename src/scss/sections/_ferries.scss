@@ -1,0 +1,272 @@
+@use '../base/tokens' as *;
+@use '../base/mixins' as *;
+
+// ============================================================================
+// Ferry Services page. Hero reuses .page-hero--centered. Travel Guides reuses
+// the shared guides carousel (.home-promotions.stay-guides). The Ferry Routes
+// and Immigration FAQ sections below are new.
+// ============================================================================
+
+// --- Travel Guides: same as Stay/Dine/Shop guides; just re-tune the rhythm. --
+.home-promotions.ferry-guides {
+	padding: 178px 24px 114px; // 178px from the hero, 114px (+64 routes top = 178) below.
+}
+
+// --- Ferry Routes: heading + a two-column grid of ferry-operator cards -------
+.ferry-routes {
+	padding: 64px 24px 114px; // 64px top + prev 114px bottom = 178px; 114px bottom (+64 next top = 178).
+	display: flex;
+	flex-direction: column;
+	gap: 64px;
+
+	&__title {
+		text-align: center;
+		font-size: var(--wp--preset--font-size--title-64);
+		letter-spacing: -0.04em;
+		line-height: 1.05;
+		text-transform: uppercase;
+		margin: 0;
+	}
+
+	&__grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 24px;
+
+		@include breakpoint-down(desktop) {
+			grid-template-columns: 1fr;
+		}
+	}
+}
+
+// Ferry operator card — photo on the left, details + button on the right.
+.ferry-card {
+	display: flex;
+	gap: 24px;
+	align-items: stretch;
+	min-height: 316px;
+	background-color: $color-card-bg;
+	border-radius: $radius-shell;
+	overflow: hidden;
+
+	&__media {
+		flex: 1 1 0;
+		min-width: 0;
+		position: relative;
+		overflow: hidden;
+
+		img {
+			position: absolute;
+			inset: 0;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			display: block;
+		}
+	}
+
+	&__body {
+		flex-shrink: 0;
+		width: 405px; // Figma text column; the image (flex:1) takes the rest.
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		gap: 24px;
+		padding: 16px 24px 16px 0;
+	}
+
+	&__content {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+	}
+
+	// Operator logo — fixed height, natural width, capped so wide wordmarks
+	// (e.g. Reni Fadhila) don't overflow the text column.
+	&__logo {
+		display: block;
+		height: auto;
+		max-height: 48px;
+		width: auto;
+		max-width: 200px;
+		object-fit: contain;
+		object-position: left center;
+	}
+
+	&__name {
+		font-size: var(--wp--preset--font-size--title-36);
+		letter-spacing: -0.04em; // = -1.44px at 36px
+		line-height: normal;
+		text-transform: uppercase;
+		color: $color-contrast;
+		margin: 0;
+	}
+
+	&__info {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		margin: 0;
+	}
+
+	// Label (dark) + value (grey) on one line.
+	&__row {
+		font-size: var(--wp--preset--font-size--body-20);
+		line-height: 22px;
+		letter-spacing: -0.04em;
+		color: $color-subtle;
+		margin: 0;
+
+		dt {
+			display: inline;
+			color: $color-contrast;
+		}
+
+		dd {
+			display: inline;
+			margin: 0;
+		}
+	}
+
+	&__cta {
+		// Button styles itself via .is-style-pill-big-dark; just hug its content.
+		display: flex;
+	}
+
+	// Stack the card vertically on narrow screens.
+	@include breakpoint-down(tablet) {
+		flex-direction: column;
+		min-height: 0;
+
+		&__media {
+			flex: none;
+			height: 200px;
+		}
+
+		&__body {
+			width: 100%;
+			max-width: none;
+			padding: 0 24px 24px;
+		}
+	}
+}
+
+// --- Immigration & Passenger Information: title column + grouped FAQ ---------
+.ferry-info {
+	padding: 114px 24px 178px; // 114px after Domestic Routes (+114 = 228 gap), 178px to footer.
+	display: flex;
+	flex-direction: column;
+	gap: 64px; // pill row → the two columns (title lines up with the FAQ headings).
+
+	&__tags {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+	}
+
+	&__cols {
+		display: flex;
+		gap: 64px;
+		align-items: flex-start;
+	}
+
+	&__title {
+		flex-shrink: 0;
+		width: 438px;
+		max-width: 100%;
+		font-size: var(--wp--preset--font-size--title-64);
+		letter-spacing: -0.04em;
+		line-height: 1.05;
+		text-transform: uppercase;
+		margin: 0;
+	}
+
+	&__groups {
+		flex: 1 1 0;
+		min-width: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 64px; // between FAQ groups
+	}
+
+	@include breakpoint-down(desktop) {
+		&__cols {
+			flex-direction: column;
+			gap: 48px;
+		}
+
+		&__title {
+			width: 100%;
+		}
+	}
+}
+
+// FAQ group: title + a list of <details> accordions.
+.ferry-faq {
+	&__title {
+		font-size: var(--wp--preset--font-size--title-36);
+		letter-spacing: -0.04em;
+		line-height: 1;
+		text-transform: uppercase;
+		color: $color-contrast;
+		margin: 0 0 16px 0;
+	}
+
+	&__items {
+		display: flex;
+		flex-direction: column;
+		gap: 8px; // Figma: 8px between the filled item boxes.
+	}
+
+	// Each item is its own filled, rounded box (no dividers).
+	&__item {
+		background-color: $color-card-bg;
+		border-radius: 8px;
+	}
+
+	// Question row — label left, +/- icon right. The native marker is hidden.
+	&__q {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 16px;
+		padding: 12px;
+		cursor: pointer;
+		list-style: none;
+		font-size: var(--wp--preset--font-size--body-20);
+		line-height: 22px;
+		letter-spacing: -0.04em;
+		color: $color-contrast;
+
+		&::-webkit-details-marker {
+			display: none;
+		}
+
+		&::after {
+			content: '';
+			width: 20px;
+			height: 20px;
+			flex-shrink: 0;
+			background-repeat: no-repeat;
+			background-position: center;
+			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20' fill='none'%3E%3Cpath d='M10 5v10M5 10h10' stroke='%23151515' stroke-linecap='round'/%3E%3C/svg%3E");
+		}
+	}
+
+	&__item[open] &__q::after {
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20' fill='none'%3E%3Cpath d='M5 10h10' stroke='%23151515' stroke-linecap='round'/%3E%3C/svg%3E");
+	}
+
+	// Answer sits inside the same box, 12px below the question (12px box padding).
+	&__a {
+		padding: 0 12px 12px;
+
+		p {
+			margin: 0;
+			font-size: var(--wp--preset--font-size--body-16);
+			line-height: 20px;
+			letter-spacing: 0.014em;
+			color: $color-subtle;
+		}
+	}
+}

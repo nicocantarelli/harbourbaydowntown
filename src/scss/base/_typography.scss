@@ -1,0 +1,8 @@
+// Typography refinements layered on top of theme.json defaults.
+
+body {
+	// No -webkit-font-smoothing override: the default (subpixel) rendering
+	// matches Figma's text weight. Forcing `antialiased` thinned Questrial
+	// noticeably on macOS.
+	text-rendering: optimizeLegibility;
+}

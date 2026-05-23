@@ -1,0 +1,39 @@
+// Editor styles — keep block editor in sync with frontend.
+@use 'base/typography';
+
+// Components (subset relevant to the editor canvas)
+@use 'components/pill-button';
+@use 'components/icon-button';
+@use 'components/tag-chip';
+@use 'components/card';
+@use 'components/pill-nav';
+@use 'components/decor-flower';
+@use 'components/decor-text';
+@use 'components/progress-bar';
+@use 'components/carousel';
+@use 'components/tabs';
+
+// Sections
+@use 'sections/site-header';
+@use 'sections/site-footer';
+@use 'sections/home-hero';
+@use 'sections/home-map';
+@use 'sections/home-explore';
+@use 'sections/home-guides';
+@use 'sections/home-events';
+@use 'sections/home-promotions';
+
+// Editor-only preview tweaks
+.editor-styles-wrapper {
+	// Show first tab as active so admins see what the rendered state looks like.
+	.tab:first-child {
+		background-color: var(--wp--preset--color--card-chip);
+		color: var(--wp--preset--color--contrast);
+	}
+
+	// Reveal hover CTA on explore cards in editor.
+	.card--type-1 .card__cta {
+		opacity: 1;
+		transform: none;
+	}
+}

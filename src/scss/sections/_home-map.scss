@@ -1,0 +1,344 @@
+@use '../base/tokens' as *;
+@use '../base/mixins' as *;
+
+.home-map {
+	padding: 178px 24px 100px;
+	display: flex;
+	flex-direction: column;
+	gap: 64px;
+
+	&__title {
+		text-align: center;
+		font-size: var(--wp--preset--font-size--title-64);
+		letter-spacing: -0.04em;
+		text-transform: uppercase;
+		line-height: 1.05;
+		margin: 0;
+	}
+
+	&__grid {
+		display: grid;
+		grid-template-columns: 1fr 828px;
+		gap: 64px;
+		align-items: start; // map top-aligned with the text column so its top sits exactly `gap` (64px) below the title
+		padding-left: 24px;
+	}
+
+	&__text {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		gap: 32px;
+		align-self: stretch;
+	}
+
+	&__chip-row {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+	}
+
+	&__heading {
+		font-size: var(--wp--preset--font-size--title-36);
+		letter-spacing: -0.04em;
+		line-height: 1;
+		text-transform: uppercase;
+		margin: 0 0 24px 0;
+	}
+
+	&__body {
+		font-size: var(--wp--preset--font-size--body-20);
+		letter-spacing: -0.04em;
+		line-height: 22px;
+		color: $color-subtle;
+		max-width: 360px;
+		margin: 0;
+	}
+
+	&__stats {
+		display: flex;
+		gap: 64px;
+		align-items: flex-start;
+	}
+
+	&__stat-number {
+		font-size: var(--wp--preset--font-size--title-48);
+		letter-spacing: -0.04em;
+		line-height: 1;
+		text-transform: uppercase;
+		margin: 0 0 8px 0;
+	}
+
+	&__stat-label {
+		font-size: var(--wp--preset--font-size--body-16);
+		line-height: 20px;
+		letter-spacing: 0.014em;
+		margin: 0;
+	}
+
+	&__map {
+		position: relative;
+		border-radius: $radius-card;
+		// No overflow:hidden — pin hover tooltips need to extend beyond the map.
+		// The image is rounded directly instead of being clipped by the container.
+		aspect-ratio: 828 / 416;   // fixed aspect so pin positions track between admin and frontend
+
+		// Background map image ONLY — scope tightly so pin shape/icon images and
+		// tooltip images (also descendants of .home-map__map) aren't affected.
+		.wp-block-image img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: bottom;
+			display: block;
+			border-radius: $radius-card;
+		}
+	}
+
+	@include breakpoint-down(desktop) {
+		&__grid {
+			grid-template-columns: 1fr;
+			padding-left: 0;
+		}
+
+		&__stats {
+			gap: 32px;
+		}
+	}
+}
+
+// --- Map page: the shared map (image + pins) rendered full-width -------------
+.map-page {
+	padding: 128px 24px;
+	display: flex;
+	flex-direction: column;
+	gap: 64px;
+
+	&__title {
+		text-align: center;
+		font-size: var(--wp--preset--font-size--title-64);
+		letter-spacing: -0.04em;
+		line-height: 1.05;
+		text-transform: uppercase;
+		margin: 0;
+	}
+
+	// .map-page__map also carries .home-map__map (aspect-ratio + rounded image +
+	// positioning context for the % pins); it just spans the full content width.
+	&__map {
+		width: 100%;
+	}
+}
+
+// Map pins — rendered dynamically from the `hbd_map_pins` option set in
+// Appearance → Map Pins. Each pin uses the teardrop SVG (assets/icons/map-pin.svg)
+// with the chosen icon (preset or uploaded) layered on top.
+//
+// Positioning: each pin has `style="left: X%; top: Y%"` from the pattern;
+// the translate offsets here anchor the pin's TIP to that coordinate.
+.map-pin {
+	position: absolute;
+	display: inline-block;
+	// Native dimensions of the teardrop SVG (assets/icons/map-pin.svg).
+	width: 53px;
+	height: 61px;
+	// Defeat WP's `:where(.is-layout-flow) > * { margin-block-start: 16px }`,
+	// which would otherwise nudge each pin down by 16px relative to the
+	// previous sibling. Pins are absolutely positioned — they must have zero
+	// margin so the (X%, Y%) coordinate is the only thing controlling position.
+	margin: 0;
+	// The SVG has its anchor dot at cx=26.25, cy=56.25 — i.e. (49.53%, 92.21%)
+	// of the box. translate(-50%, -92.21%) anchors that dot to the (X%, Y%)
+	// position written by the pattern.
+	transform: translate(-50%, -92.21%);
+	transform-origin: center bottom;
+	pointer-events: auto;
+	cursor: pointer;
+	transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.25s ease;
+	// Promote to its own layer so the icon/shape stay crisp and don't shift
+	// subpixel when the pin scales on hover.
+	will-change: transform;
+
+	// Inline teardrop SVG — fills with currentColor so CSS controls its colour.
+	&__shape {
+		width: 100%;
+		height: 100%;
+		display: block;
+		pointer-events: none;
+		color: $color-contrast;
+		filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
+		transition: color 0.25s ease, filter 0.25s ease;
+		will-change: transform;
+	}
+
+	&__icon {
+		position: absolute;
+		// Centered on the teardrop bulb via negative margins (half of 22px) rather
+		// than a transform: this keeps the icon crisp and glued to the shape as the
+		// pin scales on hover, so every icon — preset or uploaded, any aspect ratio —
+		// sits at the exact same spot. top:39% ≈ the bulb's visual center.
+		top: 39%;
+		left: 50%;
+		margin: -11px 0 0 -11px;
+		width: 22px;
+		height: 22px;
+		object-fit: contain;
+		pointer-events: none;
+		z-index: 1; // above the teardrop
+		will-change: transform;
+	}
+
+	// Preset SVGs are already authored with white stroke → no filter.
+	&__icon--preset {
+		filter: none;
+	}
+
+	// User-uploaded icons forced to white so they're legible on dark teardrop.
+	&__icon--upload {
+		filter: brightness(0) invert(1);
+	}
+
+	&:hover,
+	&:focus-visible {
+		// Grow a little in place (anchored at the tip via transform-origin) — no jump.
+		transform: translate(-50%, -92.21%) scale(1.12);
+		z-index: 10;
+	}
+
+	// Recolour the inline teardrop to the accent red + lift its shadow on hover.
+	&:hover &__shape,
+	&:focus-visible &__shape {
+		color: $color-accent-red;
+		filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.28));
+	}
+
+	// --- Hover tooltip card -------------------------------------------------
+	// Positioned above the pin and centered on it. A transparent padding-bottom
+	// bridges the gap to the pin so moving the cursor pin → card keeps it open.
+	&__tooltip {
+		--tip-x: -50%; // horizontal centering offset; set to 0 when edge-anchored
+		position: absolute;
+		bottom: 100%;
+		left: 50%;
+		width: 280px;
+		max-width: calc(100vw - 16px);
+		padding-bottom: 14px;
+		transform: translateX(var(--tip-x)) translateY(6px);
+		opacity: 0;
+		visibility: hidden;
+		pointer-events: none;
+		transition: opacity 0.2s ease, transform 0.2s ease;
+		z-index: 20;
+	}
+
+	&:hover &__tooltip,
+	&:focus-within &__tooltip {
+		opacity: 1;
+		visibility: visible;
+		pointer-events: auto;
+		transform: translateX(var(--tip-x)) translateY(0);
+	}
+
+	// Flip below the pin when there's no room above (set in JS — see
+	// src/js/modules/map-pin-tooltips.js). The transparent bridge moves to the top.
+	&__tooltip--below {
+		top: 100%;
+		bottom: auto;
+		padding-top: 14px;
+		padding-bottom: 0;
+	}
+
+	// Anchor to the pin's left/right edge near a viewport edge instead of centering.
+	&__tooltip--align-left {
+		left: 0;
+		right: auto;
+		--tip-x: 0;
+	}
+
+	&__tooltip--align-right {
+		left: auto;
+		right: 0;
+		--tip-x: 0;
+	}
+
+	&__card {
+		display: block;
+		text-decoration: none;
+		color: $color-base;
+		background-color: $color-contrast;
+		border-radius: $radius-card;
+		overflow: hidden;
+		box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
+		cursor: pointer;
+	}
+
+	&__card-media {
+		position: relative;
+		display: block;
+		aspect-ratio: 16 / 10;
+		// Match the card so no hairline shows at the image/body seam.
+		background-color: $color-contrast;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			display: block;
+			vertical-align: bottom;
+		}
+	}
+
+	&__card-chip {
+		position: absolute;
+		top: 12px;
+		left: 12px;
+	}
+
+	// Positioning only — the white→red circle + spinning arrow come from
+	// .icon-button--light (same component as the event-card arrows).
+	&__card-arrow {
+		position: absolute;
+		top: 12px;
+		right: 12px;
+		will-change: transform;
+
+		svg {
+			will-change: transform;
+		}
+	}
+
+	// Hovering anywhere on the card turns the arrow red and spins it 45°.
+	&__card:hover &__card-arrow,
+	&__card:focus-visible &__card-arrow {
+		background-color: $color-accent-red;
+		color: $color-base;
+	}
+
+	&__card:hover &__card-arrow svg,
+	&__card:focus-visible &__card-arrow svg {
+		transform: rotate(45deg);
+	}
+
+	&__card-body {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;        // Figma: 12px between title and paragraph
+		padding: 16px;    // Figma: 16px all around
+	}
+
+	&__card-title {
+		color: $color-base;                                  // #FFF
+		font-size: var(--wp--preset--font-size--body-24);    // 24px
+		letter-spacing: -0.04em;                             // -0.96px @ 24px
+		line-height: normal;
+		text-transform: uppercase;
+		-webkit-text-stroke: 0.1px $color-base;
+	}
+
+	&__card-desc {
+		color: $color-subtle;                                // #ABB1BB
+		font-size: var(--wp--preset--font-size--body-16);    // 16px
+		line-height: 20px;
+		letter-spacing: 0.014em;                             // 0.23px @ 16px
+	}
+}

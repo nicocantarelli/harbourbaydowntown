@@ -1,0 +1,64 @@
+@use '../base/tokens' as *;
+
+// Btn_Big variant — a wide pill with text on the left and a circular icon button on the right.
+.wp-block-button.is-style-pill-big {
+	.wp-block-button__link {
+		display: inline-flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		padding: 4px 4px 4px 24px;
+		min-height: 40px;
+		font-size: var(--wp--preset--font-size--body-20);
+		line-height: 22px;
+		letter-spacing: -0.04em;
+		border-radius: $radius-pill;
+		background-color: $color-base;
+		color: $color-contrast;
+		// Hover interactions: lift (translateY) + slight grow (scale) + drop shadow.
+		transition:
+			transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+			box-shadow 0.3s ease;
+
+		&::after {
+			content: '';
+			display: inline-block;
+			width: 32px;
+			height: 32px;
+			border-radius: $radius-pill;
+			background-color: $color-contrast;
+			background-image: url('../../assets/icons/arrow-up-right-white.svg');
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: 22px 22px;
+			flex-shrink: 0;
+			transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+		}
+
+		// Hover — the button rises, gains a soft shadow, scales 2% wider.
+		&:hover,
+		&:focus-visible {
+			transform: translateY(-2px) scale(1.02);
+			box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+		}
+
+		// Arrow rotation — the dark circle rotates 45° clockwise so the
+		// up-right arrow swings to pointing right. Composes with the parent's
+		// translate+scale transform.
+		&:hover::after,
+		&:focus-visible::after {
+			transform: rotate(45deg);
+		}
+	}
+
+	// Dark CTA variant (Read More button in Block 4).
+	&.is-style-pill-big-dark .wp-block-button__link {
+		background-color: $color-contrast;
+		color: $color-base;
+
+		&::after {
+			background-color: $color-base;
+			background-image: url('../../assets/icons/arrow-up-right-dark.svg');
+		}
+	}
+}

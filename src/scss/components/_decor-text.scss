@@ -1,0 +1,14 @@
+@use '../base/tokens' as *;
+
+// Big background text behind section headings (e.g. "downtown", "at Harbour Bay").
+.decor-text {
+	font-size: var(--wp--preset--font-size--title-64);
+	letter-spacing: -0.04em;
+	text-transform: uppercase;
+	line-height: 1;
+	color: $color-decor;
+	margin: 0;
+	white-space: nowrap;
+	pointer-events: none;
+	user-select: none;
+}

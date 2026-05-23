@@ -1,0 +1,2017 @@
+[
+	{
+		"name": "Marriott Batam Harbour Bay",
+		"type": "hotels",
+		"category": "",
+		"description": "A five-star hotel that offers luxury rooms, restaurants, a rooftop bar, and leisure facilities such as a pool and fitness center.",
+		"open_hours": "24 Hours",
+		"location": "",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/marriot.webp",
+		"pill": "5-Star",
+		"tags": [
+			"Pool",
+			"Restaurant",
+			"Rooftop Bar",
+			"Fitness Center"
+		]
+	},
+	{
+		"name": "Zest Hotel Harbour Bay Batam",
+		"type": "hotels",
+		"category": "",
+		"description": "A 3-star hotel that offers modern rooms, a restaurant, meeting facilities, and convenient access to the Harbour Bay Ferry Terminal.",
+		"open_hours": "24 Hours",
+		"location": "",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/zest.webp",
+		"pill": "Business",
+		"tags": [
+			"Restaurant",
+			"Meeting Rooms",
+			"Free WiFi"
+		]
+	},
+	{
+		"name": "Grand Swiss-Belhotel Harbour Bay Batam",
+		"type": "hotels",
+		"category": "",
+		"description": "International 5-star resort offering luxurious rooms, conference facilities, multiple restaurants, and a full-service spa.",
+		"open_hours": "24 Hours",
+		"location": "",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/grand-swissbel.webp",
+		"pill": "5-Star",
+		"tags": [
+			"Spa",
+			"Restaurants",
+			"Conference Facilities",
+			"Pool"
+		]
+	},
+	{
+		"name": "Swiss-Belhotel Harbour Bay Batam",
+		"type": "hotels",
+		"category": "",
+		"description": "A 4-star hotel featuring an outdoor pool, fitness center, spa, sauna, and two restaurants. Includes free WiFi, free parking, and a free shuttle bus to K Square Mall Batam.",
+		"open_hours": "24 Hours",
+		"location": "",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/swiss.webp",
+		"pill": "4-Star",
+		"tags": [
+			"Outdoor Pool",
+			"Spa",
+			"Sauna",
+			"Restaurants"
+		]
+	},
+	{
+		"name": "Circle K Harbour Bay",
+		"type": "shops",
+		"category": "daily-essentials",
+		"description": "A 24-hour convenience store that sells snacks, drinks, and daily essentials, and also serves as an IQOS partner store",
+		"open_hours": "24 Hours",
+		"location": "Harbour Bay Downtown City Walk, CW 01 - 02",
+		"photo": "",
+		"pill": "Convenience",
+		"tags": [
+			"Snacks",
+			"Drinks",
+			"24 Hours"
+		]
+	},
+	{
+		"name": "Maulana Martabak",
+		"type": "restaurants",
+		"category": "breakfast-coffee",
+		"description": "Your spot for Nasi Kandar or breakfast like Nasi Lemak, Tosai, Roti Canai, and Roti Panggang with teh tarik.",
+		"open_hours": "07:00 - 00:00",
+		"location": "Harbour Bay Downtown City Walk, CW 44 - 45",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/maulana.webp",
+		"pill": "Malaysian",
+		"tags": [
+			"Breakfast",
+			"Roti Canai",
+			"Teh Tarik"
+		]
+	},
+	{
+		"name": "Paris Garden",
+		"type": "restaurants",
+		"category": "dinner-by-the-sea",
+		"description": "A spot for seafood, Thai food, and Penang dishes.",
+		"open_hours": "17:00 - 02:00",
+		"location": "Harbour Bay Downtown City Walk, Island 2",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/paris-garden.webp",
+		"pill": "Seafood",
+		"tags": [
+			"Seafood",
+			"Thai",
+			"Penang"
+		]
+	},
+	{
+		"name": "Melt Me Dessert & Coffee Space",
+		"type": "restaurants",
+		"category": "breakfast-coffee",
+		"description": "A spot for rich cheesecake, creamy matcha, and aesthetic cozy vibes.",
+		"open_hours": "10:00 - 23:00",
+		"location": "Harbour Bay Downtown City Walk, CW 08 - 10",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/melt-me.webp",
+		"pill": "Desserts",
+		"tags": [
+			"Coffee",
+			"Cheesecake",
+			"Matcha"
+		]
+	},
+	{
+		"name": "Restoran Sederhana",
+		"type": "restaurants",
+		"category": "lunch-casual",
+		"description": "A restaurant that serves Padang dishes such as rendang, curry, and fried chicken.",
+		"open_hours": "07:00 - 22:00",
+		"location": "Harbour Bay Downtown The Promenade, 8A",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/sederhana.webp",
+		"pill": "Padang",
+		"tags": [
+			"Padang",
+			"Rendang",
+			"Indonesian"
+		]
+	},
+	{
+		"name": "MoMoo Juice Bar & Coffee Harbour Bay",
+		"type": "restaurants",
+		"category": "breakfast-coffee",
+		"description": "A café that serves fresh juices, smoothies, coffee, and light meals.",
+		"open_hours": "12:00 - 23.00",
+		"location": "Harbour Bay Downtown The Promenade, 8B",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/momoo.webp",
+		"pill": "Juice Bar",
+		"tags": [
+			"Juices",
+			"Smoothies",
+			"Coffee"
+		]
+	},
+	{
+		"name": "Port House Resto & Bar",
+		"type": "restaurants",
+		"category": "late-night-eats",
+		"description": "A restaurant and bar that serves Asian, Western, and grilled dishes along with cocktails and drinks.",
+		"open_hours": "12:00 - 01:00",
+		"location": "Harbour Bay Downtown The Promenade, 8C",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/port-house.webp",
+		"pill": "Bar & Grill",
+		"tags": [
+			"Grill",
+			"Cocktails",
+			"Western"
+		]
+	},
+	{
+		"name": "Garden Bay Restaurant",
+		"type": "restaurants",
+		"category": "late-night-eats",
+		"description": "A restaurant and lounge that serves Asian and Western dishes, cocktails, and drinks.",
+		"open_hours": "11:00 - 02:00",
+		"location": "Harbour Bay Downtown The Promenade, 8D",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/garden-bay.webp",
+		"pill": "Bar & Lounge",
+		"tags": [
+			"Asian",
+			"Western",
+			"Cocktails"
+		]
+	},
+	{
+		"name": "Harbour Bay Seafood Restaurant",
+		"type": "restaurants",
+		"category": "dinner-by-the-sea",
+		"description": "A seafood restaurant that serves fresh seafood and Chinese-style dishes with a waterfront view.",
+		"open_hours": "11:00 - 22:00",
+		"location": "Harbour Bay Downtown The Promenade, 8E",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/hb-seafood.webp",
+		"pill": "Seafood",
+		"tags": [
+			"Seafood",
+			"Chinese",
+			"Waterfront"
+		]
+	},
+	{
+		"name": "SeeSea By Nomad",
+		"type": "restaurants",
+		"category": "dinner-by-the-sea",
+		"description": "A seaside restaurant and bar that serves seafood, grilled dishes, and drinks. It is known for its waterfront view and relaxed dining atmosphere.",
+		"open_hours": "11:00 - 01:00",
+		"location": "Harbour Bay Downtown The Promenade, 8F",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/seesea.webp",
+		"pill": "Seafood",
+		"tags": [
+			"Seafood",
+			"Grill",
+			"Waterfront"
+		]
+	},
+	{
+		"name": "Jumbo Thai Kitchen",
+		"type": "restaurants",
+		"category": "dinner-by-the-sea",
+		"description": "A restaurant that serves Thai, Chinese, and seafood dishes. It offers a variety of menu items such as tom yum, curry, seafood, rice, and noodle dishes.",
+		"open_hours": "11:30 - 22:30",
+		"location": "Harbour Bay Downtown The Promenade, 8G",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/jumbo-thai.webp",
+		"pill": "Thai",
+		"tags": [
+			"Thai",
+			"Chinese",
+			"Seafood"
+		]
+	},
+	{
+		"name": "Wey-Wey Palace",
+		"type": "restaurants",
+		"category": "dinner-by-the-sea",
+		"description": "A live seafood and grill restaurant that serves fresh seafood and Chinese-style dishes.",
+		"open_hours": "15:30 - 23:30",
+		"location": "Harbour Bay Downtown The Promenade, 8H",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/wey-wey.webp",
+		"pill": "Seafood",
+		"tags": [
+			"Seafood",
+			"Grill",
+			"Chinese"
+		]
+	},
+	{
+		"name": "Dé Patros Café",
+		"type": "restaurants",
+		"category": "dinner-by-the-sea",
+		"description": "A restaurant that serves seafood, Indonesian, and Western dishes, along with drinks. It is also known for its waterfront atmosphere and live music.",
+		"open_hours": "12:00 - 01:00",
+		"location": "Harbour Bay Downtown The Promenade, 8I",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/de-patros.webp",
+		"pill": "Seafood",
+		"tags": [
+			"Seafood",
+			"Western",
+			"Live Music"
+		]
+	},
+	{
+		"name": "HW LiveHouse Batam",
+		"type": "nightlife",
+		"category": "live-music",
+		"description": "A live music bar that offers live band performances, DJ music, and drinks.",
+		"open_hours": "21:00 - 03:00",
+		"location": "Harbour Bay Downtown The Promenade, KAV. 9",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/hw-livehouse.webp",
+		"pill": "Live Music",
+		"tags": [
+			"Live Band",
+			"DJ",
+			"Drinks"
+		]
+	},
+	{
+		"name": "Tembak Langit Club Batam",
+		"type": "nightlife",
+		"category": "live-music",
+		"description": "A nightclub that offers DJ music, dancing, drinks, and live entertainment.",
+		"open_hours": "21:00 - 04:00",
+		"location": "Harbour Bay Downtown The Promenade, KAV. 9",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/tembak-langit.webp",
+		"pill": "Live Music",
+		"tags": [
+			"DJ",
+			"Dancing",
+			"Live Entertainment",
+			"Drinks"
+		]
+	},
+	{
+		"name": "The Broadway Harbour Bay",
+		"type": "restaurants",
+		"category": "lunch-casual",
+		"description": "First of its kind in Batam. Thematic Areas & Outdoor Civie spaces.",
+		"open_hours": "",
+		"location": "",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/broadway.webp",
+		"pill": "Food Court",
+		"tags": [
+			"Food Court",
+			"Outdoor",
+			"Casual"
+		]
+	},
+	{
+		"name": "Novio Bridal & Studio",
+		"type": "shops",
+		"category": "fashion-lifestyle",
+		"description": "A one-stop bridal and photography service in Batam for wedding gowns, pre-wedding shoots, wedding day documentation, makeup, and even maternity or newborn photos.",
+		"open_hours": "10:00 - 19:00",
+		"location": "Ruko Citra Supermall Harbour Bay, A/01 - 02",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/novio.webp",
+		"pill": "Bridal",
+		"tags": [
+			"Wedding Gowns",
+			"Photography",
+			"Makeup"
+		]
+	},
+	{
+		"name": "Optik Planet",
+		"type": "shops",
+		"category": "fashion-lifestyle",
+		"description": "A glasses store with brands like Coach, Oakley, and Nike. Offering anti-radiation lenses, photochromic lenses, sports glasses, soft lenses, and free eye checks.",
+		"open_hours": "09:00 - 20:00",
+		"location": "Ruko Citra Supermall Harbour Bay, A/03",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/optik-planet.webp",
+		"pill": "Optics",
+		"tags": [
+			"Glasses",
+			"Lenses",
+			"Eye Checks"
+		]
+	},
+	{
+		"name": "Circle K",
+		"type": "shops",
+		"category": "daily-essentials",
+		"description": "A 24-hour convenience store that sells snacks, drinks, and daily essentials.",
+		"open_hours": "24 Hours",
+		"location": "",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/circle-k-2.webp",
+		"pill": "Convenience",
+		"tags": [
+			"Snacks",
+			"Drinks",
+			"24 Hours"
+		]
+	},
+	{
+		"name": "Citadines",
+		"type": "hotels",
+		"category": "",
+		"description": "A residence in the Harbour Bay area that offers apartment-style units with hotel facilities.",
+		"open_hours": "24 Hours",
+		"location": "",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/citadines.webp",
+		"pill": "Serviced",
+		"tags": [
+			"Apartment Units",
+			"Hotel Facilities",
+			"Kitchenette"
+		]
+	},
+	{
+		"name": "M - One Hotel Harbour Bay",
+		"type": "hotels",
+		"category": "",
+		"description": "A convenient hotel in Harbour Bay offering 128 rooms with air conditioning and free WiFi, plus facilities including a fitness center, restaurant, bar, and nightclub.",
+		"open_hours": "24 Hours",
+		"location": "",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/m-one-hotel.webp",
+		"pill": "Business",
+		"tags": [
+			"Restaurant",
+			"Bar",
+			"Nightclub",
+			"Fitness Center"
+		]
+	},
+	{
+		"name": "Wang Wang Dimsum - Harbour Bay Batam",
+		"type": "restaurants",
+		"category": "lunch-casual",
+		"description": "Chinese spot for dimsum classics like pork siomay, xiao long bao, hakaw, salted egg buns, and even Peking duck.",
+		"open_hours": "10:00 - 22:00",
+		"location": "",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/wang-wang.webp",
+		"pill": "Dim Sum",
+		"tags": [
+			"Chinese",
+			"Dim Sum",
+			"Peking Duck"
+		]
+	},
+	{
+		"name": "Phoenix Spa & Health Club",
+		"type": "wellness",
+		"category": "spa-massage",
+		"description": "A spa that offers relaxation services such as massage, body treatments, and reflexology.",
+		"open_hours": "11:00 - 23:00",
+		"location": "Ruko Citra Supermall Harbour Bay, G/11 - 13",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/phoenix.webp",
+		"pill": "Spa",
+		"tags": [
+			"Massage",
+			"Body Treatments",
+			"Reflexology"
+		]
+	},
+	{
+		"name": "Zen Retreat, Massage, Spa",
+		"type": "wellness",
+		"category": "spa-massage",
+		"description": "A cozy spot in Batam that offers a mix of Javanese, Balinese, and Swedish massages to help you relax your mind, body, and soul.",
+		"open_hours": "11:00 - 22:00",
+		"location": "",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/zen-retreat.webp",
+		"pill": "Spa",
+		"tags": [
+			"Javanese Massage",
+			"Balinese Massage",
+			"Swedish Massage"
+		]
+	},
+	{
+		"name": "Galaxy KTV & Entertainment",
+		"type": "nightlife",
+		"category": "live-music",
+		"description": "Your spot for karaoke nights and vibing to live DJ sets.",
+		"open_hours": "14:00 - 03:00",
+		"location": "",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/galaxy-ktv.webp",
+		"pill": "Live Music",
+		"tags": [
+			"Karaoke",
+			"Live DJ",
+			"Drinks"
+		]
+	},
+	{
+		"name": "Baik Black Coffee",
+		"type": "restaurants",
+		"category": "breakfast-coffee",
+		"description": "This spot is the perfect place to refuel, grab a coffee, and just chill.",
+		"open_hours": "08:00 - 23:30",
+		"location": "",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/Baik Black Coffee.webp",
+		"pill": "Coffee",
+		"tags": [
+			"Coffee",
+			"Casual",
+			"Dine-in"
+		]
+	},
+	{
+		"name": "WL Premium Carwash Harbour Bay",
+		"type": "shops",
+		"category": "daily-essentials",
+		"description": "A car wash that provides vehicle cleaning and detailing services.",
+		"open_hours": "08:00 - 19:00",
+		"location": "",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/WL.webp",
+		"pill": "Car Wash",
+		"tags": [
+			"Cleaning",
+			"Detailing",
+			"Auto Care"
+		]
+	},
+	{
+		"name": "Shu Guo Yin Xiang Batam",
+		"type": "restaurants",
+		"category": "dinner-by-the-sea",
+		"description": "A Chinese hot pot restaurant that serves steamboat dishes such as mala soup, pork bone soup, sliced beef, seafood, and fresh vegetables.",
+		"open_hours": "11:00 - 22:00",
+		"location": "Harbour Bay Downtown Blok. R-12",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/shu-guo.webp",
+		"pill": "Hot Pot",
+		"tags": [
+			"Chinese",
+			"Hot Pot",
+			"Steamboat"
+		]
+	},
+	{
+		"name": "Magal Authentic Korean Restaurant Batam",
+		"type": "restaurants",
+		"category": "dinner-by-the-sea",
+		"description": "A Korean restaurant that serves Korean BBQ and traditional dishes such as bulgogi, pork belly, and bibimbap.",
+		"open_hours": "11:00 - 21:30",
+		"location": "Harbour Bay Downtown Blok. R-12",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/magal.webp",
+		"pill": "Korean",
+		"tags": [
+			"Korean",
+			"BBQ",
+			"Dine-in"
+		]
+	},
+	{
+		"name": "Sei Enam Seafood Harbour Bay",
+		"type": "restaurants",
+		"category": "dinner-by-the-sea",
+		"description": "A restaurant that serves fresh seafood dishes such as chilli crab, steamed fish, and butter prawns.",
+		"open_hours": "10:30 - 21:30",
+		"location": "Harbour Bay Downtown Blok. R-12",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/sei-enam.webp",
+		"pill": "Seafood",
+		"tags": [
+			"Seafood",
+			"Chilli Crab",
+			"Dine-in"
+		]
+	},
+	{
+		"name": "Ringo Fusion Food & Brasserie",
+		"type": "restaurants",
+		"category": "dinner-by-the-sea",
+		"description": "A restaurant that serves Japanese and fusion dishes such as sushi, sashimi, ramen, and yakitori.",
+		"open_hours": "07:00 - 21:30",
+		"location": "Harbour Bay Downtown Blok. R-12",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/ringo.webp",
+		"pill": "Japanese",
+		"tags": [
+			"Japanese",
+			"Sushi",
+			"Ramen"
+		]
+	},
+	{
+		"name": "Kuta Kute Cafe & Resto",
+		"type": "restaurants",
+		"category": "lunch-casual",
+		"description": "A Bali themed spot that serves Balinese and Nusantara dishes like Nasi Campur Kuta Kute, Ayam Betutu, and Sate Lilit.",
+		"open_hours": "19:00 - 00:00",
+		"location": "Ruko Citra Supermall Harbour Bay, H/20",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/kuta-kute.webp",
+		"pill": "Balinese",
+		"tags": [
+			"Balinese",
+			"Indonesian",
+			"Casual"
+		]
+	},
+	{
+		"name": "Alamanda Massage",
+		"type": "wellness",
+		"category": "spa-massage",
+		"description": "Massage and relaxation centre.",
+		"open_hours": "10:00 - 23:00",
+		"location": "Ruko Citra Supermall Harbour Bay, H/20",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/alamanda.webp",
+		"pill": "Massage",
+		"tags": [
+			"Massage",
+			"Relaxation"
+		]
+	},
+	{
+		"name": "Batam Harbour Boutique Hotel & Spa",
+		"type": "hotels",
+		"category": "",
+		"description": "A 3-star hotel located right near Harbour Bay Ferry Terminal, with modern rooms, a relaxing spa, an international restaurant, and free shuttles to Nagoya Hill Mall and BCS Mall.",
+		"open_hours": "24 Hours",
+		"location": "Ruko Citra Supermall Harbour Bay, H/20 - 28",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/batam-harbour-hotel.webp",
+		"pill": "Boutique",
+		"tags": [
+			"Spa",
+			"International Restaurant",
+			"Free Shuttle"
+		]
+	},
+	{
+		"name": "LaLuna Flowerbar",
+		"type": "shops",
+		"category": "gifts-souvenirs",
+		"description": "A flower shop by a Korean-style certified florist, selling fresh and preserved flowers, money bouquets, and hosting flower classes.",
+		"open_hours": "09:00 - 18:00",
+		"location": "Ruko Citra Supermall Harbour Bay, H/18",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/laluna.webp",
+		"pill": "Florist",
+		"tags": [
+			"Flowers",
+			"Bouquets",
+			"Gifts"
+		]
+	},
+	{
+		"name": "Kantor Imigrasi Kelas 1 Khusus Batam - Unit Layanan Passport",
+		"type": "shops",
+		"category": "daily-essentials",
+		"description": "The Immigration Office's passport service unit in Harbour Bay where you can take care of your passport applications and renewals.",
+		"open_hours": "08:00 - 16:00",
+		"location": "Ruko Citra Supermall Harbour Bay, H/16 - 17",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/imigrasi.webp",
+		"pill": "Passport",
+		"tags": [
+			"Immigration",
+			"Renewals",
+			"Services"
+		]
+	},
+	{
+		"name": "Paradise Garden Batam",
+		"type": "restaurants",
+		"category": "dinner-by-the-sea",
+		"description": "A big Chinese seafood spot known for dishes like Mongolian chicken, salted egg squid, and Hong Kong steamed fish, plus private karaoke rooms.",
+		"open_hours": "11:00 - 22:00",
+		"location": "Ruko Citra Supermall Harbour Bay, H/15",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/paradise-garden.webp",
+		"pill": "Seafood",
+		"tags": [
+			"Chinese",
+			"Seafood",
+			"Karaoke"
+		]
+	},
+	{
+		"name": "Alexa Bar Restaurant And KTV",
+		"type": "nightlife",
+		"category": "live-music",
+		"description": "A place for karaoke, live music, and food in a club-style setting.",
+		"open_hours": "18:00 - 04:00",
+		"location": "Ruko Citra Supermall Harbour Bay, H/11 - 12",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/alexa-bar.webp",
+		"pill": "Live Music",
+		"tags": [
+			"Karaoke",
+			"Live Music",
+			"Food",
+			"Drinks"
+		]
+	},
+	{
+		"name": "Shine Skin Beauty Clinic",
+		"type": "wellness",
+		"category": "beauty-grooming",
+		"description": "A Batam skin clinic for face contouring and skin treatments: fillers, Botox, facials, laser, all with certified doctors.",
+		"open_hours": "09:00 - 19:00",
+		"location": "Ruko Citra Supermall Harbour Bay, H/03",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/shine-skin.webp",
+		"pill": "Skincare",
+		"tags": [
+			"Facials",
+			"Botox",
+			"Fillers",
+			"Laser"
+		]
+	},
+	{
+		"name": "Indomaret Point",
+		"type": "shops",
+		"category": "daily-essentials",
+		"description": "Indonesia's biggest convenience store chain, found almost everywhere. Perfect for grabbing daily needs, snacks, and taking advantage of weekly deals.",
+		"open_hours": "07:00 - 22:00",
+		"location": "Ruko Citra Supermall Harbour Bay, H/02",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/indomaret-point.webp",
+		"pill": "Convenience",
+		"tags": [
+			"Snacks",
+			"Daily Needs",
+			"Deals"
+		]
+	},
+	{
+		"name": "Yello Hotel Harbour Bay Batam",
+		"type": "hotels",
+		"category": "",
+		"description": "A 3-star hotel that offers facilities including a restaurant, golf course, massage services, and a games room, plus free WiFi and free parking.",
+		"open_hours": "24 Hours",
+		"location": "Ruko Citra Supermall Harbour Bay, F/11 - 12",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/yello-hotel.webp",
+		"pill": "Business",
+		"tags": [
+			"Restaurant",
+			"Massage",
+			"Games Room",
+			"Free WiFi"
+		]
+	},
+	{
+		"name": "Eternity By Wey Wey",
+		"type": "shops",
+		"category": "fashion-lifestyle",
+		"description": "A one-stop luxury bridal studio in Batam for gowns, photos, makeup, and full wedding planning.",
+		"open_hours": "10:00 - 19:30",
+		"location": "Ruko Citra Supermall Harbour Bay, F/07 - 09",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/eternity-ww.webp",
+		"pill": "Bridal",
+		"tags": [
+			"Gowns",
+			"Wedding Planning",
+			"Makeup"
+		]
+	},
+	{
+		"name": "Morning Bakery",
+		"type": "restaurants",
+		"category": "breakfast-coffee",
+		"description": "A legendary Batam kopitiam since 1987, serving fresh kaya toast, local breakfast dishes, and pulled coffee.",
+		"open_hours": "06:00 - 21:00",
+		"location": "Ruko Citra Supermall Harbour Bay, E/09 - 12",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/morning-bakery.webp",
+		"pill": "Kopitiam",
+		"tags": [
+			"Kaya Toast",
+			"Breakfast",
+			"Coffee"
+		]
+	},
+	{
+		"name": "Sweet Massage",
+		"type": "wellness",
+		"category": "spa-massage",
+		"description": "A relaxing treatment that uses techniques like chocolate massage and aromatherapy to ease tension and make you feel good.",
+		"open_hours": "09:00 - 23:00",
+		"location": "Ruko Citra Supermall Harbour Bay, E/08",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/sweet-message.webp",
+		"pill": "Massage",
+		"tags": [
+			"Chocolate Massage",
+			"Aromatherapy",
+			"Relaxation"
+		]
+	},
+	{
+		"name": "Kopi Harbour Bay",
+		"type": "restaurants",
+		"category": "breakfast-coffee",
+		"description": "A spot for coffee, seafood, meatball soup, crushed fried chicken, fish and shrimp dumpling soup, and other Indonesian favorites.",
+		"open_hours": "06:30 - 20:00",
+		"location": "Ruko Citra Supermall Harbour Bay, E/04",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/Kopi Harbour Bay.webp",
+		"pill": "Coffee",
+		"tags": [
+			"Coffee",
+			"Indonesian",
+			"Casual"
+		]
+	},
+	{
+		"name": "Money Changer By PT Gosyen Anugerah Sukses",
+		"type": "shops",
+		"category": "daily-essentials",
+		"description": "A licensed money changer that offers competitive rates for exchanging various foreign currencies like USD, SGD, EUR, and AUD.",
+		"open_hours": "08:30 - 21:00",
+		"location": "Ruko Citra Supermall Harbour Bay, E/02",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/gosyen-anugerah.webp",
+		"pill": "Money Changer",
+		"tags": [
+			"Currency",
+			"Exchange",
+			"Forex"
+		]
+	},
+	{
+		"name": "Namii Massage & Reflexology",
+		"type": "wellness",
+		"category": "spa-massage",
+		"description": "A family-friendly wellness spot known for its clean and calm vibe, offering traditional, Balinese, Thai, and hot stone massages, plus reflexology, body scrubs, facials, and ear candling.",
+		"open_hours": "10:00 - 22:00",
+		"location": "Ruko Citra Supermall Harbour Bay, D/12",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/namii-message.webp",
+		"pill": "Spa",
+		"tags": [
+			"Massage",
+			"Reflexology",
+			"Body Scrub",
+			"Facial"
+		]
+	},
+	{
+		"name": "Kazue Salon",
+		"type": "wellness",
+		"category": "beauty-grooming",
+		"description": "A go-to spot for hair color, smoothing, keratin, and modern cuts, they use L'Oreal products and often run fun promo deals.",
+		"open_hours": "10:00 - 20:00",
+		"location": "Ruko Citra Supermall Harbour Bay, D/09",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/kazue-salon.webp",
+		"pill": "Salon",
+		"tags": [
+			"Color",
+			"Keratin",
+			"Haircut",
+			"Smoothing"
+		]
+	},
+	{
+		"name": "The Garden Family Spa Massage",
+		"type": "wellness",
+		"category": "spa-massage",
+		"description": "A cozy spot in Harbour Bay for traditional massages, try their Thai massage or the 5in1 package for your neck, back, shoulders, and feet.",
+		"open_hours": "10:00 - 22:00",
+		"location": "Ruko Citra Supermall Harbour Bay, D/08",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/garden-spa.webp",
+		"pill": "Spa",
+		"tags": [
+			"Thai Massage",
+			"Traditional Massage",
+			"Reflexology"
+		]
+	},
+	{
+		"name": "Nine Days Hotel",
+		"type": "hotels",
+		"category": "",
+		"description": "An affordable hotel ideally located near the ferry terminal. Features 24/7 doorstep convenience with an adjacent Alfamart and is surrounded by a vibrant local culinary scene.",
+		"open_hours": "24 Hours",
+		"location": "Ruko Citra Supermall Harbour Bay, D/03 - 05",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/nine-days.webp",
+		"pill": "Budget",
+		"tags": [
+			"Near Ferry Terminal",
+			"24/7 Convenience",
+			"Local Dining"
+		]
+	},
+	{
+		"name": "Harbour Bay Durian Musang King",
+		"type": "restaurants",
+		"category": "breakfast-coffee",
+		"description": "A spot for premium durian like Musang King and Black Thorn, popular with visitors staying around the ferry terminal and hotels.",
+		"open_hours": "10:00 - 22:00",
+		"location": "Ruko Citra Supermall Harbour Bay, D/03",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/durian.webp",
+		"pill": "Durian",
+		"tags": [
+			"Durian",
+			"Desserts",
+			"Snacks"
+		]
+	},
+	{
+		"name": "Alfamart Harbour Bay",
+		"type": "shops",
+		"category": "daily-essentials",
+		"description": "A 24-hour convenience store that sells daily essentials.",
+		"open_hours": "24 Hours",
+		"location": "Ruko Citra Supermall Harbour Bay, D/01 - 02",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/Alfamart Harbour Bay.webp",
+		"pill": "Convenience",
+		"tags": [
+			"Daily Needs",
+			"Groceries",
+			"24 Hours"
+		]
+	},
+	{
+		"name": "Mez Bride",
+		"type": "shops",
+		"category": "fashion-lifestyle",
+		"description": "A wedding vendor boutique that specializes in wedding gown rentals and custom-made dresses and suits including robes and pre-wedding photo gowns.",
+		"open_hours": "10:00 - 19:00",
+		"location": "Ruko Citra Supermall Harbour Bay, C/12",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/mez-bride.webp",
+		"pill": "Bridal",
+		"tags": [
+			"Gowns",
+			"Suits",
+			"Custom Made"
+		]
+	},
+	{
+		"name": "Wey Wey Bridal & Studio",
+		"type": "shops",
+		"category": "fashion-lifestyle",
+		"description": "A spot for wedding photography and videography, with a big collection of imported gowns from Singapore, Malaysia, and China.",
+		"open_hours": "09:30 - 19:30",
+		"location": "Ruko Citra Supermall Harbour Bay, C/11",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/wey-wey-bridal.webp",
+		"pill": "Bridal",
+		"tags": [
+			"Gowns",
+			"Photography",
+			"Videography"
+		]
+	},
+	{
+		"name": "Sorai Massage And Reflexology",
+		"type": "wellness",
+		"category": "spa-massage",
+		"description": "Experience the perfect blend of soothing treatments, calming ambiance, and gentle care designed to relax your body and refresh your mind.",
+		"open_hours": "10:00 - 00:00",
+		"location": "Ruko Citra Supermall Harbour Bay, C/07 - 08",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/sorai.webp",
+		"pill": "Massage",
+		"tags": [
+			"Massage",
+			"Reflexology",
+			"Relaxation"
+		]
+	},
+	{
+		"name": "Circle K Harbour Bay 3 (Depan Swissbel)",
+		"type": "shops",
+		"category": "daily-essentials",
+		"description": "A 24-hour convenience store that sells snacks, drinks, and daily essentials.",
+		"open_hours": "24 Hours",
+		"location": "Ruko Citra Supermall Harbour Bay, C/04",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/circle-k-3.webp",
+		"pill": "Convenience",
+		"tags": [
+			"Snacks",
+			"Drinks",
+			"24 Hours"
+		]
+	},
+	{
+		"name": "Batam Harbour Hotel 2",
+		"type": "hotels",
+		"category": "",
+		"description": "A budget-friendly spot near the ferry terminal with 21 rooms, free WiFi, a fitness center, spa, and an on-site restaurant, perfect for a quick and easy stay.",
+		"open_hours": "24 Hours",
+		"location": "Ruko Citra Supermall Harbour Bay, B/08 - 09",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/bhh-2.webp",
+		"pill": "Budget",
+		"tags": [
+			"Spa",
+			"Fitness Center",
+			"Restaurant",
+			"Free WiFi"
+		]
+	},
+	{
+		"name": "Wey Wey Seafood",
+		"type": "restaurants",
+		"category": "dinner-by-the-sea",
+		"description": "A waterfront spot for live seafood like chili crab, gong-gong, salted egg squid, and fresh grilled fish, plus sunset views.",
+		"open_hours": "10:30 - 00:30",
+		"location": "Harbour Bay Downtown, Kelong 04 - 05 - 06 ",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/wey-wey-seafood.webp",
+		"pill": "Seafood",
+		"tags": [
+			"Seafood",
+			"Chilli Crab",
+			"Waterfront"
+		]
+	},
+	{
+		"name": "Baycity Seafood Harbour Bay",
+		"type": "restaurants",
+		"category": "dinner-by-the-sea",
+		"description": "A seafood spot known for fresh dishes like chili crab, salted egg crawfish, steamed fish, and BBQ seafood.",
+		"open_hours": "10:00 - 01:00",
+		"location": "Harbour Bay Downtown, Kelong 07 - 08 ",
+		"photo": "https://harbourbaydowntown.com/map/photos/outdoor/baycity-seafood.webp",
+		"pill": "Seafood",
+		"tags": [
+			"Seafood",
+			"BBQ",
+			"Chilli Crab"
+		]
+	},
+	{
+		"name": "Starbucks Coffee",
+		"type": "restaurants",
+		"category": "breakfast-coffee",
+		"description": "A global coffeehouse chain serving hot and cold drinks, pastries, and sandwiches.",
+		"open_hours": "06:30 - 21:00",
+		"location": "Bayfront Mall · Level 1 · #01-01",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/starbucks.webp",
+		"pill": "Coffee",
+		"tags": [
+			"Coffee",
+			"Pastries",
+			"Sandwiches"
+		]
+	},
+	{
+		"name": "Kopi Kenangan",
+		"type": "restaurants",
+		"category": "breakfast-coffee",
+		"description": "A popular Indonesian coffee chain known for its signature palm sugar latte called Kopi Kenangan Mantan, offering affordable premium coffee with a focus on local flavors.",
+		"open_hours": "06:00 - 21:00",
+		"location": "Bayfront Mall · Level 1 · #01-01B",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/kopi-kenangan.webp",
+		"pill": "Coffee",
+		"tags": [
+			"Coffee",
+			"Indonesian",
+			"Latte"
+		]
+	},
+	{
+		"name": "Excelso Cafe",
+		"type": "restaurants",
+		"category": "breakfast-coffee",
+		"description": "A coffee shop that serves Indonesian coffee, espresso drinks, and light meals.",
+		"open_hours": "08:00 - 22:00",
+		"location": "Bayfront Mall · Level 1 · #01-02",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/excelso.webp",
+		"pill": "Coffee",
+		"tags": [
+			"Coffee",
+			"Espresso",
+			"Light Meals"
+		]
+	},
+	{
+		"name": "Kampoeng Mama",
+		"type": "restaurants",
+		"category": "lunch-casual",
+		"description": "A restaurant that serves Indonesian dishes and traditional local food.",
+		"open_hours": "06:00 - 22:00",
+		"location": "Bayfront Mall · Level 1 · #01-05",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/kp-mama-1.webp",
+		"pill": "Indonesian",
+		"tags": [
+			"Indonesian",
+			"Local Food",
+			"Casual"
+		]
+	},
+	{
+		"name": "KFC Box Harbour Bay",
+		"type": "restaurants",
+		"category": "lunch-casual",
+		"description": "An international fast-food restaurant famous for its fried chicken and various side dishes.",
+		"open_hours": "24 Hours",
+		"location": "Bayfront Mall · Level 1 · #01-06A",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/kfc.webp",
+		"pill": "Fast Food",
+		"tags": [
+			"Fast Food",
+			"Fried Chicken",
+			"Quick Bites"
+		]
+	},
+	{
+		"name": "Kopitiam Kaya Toast",
+		"type": "restaurants",
+		"category": "breakfast-coffee",
+		"description": "A classic breakfast dish from traditional coffee shops in Singapore, Malaysia, and Indonesia, crispy toasted bread spread with kaya jam and topped with a slice of cold butter.",
+		"open_hours": "08:00 - 22:00",
+		"location": "Bayfront Mall · Level 1 · #01-07D",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/kaya-toast.webp",
+		"pill": "Kopitiam",
+		"tags": [
+			"Kaya Toast",
+			"Breakfast",
+			"Coffee"
+		]
+	},
+	{
+		"name": "Sindo Kopitiam",
+		"type": "restaurants",
+		"category": "lunch-casual",
+		"description": "A casual restaurant that serves kopitiam-style dishes, local meals, and drinks.",
+		"open_hours": "06:00 - 22:00",
+		"location": "Bayfront Mall · Level 1 · #01-11-12-15-16",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/sindo.webp",
+		"pill": "Kopitiam",
+		"tags": [
+			"Kopitiam",
+			"Local Food",
+			"Casual"
+		]
+	},
+	{
+		"name": "Roti'O",
+		"type": "restaurants",
+		"category": "breakfast-coffee",
+		"description": "A bakery and coffee shop selling fresh bread, pastries, and coffee.",
+		"open_hours": "08:00 - 21:30",
+		"location": "Bayfront Mall · Level 1 · #01-30",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/roti-o.webp",
+		"pill": "Bakery",
+		"tags": [
+			"Bakery",
+			"Bread",
+			"Coffee"
+		]
+	},
+	{
+		"name": "Shelter Coffee",
+		"type": "restaurants",
+		"category": "breakfast-coffee",
+		"description": "A coffee shop that serves coffee, non-coffee drinks, and light snacks.",
+		"open_hours": "08:00 - 22:00",
+		"location": "Bayfront Mall · Level 1 · #01-35",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/shelter.webp",
+		"pill": "Coffee",
+		"tags": [
+			"Coffee",
+			"Snacks",
+			"Casual"
+		]
+	},
+	{
+		"name": "Malaya Cafe",
+		"type": "restaurants",
+		"category": "lunch-casual",
+		"description": "A restaurant that serves local and Asian dishes, along with drinks and desserts.",
+		"open_hours": "10:00 - 22:00",
+		"location": "Bayfront Mall · Level 2 · #02-17",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/malaya.webp",
+		"pill": "Asian",
+		"tags": [
+			"Asian",
+			"Local Food",
+			"Desserts"
+		]
+	},
+	{
+		"name": "Mister Donut Harbour Bay",
+		"type": "restaurants",
+		"category": "breakfast-coffee",
+		"description": "A Japanese donut chain that serves a variety of donuts, including mochi donuts, coffee, and other pastries.",
+		"open_hours": "06:00 - 22:00",
+		"location": "Bayfront Mall · Level 1 · #01-07A-07B",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/mister-donut.webp",
+		"pill": "Donuts",
+		"tags": [
+			"Donuts",
+			"Coffee",
+			"Pastries"
+		]
+	},
+	{
+		"name": "Lapisa Premium Layer Cake",
+		"type": "restaurants",
+		"category": "breakfast-coffee",
+		"description": "A spot for Indonesian premium layer cake, soft, buttery, and comes in flavors like Nutella, cheese, prunes, pandan, and almond.",
+		"open_hours": "08:00 - 22:00",
+		"location": "Bayfront Mall · Level 2 · #02-07",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/lapisa.webp",
+		"pill": "Cakes",
+		"tags": [
+			"Layer Cake",
+			"Desserts",
+			"Bakery"
+		]
+	},
+	{
+		"name": "Royal Bakery",
+		"type": "restaurants",
+		"category": "breakfast-coffee",
+		"description": "A bakery in Bayfront Shopping Centre that sells various cakes, traditional layer cakes (kue lapis), and snacks.",
+		"open_hours": "08:00 - 21:00",
+		"location": "Bayfront Mall · Level 2 · #02-26",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/royal-bakery.webp",
+		"pill": "Bakery",
+		"tags": [
+			"Bakery",
+			"Cakes",
+			"Snacks"
+		]
+	},
+	{
+		"name": "Holland Bakery",
+		"type": "restaurants",
+		"category": "breakfast-coffee",
+		"description": "A bakery in Bayfront Shopping Centre that sells various cakes, traditional layer cakes (kue lapis), and snacks.",
+		"open_hours": "06:00 - 20:30",
+		"location": "Bayfront Mall · Level 2 · #02-27",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/holland-bakery.webp",
+		"pill": "Bakery",
+		"tags": [
+			"Bakery",
+			"Cakes",
+			"Snacks"
+		]
+	},
+	{
+		"name": "Lamoist",
+		"type": "restaurants",
+		"category": "breakfast-coffee",
+		"description": "A cake shop specializing in moist or layered cakes.",
+		"open_hours": "06:00 - 20:30",
+		"location": "Bayfront Mall · Level 2 · #02-28",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/lamoist-1.webp",
+		"pill": "Cakes",
+		"tags": [
+			"Cakes",
+			"Desserts",
+			"Bakery"
+		]
+	},
+	{
+		"name": "Holy LAPIS Legit",
+		"type": "restaurants",
+		"category": "breakfast-coffee",
+		"description": "A traditional Indonesian layer cake, rich, buttery, soft, and packed with spices.",
+		"open_hours": "08:00 - 21:00",
+		"location": "Bayfront Mall · Level 1 · #CT-07",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/holy.webp",
+		"pill": "Cakes",
+		"tags": [
+			"Layer Cake",
+			"Desserts",
+			"Indonesian"
+		]
+	},
+	{
+		"name": "Forestela",
+		"type": "restaurants",
+		"category": "breakfast-coffee",
+		"description": "A spot for homemade layer cakes like original, cheese, Nutella, and pandan — plus bika ambon and local snacks.",
+		"open_hours": "08:00 - 21:00",
+		"location": "Bayfront Mall · Level 1 · #CT-08",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/forestela.webp",
+		"pill": "Cakes",
+		"tags": [
+			"Layer Cake",
+			"Snacks",
+			"Bakery"
+		]
+	},
+	{
+		"name": "Amanda Brownies",
+		"type": "restaurants",
+		"category": "breakfast-coffee",
+		"description": "A spot for brownies, cheese cake, cream cake, and their lapis legit rich, buttery, and aromatic, baked layer by layer for that premium homemade feel.",
+		"open_hours": "08:00 - 21:00",
+		"location": "Bayfront Mall · Level 1 · #CT-09",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/amanda.webp",
+		"pill": "Desserts",
+		"tags": [
+			"Brownies",
+			"Cakes",
+			"Bakery"
+		]
+	},
+	{
+		"name": "Swissroll No.1",
+		"type": "restaurants",
+		"category": "breakfast-coffee",
+		"description": "A favorite destination for Melt-in-your-mouth Swiss rolls, featuring a perfectly fluffy sponge and luscious fillings from classic cream to rich cheese.",
+		"open_hours": "08:00 - 21:00",
+		"location": "Bayfront Mall · Level 1 · #CT-10",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/Swissroll No.1.webp",
+		"pill": "Cakes",
+		"tags": [
+			"Swiss Rolls",
+			"Desserts",
+			"Bakery"
+		]
+	},
+	{
+		"name": "LAPIS No.1",
+		"type": "restaurants",
+		"category": "breakfast-coffee",
+		"description": "A popular spot for kue lapis (layer cake) soft, buttery, and comes in flavors like original, cheese, prune, and pandan.",
+		"open_hours": "08:00 - 21:00",
+		"location": "Bayfront Mall · Level 1 · #CT-15a",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/lapis-no-1.webp",
+		"pill": "Cakes",
+		"tags": [
+			"Layer Cake",
+			"Desserts",
+			"Bakery"
+		]
+	},
+	{
+		"name": "Good Snack",
+		"type": "restaurants",
+		"category": "breakfast-coffee",
+		"description": "A spot for local crackers, snacks, drinks, and small accessories like tumblers and mini fans.",
+		"open_hours": "08:00-21:00",
+		"location": "Bayfront Mall · Level 1 · #01-28",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/good-snack.webp",
+		"pill": "Snacks",
+		"tags": [
+			"Snacks",
+			"Crackers",
+			"Drinks"
+		]
+	},
+	{
+		"name": "D'Paris Snack",
+		"type": "restaurants",
+		"category": "breakfast-coffee",
+		"description": "A shop that sells layer cakes (kue lapis), various snacks, and drinks.",
+		"open_hours": "08:00-21:00",
+		"location": "Bayfront Mall · Level 1 · #01-29",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/paris.webp",
+		"pill": "Snacks",
+		"tags": [
+			"Layer Cake",
+			"Snacks",
+			"Drinks"
+		]
+	},
+	{
+		"name": "Lady Ann",
+		"type": "restaurants",
+		"category": "breakfast-coffee",
+		"description": "A shop that sells layer cakes, local snacks, and other traditional treats.",
+		"open_hours": "08:00-21:00",
+		"location": "Bayfront Mall · Level 1 · #CT-14",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/Lady Ann.webp",
+		"pill": "Snacks",
+		"tags": [
+			"Layer Cake",
+			"Snacks",
+			"Treats"
+		]
+	},
+	{
+		"name": "Mountiar Cakery",
+		"type": "restaurants",
+		"category": "breakfast-coffee",
+		"description": "A Singapore born cake spot famous for its creamy mille crepes, vegetarian friendly and super soft. Try their Durian Royale made with real durian.",
+		"open_hours": "08:00-21:00",
+		"location": "Bayfront Mall · Level 1 · #CT-17",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/Mountiar.webp",
+		"pill": "Cakes",
+		"tags": [
+			"Mille Crepe",
+			"Desserts",
+			"Durian"
+		]
+	},
+	{
+		"name": "Edelweis Snack",
+		"type": "restaurants",
+		"category": "breakfast-coffee",
+		"description": "",
+		"open_hours": "08:00-21:00",
+		"location": "Bayfront Mall · Level 1 · #01-05a",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/Edelweis Snack.webp",
+		"pill": "Snacks",
+		"tags": [
+			"Snacks",
+			"Treats"
+		]
+	},
+	{
+		"name": "The Master Layer",
+		"type": "restaurants",
+		"category": "breakfast-coffee",
+		"description": "A spot for fresh homemade layer cakes made with premium butter, try their original or Nutella flavors. Great for gifts or special events.",
+		"open_hours": "08:00-21:00",
+		"location": "Bayfront Mall · Level 1 · #CT-13",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/The Master Layer.webp",
+		"pill": "Cakes",
+		"tags": [
+			"Layer Cake",
+			"Desserts",
+			"Bakery"
+		]
+	},
+	{
+		"name": "Harbour Mart",
+		"type": "shops",
+		"category": "daily-essentials",
+		"description": "A convenience store for groceries and daily necessities.",
+		"open_hours": "07:00-22:00",
+		"location": "Bayfront Mall · Level 1 · #01-20-21,32-33",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/harbour-mart.webp",
+		"pill": "Convenience",
+		"tags": [
+			"Groceries",
+			"Daily Needs"
+		]
+	},
+	{
+		"name": "Liqbay & Mart",
+		"type": "shops",
+		"category": "daily-essentials",
+		"description": "A small convenience store that sells daily essentials like snacks, drinks, and basic groceries.",
+		"open_hours": "08:00-21:00",
+		"location": "Bayfront Mall · Level 1 · #01-36",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/liqbay.webp",
+		"pill": "Convenience",
+		"tags": [
+			"Snacks",
+			"Drinks",
+			"Groceries"
+		]
+	},
+	{
+		"name": "Mini Store",
+		"type": "shops",
+		"category": "daily-essentials",
+		"description": "Your go-to spot for grabbing everyday stuff, snacks, drinks, and basic groceries.",
+		"open_hours": "07:00-20:00",
+		"location": "Bayfront Mall · Level 2 · #02-19",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/mini-store.webp",
+		"pill": "Convenience",
+		"tags": [
+			"Snacks",
+			"Drinks",
+			"Groceries"
+		]
+	},
+	{
+		"name": "Tourist Shop",
+		"type": "shops",
+		"category": "daily-essentials",
+		"description": "A little minimarket-style spot for grabbing snacks and everyday stuff.",
+		"open_hours": "08:00-20:00",
+		"location": "Bayfront Mall · Level 1 · #01-27",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/tourist-shop.webp",
+		"pill": "Minimarket",
+		"tags": [
+			"Snacks",
+			"Daily Needs"
+		]
+	},
+	{
+		"name": "Indomaret Harbour Bay",
+		"type": "shops",
+		"category": "daily-essentials",
+		"description": "Indonesia's biggest convenience store chain, found almost everywhere. Perfect for grabbing daily needs, snacks, and taking advantage of weekly deals.",
+		"open_hours": "24 Hours",
+		"location": "Bayfront Mall · Level 1 · #01-07A - #01-07B",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/indomaret.webp",
+		"pill": "Convenience",
+		"tags": [
+			"Snacks",
+			"Daily Needs",
+			"Deals"
+		]
+	},
+	{
+		"name": "Glowkids",
+		"type": "shops",
+		"category": "gifts-souvenirs",
+		"description": "A spot for finding dolls, toys, and fun stuff for kids.",
+		"open_hours": "08:30-20:30",
+		"location": "Bayfront Mall · Level 1 · #01-3B",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/glow-kids.webp",
+		"pill": "Toys",
+		"tags": [
+			"Dolls",
+			"Toys",
+			"Kids"
+		]
+	},
+	{
+		"name": "Oleh - Oleh",
+		"type": "shops",
+		"category": "gifts-souvenirs",
+		"description": "A souvenir shop selling local products and gift items.",
+		"open_hours": "08:00-21:00",
+		"location": "Bayfront Mall · Level 1 · #01-22,31",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/OLEH-OLEH.webp",
+		"pill": "Souvenirs",
+		"tags": [
+			"Local Products",
+			"Gifts"
+		]
+	},
+	{
+		"name": "Polo",
+		"type": "shops",
+		"category": "fashion-lifestyle",
+		"description": "A fashion store known for its polo shirts, clothing, and accessories.",
+		"open_hours": "08:00-21:30",
+		"location": "Bayfront Mall · Level 1 · #01-23",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/polo.webp",
+		"pill": "Fashion",
+		"tags": [
+			"Clothing",
+			"Polo Shirts",
+			"Accessories"
+		]
+	},
+	{
+		"name": "Always Shining",
+		"type": "shops",
+		"category": "fashion-lifestyle",
+		"description": "A spot for suitcases, bags, and other travel gear.",
+		"open_hours": "08:00-20:00",
+		"location": "Bayfront Mall · Level 1 · #01-24",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/always-shining.webp",
+		"pill": "Luggage",
+		"tags": [
+			"Suitcases",
+			"Bags",
+			"Travel Gear"
+		]
+	},
+	{
+		"name": "Java Shop",
+		"type": "shops",
+		"category": "fashion-lifestyle",
+		"description": "A clothing store where you can find batik and other fashion items.",
+		"open_hours": "10:00-22:00",
+		"location": "Bayfront Mall · Level 2 · #02-06",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/java-shop.webp",
+		"pill": "Fashion",
+		"tags": [
+			"Clothing",
+			"Batik",
+			"Apparel"
+		]
+	},
+	{
+		"name": "Starwind Souvenir & Accessories",
+		"type": "shops",
+		"category": "gifts-souvenirs",
+		"description": "A spot for souvenirs like magnets, keychains, decorations, bags, hats, and shades.",
+		"open_hours": "08:00-20:30",
+		"location": "Bayfront Mall · Level 2 · #02-29",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/star-wind.webp",
+		"pill": "Souvenirs",
+		"tags": [
+			"Magnets",
+			"Keychains",
+			"Accessories"
+		]
+	},
+	{
+		"name": "Duty Free Shop",
+		"type": "shops",
+		"category": "daily-essentials",
+		"description": "Where you buy tax-free stuff like alcohol, cigarettes, and soft drinks.",
+		"open_hours": "09:00-21:00",
+		"location": "Bayfront Mall · Level 1 · #01-04",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/duty-free.webp",
+		"pill": "Duty Free",
+		"tags": [
+			"Alcohol",
+			"Cigarettes",
+			"Tax Free"
+		]
+	},
+	{
+		"name": "Tora-Tora",
+		"type": "shops",
+		"category": "daily-essentials",
+		"description": "",
+		"open_hours": "08:00-21:00",
+		"location": "Bayfront Mall · Level 1 · #01-25",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/Tora - Tora.webp",
+		"pill": "Shop",
+		"tags": [
+			"Retail",
+			"Daily Needs"
+		]
+	},
+	{
+		"name": "Search Parfum",
+		"type": "shops",
+		"category": "fashion-lifestyle",
+		"description": "A refill perfume center that offers hundreds of fresh, sweet, and daily casual fragrance options using high-quality pure ingredients.",
+		"open_hours": "08:00-21:00",
+		"location": "Bayfront Mall · Level 1 · #CT-23",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/Search Parfum.webp",
+		"pill": "Perfume",
+		"tags": [
+			"Fragrance",
+			"Refill",
+			"Beauty"
+		]
+	},
+	{
+		"name": "Qafkuh Perfume",
+		"type": "shops",
+		"category": "fashion-lifestyle",
+		"description": "A spot for premium custom perfumes and refills long-lasting, skin-friendly, and halal-certified.",
+		"open_hours": "08:00-21:00",
+		"location": "Bayfront Mall · Level 1 · #CT-27",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/QAFKuh.webp",
+		"pill": "Perfume",
+		"tags": [
+			"Fragrance",
+			"Custom",
+			"Halal"
+		]
+	},
+	{
+		"name": "Haiyo Wangi",
+		"type": "shops",
+		"category": "fashion-lifestyle",
+		"description": "A local Indonesian perfume brand that focuses on providing high-quality refill perfumes.",
+		"open_hours": "08:00-21:00",
+		"location": "Bayfront Mall · Level 1 · #CT-18a",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/Haiyo Wangi.webp",
+		"pill": "Perfume",
+		"tags": [
+			"Fragrance",
+			"Refill",
+			"Local Brand"
+		]
+	},
+	{
+		"name": "Vape Zone 2",
+		"type": "shops",
+		"category": "electronics-sim",
+		"description": "A spot for all your vape needs  pod systems, mods, coils, and liquids in fruity or creamy flavors.",
+		"open_hours": "08:00-21:00",
+		"location": "Bayfront Mall · Level 1 · #CT-15",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/Vape Zone.webp",
+		"pill": "Vape",
+		"tags": [
+			"Pods",
+			"Mods",
+			"Liquids"
+		]
+	},
+	{
+		"name": "Vape Zone",
+		"type": "shops",
+		"category": "electronics-sim",
+		"description": "A spot for all your vape needs  pod systems, mods, coils, and liquids in fruity or creamy flavors.",
+		"open_hours": "08:00-21:00",
+		"location": "Bayfront Mall · Level 1 · #01",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/Vape Zone 2.webp",
+		"pill": "Vape",
+		"tags": [
+			"Pods",
+			"Mods",
+			"Liquids"
+		]
+	},
+	{
+		"name": "KCP Bank Negara Indonesia",
+		"type": "shops",
+		"category": "daily-essentials",
+		"description": "A branch office of Bank Negara Indonesia that provides banking services such as savings, loans, and other financial transactions.",
+		"open_hours": "08:00-15:00",
+		"location": "Bayfront Mall · Level 1 · #01-03",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/bni.webp",
+		"pill": "Banking",
+		"tags": [
+			"Savings",
+			"Loans",
+			"Finance"
+		]
+	},
+	{
+		"name": "ATM UOB",
+		"type": "shops",
+		"category": "daily-essentials",
+		"description": "An ATM for UOB bank customers.",
+		"open_hours": "24 Hours",
+		"location": "Bayfront Mall · Level 1",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/atm-uob.webp",
+		"pill": "ATM",
+		"tags": [
+			"Banking",
+			"Cash"
+		]
+	},
+	{
+		"name": "ATM Center",
+		"type": "shops",
+		"category": "daily-essentials",
+		"description": "ATM CIMB NIAGA <br> ATM BANK PERMATA <br> ATM BANK MANDIRI <br> ATM BANK BCA <br> ATM BANK OCBC NISP <br> ATM BANK BNI <br> ATM BANK BSI",
+		"open_hours": "24 Hours",
+		"location": "Bayfront Mall · Level 1",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/atm-center.webp",
+		"pill": "ATM",
+		"tags": [
+			"Banking",
+			"Cash",
+			"Multi-Bank"
+		]
+	},
+	{
+		"name": "Bank UOB KCP Bayfront",
+		"type": "shops",
+		"category": "daily-essentials",
+		"description": "Bank UOB KCP Bayfront",
+		"open_hours": "08:00 - 15:00",
+		"location": "Bayfront Mall · Level 1 · Menara Aria 1st Floor",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/atm-uob.webp",
+		"pill": "Banking",
+		"tags": [
+			"Bank",
+			"Finance"
+		]
+	},
+	{
+		"name": "Watson",
+		"type": "wellness",
+		"category": "beauty-grooming",
+		"description": "A health and beauty retail chain selling personal care products.",
+		"open_hours": "06:00 - 22:00",
+		"location": "Bayfront Mall · Level 1 · #01-17",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/watson.webp",
+		"pill": "Skincare",
+		"tags": [
+			"Personal Care",
+			"Cosmetics",
+			"Health & Beauty"
+		]
+	},
+	{
+		"name": "Guardian",
+		"type": "wellness",
+		"category": "beauty-grooming",
+		"description": "A health and beauty store that sells skincare, cosmetics, vitamins, and personal care products.",
+		"open_hours": "07:00 - 21:00",
+		"location": "Bayfront Mall · Level 1 · #01-26",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/guardian.webp",
+		"pill": "Skincare",
+		"tags": [
+			"Skincare",
+			"Cosmetics",
+			"Vitamins",
+			"Personal Care"
+		]
+	},
+	{
+		"name": "Feelss Good & Salon",
+		"type": "wellness",
+		"category": "beauty-grooming",
+		"description": "A beauty salon that offers massage, manicure, and pedicure services.",
+		"open_hours": "09:00 - 21:00",
+		"location": "Bayfront Mall · Level 1 · #01-37",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/feelss-good.webp",
+		"pill": "Salon",
+		"tags": [
+			"Massage",
+			"Manicure",
+			"Pedicure"
+		]
+	},
+	{
+		"name": "Eska Wellness Harbour Bay",
+		"type": "wellness",
+		"category": "spa-massage",
+		"description": "A spa at Bayfront Mall where you can get massages, facials, foot reflexology, nail art, waxing, ear candling, and even body slimming plus a hair spa too.",
+		"open_hours": "10:00 - 22:00",
+		"location": "Bayfront Mall · Level 2 · #02-01",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/eska.webp",
+		"pill": "Spa",
+		"tags": [
+			"Massage",
+			"Facial",
+			"Reflexology",
+			"Waxing"
+		]
+	},
+	{
+		"name": "Clara's Choices Nail Art & Spa",
+		"type": "wellness",
+		"category": "beauty-grooming",
+		"description": "A spot for nail art and relaxing spa treatments.",
+		"open_hours": "08:00 - 21:00",
+		"location": "Bayfront Mall · Level 2 · #02-30",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/clara.webp",
+		"pill": "Nails",
+		"tags": [
+			"Nail Art",
+			"Manicure",
+			"Spa Treatments"
+		]
+	},
+	{
+		"name": "GL Glowing Skin Care",
+		"type": "wellness",
+		"category": "beauty-grooming",
+		"description": "A BPOM approved skincare line that helps brighten your skin, fix dullness, and fade dark spots.",
+		"open_hours": "08:00 - 21:00",
+		"location": "Bayfront Mall · Level 1 · #CT-25",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/GL Glowing Skin Care.webp",
+		"pill": "Skincare",
+		"tags": [
+			"Skincare",
+			"Brightening",
+			"Dark Spot Treatment"
+		]
+	},
+	{
+		"name": "SB. Reni Fadhila Fatiin Group (Ticketing - Domestik)",
+		"type": "shops",
+		"category": "daily-essentials",
+		"description": "A ferry service that goes from Harbour Bay Batam to Moro, Durai, Pulau Burung, Sei Guntung, and Tembilahan.",
+		"open_hours": "08:00 - 16:30",
+		"location": "Bayfront Mall · Level 2 · #02-06",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/Reni Fadhila.webp",
+		"pill": "Ferry Tickets",
+		"tags": [
+			"Ferry",
+			"Domestic",
+			"Ticketing"
+		]
+	},
+	{
+		"name": "Horizon Fast Ferry (Ticketing - Singapore)",
+		"type": "shops",
+		"category": "daily-essentials",
+		"description": "A ferry service that operates daily routes between Harbour Bay Batam and Harbourfront Singapore, with a crossing time of about 50 minutes.",
+		"open_hours": "05:00 - 20:00",
+		"location": "Bayfront Mall · Level 2 · #02-10",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/horizon.webp",
+		"pill": "Ferry Tickets",
+		"tags": [
+			"Ferry",
+			"Singapore",
+			"Ticketing"
+		]
+	},
+	{
+		"name": "Dolphin Fast Ferry (Ticketing - Malaysia)",
+		"type": "shops",
+		"category": "daily-essentials",
+		"description": "A ferry ticketing agent selling tickets to Malaysia.",
+		"open_hours": "06:00 - 18:00",
+		"location": "Bayfront Mall · Level 2 · #02-20",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/dolphin.webp",
+		"pill": "Ferry Tickets",
+		"tags": [
+			"Ferry",
+			"Malaysia",
+			"Ticketing"
+		]
+	},
+	{
+		"name": "MV Putri Anggreni (Ticketing - Malaysia)",
+		"type": "shops",
+		"category": "daily-essentials",
+		"description": "A ferry ticketing agent selling tickets to Malaysia.",
+		"open_hours": "06:00 - 18:00",
+		"location": "Bayfront Mall · Level 2 · #02-21",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/putri-anggreni.webp",
+		"pill": "Ferry Tickets",
+		"tags": [
+			"Ferry",
+			"Malaysia",
+			"Ticketing"
+		]
+	},
+	{
+		"name": "Ocean Dragon Ferry (Ticketing - Malaysia)",
+		"type": "shops",
+		"category": "daily-essentials",
+		"description": "A ferry ticketing agent selling tickets to Malaysia.",
+		"open_hours": "05:30 - 18:00",
+		"location": "Bayfront Mall · Level 2 · #02-23A",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/OCEAN-DRAGON-FERRY.webp",
+		"pill": "Ferry Tickets",
+		"tags": [
+			"Ferry",
+			"Malaysia",
+			"Ticketing"
+		]
+	},
+	{
+		"name": "Ocean Group (Ticketing - Tj.Balai)",
+		"type": "shops",
+		"category": "daily-essentials",
+		"description": "A ferry ticketing agent selling tickets from Harbour Bay Batam to Tanjung Balai Karimun.",
+		"open_hours": "06:00 - 17:00",
+		"location": "Bayfront Mall · Level 2 · #02-25",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/OCEAN-Group.webp",
+		"pill": "Ferry Tickets",
+		"tags": [
+			"Ferry",
+			"Tanjung Balai",
+			"Ticketing"
+		]
+	},
+	{
+		"name": "Vhone Zone",
+		"type": "shops",
+		"category": "electronics-sim",
+		"description": "A spot for tourist SIM cards, IMEI registration, data packages, and phone accessories.",
+		"open_hours": "08:00-21:00",
+		"location": "Bayfront Mall · Level 1 · #CT-22",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/vhone-zone.webp",
+		"pill": "SIM Cards",
+		"tags": [
+			"SIM Cards",
+			"Data Packages",
+			"Accessories"
+		]
+	},
+	{
+		"name": "Relax Zone",
+		"type": "shops",
+		"category": "daily-essentials",
+		"description": "A high-tech massage chairs to relieve fatigue and body aches fast. Perfect for mall visitors or ferry passengers waiting. Starts at Rp10,000.",
+		"open_hours": "08:00-21:00",
+		"location": "Bayfront Mall · Level 1 · #CT-20-21",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/Relax Zone.webp",
+		"pill": "Massage Chairs",
+		"tags": [
+			"Massage",
+			"Relaxation",
+			"Self Service"
+		]
+	},
+	{
+		"name": "Unlock Phone Cell",
+		"type": "shops",
+		"category": "electronics-sim",
+		"description": "A spot for tourist SIM cards, IMEI registration, data packages, and phone accessories.",
+		"open_hours": "08:00-21:00",
+		"location": "Bayfront Mall · Level 1 · #CT-19",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/unlock-phone-cell.webp",
+		"pill": "SIM Cards",
+		"tags": [
+			"SIM Cards",
+			"Data Packages",
+			"Accessories"
+		]
+	},
+	{
+		"name": "Pasee Cell",
+		"type": "shops",
+		"category": "electronics-sim",
+		"description": "A spot for tourist SIM cards, IMEI registration, data packages, and phone accessories.",
+		"open_hours": "08:00-21:00",
+		"location": "Bayfront Mall · Level 1 · #CT-16",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/Pasee Mobile.webp",
+		"pill": "SIM Cards",
+		"tags": [
+			"SIM Cards",
+			"Data Packages",
+			"Accessories"
+		]
+	},
+	{
+		"name": "Money Changer",
+		"type": "shops",
+		"category": "daily-essentials",
+		"description": "Swaps your money into another currency.",
+		"open_hours": "08:00-21:00",
+		"location": "Bayfront Mall · Level 1 · #01",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/Money Changer.webp",
+		"pill": "Money Changer",
+		"tags": [
+			"Currency",
+			"Exchange",
+			"Forex"
+		]
+	},
+	{
+		"name": "VZ Tourist SIMC",
+		"type": "shops",
+		"category": "electronics-sim",
+		"description": "A spot for tourist SIM cards, IMEI registration, data packages, and phone accessories.",
+		"open_hours": "08:00-21:00",
+		"location": "Bayfront Mall · Level 1 · #CT-03",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/Viczone 2.webp",
+		"pill": "SIM Cards",
+		"tags": [
+			"SIM Cards",
+			"Data Packages",
+			"Accessories"
+		]
+	},
+	{
+		"name": "NCR Cell",
+		"type": "shops",
+		"category": "electronics-sim",
+		"description": "A spot for tourist SIM cards, IMEI registration, data packages, and phone accessories.",
+		"open_hours": "08:00-21:00",
+		"location": "Bayfront Mall · Level 1 · #CT-01",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/NCR Cell.webp",
+		"pill": "SIM Cards",
+		"tags": [
+			"SIM Cards",
+			"Data Packages",
+			"Accessories"
+		]
+	},
+	{
+		"name": "D'Signal Store",
+		"type": "shops",
+		"category": "electronics-sim",
+		"description": "A spot for tourist SIM cards, IMEI registration, data packages, and phone accessories.",
+		"open_hours": "08:00-21:00",
+		"location": "Bayfront Mall · Level 1 · #CT-12",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/D'signal Store.webp",
+		"pill": "SIM Cards",
+		"tags": [
+			"SIM Cards",
+			"Data Packages",
+			"Accessories"
+		]
+	},
+	{
+		"name": "Acun Cell",
+		"type": "shops",
+		"category": "electronics-sim",
+		"description": "A spot for tourist SIM cards, IMEI registration, data packages, and phone accessories.",
+		"open_hours": "08:00-21:00",
+		"location": "Bayfront Mall · Level 1 · #CT-11a",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/Acun Cell.webp",
+		"pill": "SIM Cards",
+		"tags": [
+			"SIM Cards",
+			"Data Packages",
+			"Accessories"
+		]
+	},
+	{
+		"name": "Rama Cell",
+		"type": "shops",
+		"category": "electronics-sim",
+		"description": "A spot for tourist SIM cards, IMEI registration, data packages, and phone accessories.",
+		"open_hours": "08:00-21:00",
+		"location": "Bayfront Mall · Level 1 · #CT-13a",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/Rama.webp",
+		"pill": "SIM Cards",
+		"tags": [
+			"SIM Cards",
+			"Data Packages",
+			"Accessories"
+		]
+	},
+	{
+		"name": "Cihen Cell",
+		"type": "shops",
+		"category": "electronics-sim",
+		"description": "A spot for tourist SIM cards, IMEI registration, data packages, and phone accessories.",
+		"open_hours": "08:00-21:00",
+		"location": "Bayfront Mall · Level 1 · #CT-24",
+		"photo": "https://harbourbaydowntown.com/map/photos/indoor/Cihen Cell.webp",
+		"pill": "SIM Cards",
+		"tags": [
+			"SIM Cards",
+			"Data Packages",
+			"Accessories"
+		]
+	}
+]

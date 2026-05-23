@@ -1,0 +1,189 @@
+@use '../base/tokens' as *;
+@use '../base/mixins' as *;
+
+// ============================================================================
+// Stay page — section tweaks + the new Hotels card (Card_Type_5).
+// ============================================================================
+
+// --- Stay Guides: Special Promotions layout, intro has a button; cards Type 4 -
+.home-promotions.stay-guides {
+	padding: 178px 24px 64px; // 178px from the hero, 64px (+64 Hotels top = 128) before Hotels.
+
+	// Headroom for the card hover lift so the track's overflow doesn't clip the
+	// top. Padding extends the clip box; the negative margin cancels it so the
+	// surrounding layout doesn't move.
+	.home-promotions__track {
+		padding-top: 8px;
+		margin-top: -8px;
+	}
+
+	// Vertical guide cards inside the carousel.
+	.card--type-4 {
+		width: 328px;
+		height: 420px;
+		flex-shrink: 0;
+
+		.card__content {
+			gap: 24px; // Figma: 24px between the text block and the meta row.
+		}
+
+		.card__text {
+			display: flex;
+			flex-direction: column;
+			gap: 12px; // Figma: 12px between title and excerpt.
+		}
+
+		// Keep the title to one line so the text block height is constant and the
+		// image never shrinks. Longer titles are truncated with an ellipsis.
+		.card__title {
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+	}
+}
+
+// --- Hotels: Card_Type_5 grid as a two-row scrolling carousel (matches
+// Dine Restaurants / Shop Shops) ---------------------------------------------
+.stay-hotels {
+	padding: 64px 24px 128px; // 64px after Stay Guides (→128 gap), 128px to footer.
+	display: flex;
+	flex-direction: column;
+	gap: 64px;
+
+	&__title {
+		text-align: center;
+		font-size: var(--wp--preset--font-size--title-64);
+		letter-spacing: -0.04em;
+		line-height: 1.05;
+		text-transform: uppercase;
+		margin: 0;
+	}
+
+	&__track {
+		display: grid;
+		grid-auto-flow: column;
+		grid-template-rows: repeat(2, 420px);
+		grid-auto-columns: calc((100% - 48px) / 3);
+		gap: 24px;
+		// Headroom for the card hover lift (overflow-x:auto also clips the top);
+		// the negative margin cancels it so nothing shifts.
+		padding-top: 8px;
+		margin-top: -8px;
+		overflow-x: auto;
+		overscroll-behavior-x: contain;
+		scrollbar-width: none;
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+
+		@include breakpoint-down(desktop) {
+			grid-auto-columns: calc((100% - 24px) / 2);
+		}
+
+		@include breakpoint-down(tablet) {
+			grid-auto-columns: 100%;
+		}
+	}
+
+	&__controls {
+		display: flex;
+		gap: 36px;
+		align-items: center;
+		justify-content: flex-start;
+
+		.progress-bar {
+			flex: none;
+			width: 862px;
+			max-width: 100%;
+			min-width: 0;
+		}
+	}
+}
+
+// Card_Type_5 — full-image hotel card: pill + arrow on top, title at the bottom.
+.card--type-5 {
+	height: 420px;
+	padding: 24px;
+	align-items: flex-start; // Figma: items-start (top row + title both left-aligned).
+	justify-content: space-between; // "Auto" gap pushes the top row up and the title down.
+	background-color: $color-contrast;
+	border: 0.5px solid $color-base;
+	color: $color-base;
+
+	.card__image {
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		margin: 0;
+		border-radius: inherit;
+		overflow: hidden;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+
+	// Bottom fade so the white title stays legible over any photo.
+	&::after {
+		content: '';
+		position: absolute;
+		inset: 40% 0 0 0;
+		background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.85) 100%);
+		z-index: 0;
+		pointer-events: none;
+	}
+
+	.card__top {
+		position: relative;
+		z-index: 1;
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		gap: 16px;
+		width: 100%;
+	}
+
+	.card__tags {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+	}
+
+	// White pill on the dark image.
+	.tag-chip {
+		border-color: $color-base;
+		color: $color-base;
+		background-color: rgba(255, 255, 255, 0.1);
+	}
+
+	.card__arrow {
+		flex-shrink: 0;
+	}
+
+	.card__title {
+		position: relative;
+		z-index: 1;
+		font-size: var(--wp--preset--font-size--title-36);
+		letter-spacing: -0.04em;
+		line-height: 1;
+		text-transform: uppercase;
+		color: $color-base;
+		margin: 0;
+	}
+
+	// Whole-card hover turns the arrow red and spins it (like the map tooltip).
+	&:hover .card__arrow,
+	&:focus-visible .card__arrow {
+		background-color: $color-accent-red;
+		color: $color-base;
+	}
+
+	&:hover .card__arrow svg,
+	&:focus-visible .card__arrow svg {
+		transform: rotate(45deg);
+	}
+}

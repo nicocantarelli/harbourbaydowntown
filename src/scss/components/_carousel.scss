@@ -1,0 +1,103 @@
+@use '../base/tokens' as *;
+@use '../base/mixins' as *;
+
+.carousel {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 64px;
+
+	&__track {
+		display: flex;
+		gap: 24px;
+		overflow-x: auto;
+		overflow-y: hidden;
+		scroll-snap-type: x mandatory;
+		scrollbar-width: none;
+		-webkit-overflow-scrolling: touch;
+		padding-bottom: 4px;
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+
+		> * {
+			scroll-snap-align: start;
+		}
+	}
+
+	&__controls {
+		display: flex;
+		gap: 36px;
+		align-items: center;
+		justify-content: center;
+	}
+
+	&__nav {
+		display: flex;
+		align-items: center;
+		flex-shrink: 0;
+
+		// Carousel arrows are authored in a 40×40 viewBox — render the SVG
+		// at the full button size so the chevron sits at its designed scale.
+		.icon-button svg {
+			width: 100%;
+			height: 100%;
+		}
+	}
+
+	// Compound selector (0,2,0) beats WordPress's flex-layout container gap
+	// (`.wp-container-… { gap: blockGap }`, which is 24px from theme.json).
+	&__controls &__nav {
+		gap: 16px;
+	}
+}
+
+// Doubled class (0,2,0) so the gap between the progress bar and the nav beats
+// WordPress's flex-layout container gap (blockGap = 24px from theme.json).
+.carousel__controls.carousel__controls {
+	gap: 36px;
+}
+
+// Listings carousel — the Dine/Shop category tabs render their cards (Card_Type_3)
+// in one horizontal-scroll row: exactly 4 visible at a time (¼ of the row each),
+// and the prev/next arrows step one card. Never an endless grid.
+.carousel--listings {
+	gap: 36px;
+
+	.card--type-3 {
+		flex: 0 0 calc((100% - 72px) / 4); // 4 cards, 3 × 24px gaps
+		width: auto;
+	}
+
+	// Safety: the location chip can never run past the card edge.
+	.card__copy .tag-chip {
+		max-width: 100%;
+		overflow: hidden;
+	}
+
+	// Match the grid carousels' controls: left-aligned, fixed-width progress bar
+	// (then the prev/next arrows), rather than a centered full-width bar.
+	.carousel__controls {
+		justify-content: flex-start;
+	}
+
+	.progress-bar {
+		flex: none;
+		width: 862px;
+		max-width: 100%;
+		min-width: 0;
+	}
+
+	@include breakpoint-down(desktop) {
+		.card--type-3 {
+			flex-basis: calc((100% - 24px) / 2); // 2 visible
+		}
+	}
+
+	@include breakpoint-down(tablet) {
+		.card--type-3 {
+			flex-basis: 100%; // 1 visible
+		}
+	}
+}

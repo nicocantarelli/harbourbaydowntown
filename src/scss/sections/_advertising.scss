@@ -1,0 +1,409 @@
+@use '../base/tokens' as *;
+@use '../base/mixins' as *;
+
+// ============================================================================
+// Advertising page (slug: advertising — non-hero, solid header). Key Numbers and
+// Ferry Passenger Mix are stat-card sections; Advertising Opportunities pairs a
+// benefits list with a labelled image collage; Get Your Brand Seen is a banner
+// card; and the enquiry form reuses the Contact / Live & Work form.
+// ============================================================================
+
+// --- Key Numbers: centered title + a row of four stat cards ------------------
+.adv-numbers {
+	padding: 178px 24px 114px; // 178px below the header, 114px (+114 next top = 228) below.
+	display: flex;
+	flex-direction: column;
+	gap: 64px;
+
+	&__title {
+		text-align: center;
+		font-size: var(--wp--preset--font-size--title-64);
+		letter-spacing: -0.04em;
+		line-height: 1.05;
+		text-transform: uppercase;
+		margin: 0;
+	}
+
+	&__grid {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 24px;
+
+		@include breakpoint-down(desktop) {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		@include breakpoint-down(tablet) {
+			grid-template-columns: 1fr;
+		}
+	}
+}
+
+// Stat card — big value on top, label at the bottom.
+.adv-stat {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 12px;
+	min-height: 146px;
+	padding: 24px;
+	background-color: $color-card-bg;
+	border-radius: $radius-shell;
+
+	&__value {
+		font-size: var(--wp--preset--font-size--title-64);
+		letter-spacing: -0.04em;
+		line-height: 1;
+		color: $color-contrast;
+		// Fixed-width digits so the count-up animation doesn't shift the suffix around.
+		font-variant-numeric: tabular-nums;
+	}
+
+	&__label {
+		font-size: var(--wp--preset--font-size--body-16);
+		line-height: 20px;
+		letter-spacing: 0.014em;
+		color: #9ea5af; // Figma Grey_Dark
+	}
+}
+
+// --- Ferry Passenger Mix: intro (left) + three percentage cards (right) ------
+.adv-mix {
+	padding: 114px 24px; // 114px each side → 228px gaps to Key Numbers and Opportunities.
+	display: flex;
+	gap: 64px;
+	align-items: center;
+
+	&__intro {
+		flex: 0 0 463px;
+		max-width: 42%;
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+	}
+
+	&__title {
+		font-size: var(--wp--preset--font-size--title-64);
+		letter-spacing: -0.04em;
+		line-height: 1.05;
+		text-transform: uppercase;
+		margin: 0;
+	}
+
+	&__subtitle {
+		font-size: var(--wp--preset--font-size--body-20);
+		letter-spacing: -0.04em;
+		line-height: 22px;
+		color: $color-subtle;
+		margin: 0;
+	}
+
+	&__cards {
+		flex: 1 1 0;
+		min-width: 0;
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 24px;
+	}
+
+	&__card {
+		position: relative;
+		overflow: hidden;
+		min-height: 260px;
+		padding: 24px;
+		background-color: $color-card-bg;
+		border-radius: $radius-shell;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		gap: 16px;
+	}
+
+	// Faint landmark silhouette anchored to the bottom-RIGHT of the card (matching
+	// the design), behind the text, with the % and label sitting clear to the left.
+	&__illustration {
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		height: 62%;
+		width: auto;
+		object-fit: contain;
+		object-position: bottom right;
+		pointer-events: none;
+		z-index: 0;
+	}
+
+	&__percent {
+		position: relative;
+		z-index: 1;
+		font-size: var(--wp--preset--font-size--title-64);
+		letter-spacing: -0.04em;
+		line-height: 1;
+		color: $color-contrast;
+		// Fixed-width digits so the count-up animation doesn't shift the % around.
+		font-variant-numeric: tabular-nums;
+	}
+
+	&__label {
+		position: relative;
+		z-index: 1;
+		font-size: var(--wp--preset--font-size--body-16);
+		line-height: 20px;
+		letter-spacing: 0.014em;
+		color: #9ea5af; // Figma Grey_Dark
+	}
+
+	@include breakpoint-down(desktop) {
+		flex-direction: column;
+		align-items: stretch;
+
+		&__intro {
+			flex: none;
+			max-width: none;
+		}
+	}
+
+	@include breakpoint-down(tablet) {
+		&__cards {
+			grid-template-columns: 1fr;
+		}
+	}
+}
+
+// --- Advertising Opportunities: benefits list (left) + image collage (right) -
+.adv-opportunities {
+	padding: 114px 24px 64px; // 114px after Ferry Mix (→228 gap), 64px (+114 CTA top... ) below.
+	display: flex;
+	flex-direction: column;
+	gap: 64px;
+
+	&__title {
+		text-align: center;
+		font-size: var(--wp--preset--font-size--title-64);
+		letter-spacing: -0.04em;
+		line-height: 1.05;
+		text-transform: uppercase;
+		margin: 0;
+	}
+
+	&__row {
+		display: flex;
+		gap: 64px;
+		align-items: center;
+		padding: 0 24px;
+	}
+
+	&__info {
+		flex: 0 0 387px;
+		max-width: 387px;
+		display: flex;
+		flex-direction: column;
+		gap: 64px; // pill row → benefits list
+	}
+
+	&__tags {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+	}
+
+	&__items {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+	}
+
+	&__item {
+		display: flex;
+		align-items: flex-start;
+		gap: 8px;
+	}
+
+	&__item-icon {
+		flex-shrink: 0;
+		display: inline-flex;
+		color: $color-contrast;
+
+		svg {
+			width: 20px;
+			height: 20px;
+			aspect-ratio: 1 / 1;
+			display: block;
+		}
+	}
+
+	&__item-text {
+		font-size: var(--wp--preset--font-size--body-20);
+		letter-spacing: -0.04em;
+		line-height: 22px;
+		color: $color-subtle;
+	}
+
+	// Collage box — fixed aspect so the %-positioned images + captions scale together.
+	&__collage {
+		position: relative;
+		flex: 1 1 0;
+		min-width: 0;
+		aspect-ratio: 885 / 554;
+	}
+
+	&__img {
+		position: absolute;
+		margin: 0;
+		border-radius: $radius-card;
+		overflow: hidden;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			display: block;
+		}
+
+		&--1 { left: 0;       top: 55.05%; width: 31.41%; height: 36.64%; } // mid-left
+		&--2 { left: 0;       top: 0;      width: 47.57%; height: 36.10%; } // top-left (wide)
+		&--3 { left: 58.76%;  top: 8.30%;  width: 41.24%; height: 33.57%; } // top-right
+		&--4 { left: 70.85%;  top: 59.39%; width: 26.55%; height: 40.61%; } // bottom-right
+		&--5 { left: 39.21%;  top: 46.21%; width: 23.95%; height: 40.61%; } // centre
+	}
+
+	&__caption {
+		position: absolute;
+		display: flex;
+		align-items: center;
+		gap: 16px;
+		white-space: nowrap;
+
+		&--1 { left: 58.76%; top: 0;      } // Static advertising placements
+		&--2 { left: 0;      top: 40.43%; } // LED digital screens
+		&--3 { left: 70.85%; top: 51.08%; } // Dining & lifestyle
+		&--4 { left: 39.21%; top: 91.16%; } // Main walkways
+		&--5 { left: 0;      top: 96.03%; } // Arrival & departure zones
+	}
+
+	// Dot + 48px line, pointing right toward the text.
+	&__caption-line {
+		position: relative;
+		width: 52px;
+		height: 8px;
+		flex-shrink: 0;
+
+		&::before {
+			content: '';
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 8px;
+			height: 8px;
+			border-radius: 50%;
+			background-color: $color-contrast;
+		}
+
+		&::after {
+			content: '';
+			position: absolute;
+			left: 4px;
+			top: 50%;
+			width: 48px;
+			height: 1px;
+			transform: translateY(-50%);
+			background-color: $color-contrast;
+		}
+	}
+
+	&__caption-label {
+		font-size: var(--wp--preset--font-size--body-20);
+		letter-spacing: -0.04em;
+		line-height: 22px;
+		color: $color-contrast;
+	}
+
+	@include breakpoint-down(desktop) {
+		&__row {
+			flex-direction: column;
+			align-items: stretch;
+			padding: 0;
+		}
+
+		&__info {
+			flex: none;
+			max-width: none;
+		}
+	}
+
+	@include breakpoint-down(tablet) {
+		// Captions overlap the smaller images on phones — hide them.
+		&__caption {
+			display: none;
+		}
+	}
+}
+
+// --- Get Your Brand Seen: a light banner card (title left, pill + body right) -
+.adv-cta {
+	padding: 114px 24px 64px; // 64px after Opportunities + 114px = 178px; 114px top, 64px bottom.
+
+	&__card {
+		display: flex;
+		gap: 64px;
+		align-items: center;
+		background-color: $color-card-bg;
+		border-radius: $radius-shell;
+		padding: 48px;
+	}
+
+	&__title {
+		flex: 0 0 510px;
+		max-width: 45%;
+		font-size: var(--wp--preset--font-size--title-64);
+		letter-spacing: -0.04em;
+		line-height: 1.05;
+		text-transform: uppercase;
+		margin: 0;
+	}
+
+	&__info {
+		flex: 1 1 0;
+		min-width: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+	}
+
+	&__tags {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+	}
+
+	&__body {
+		font-size: var(--wp--preset--font-size--body-20);
+		letter-spacing: -0.04em;
+		line-height: 22px;
+		color: $color-subtle;
+		margin: 0;
+	}
+
+	@include breakpoint-down(desktop) {
+		&__card {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 32px;
+			padding: 32px;
+		}
+
+		&__title {
+			flex: none;
+			max-width: none;
+		}
+	}
+}
+
+// --- Enquiry form: reuses .lw-contact / .contact-message; extra footer spacing.
+// Keeps the 114px top from .contact-message (64px CTA bottom + 114px = 178px gap).
+.lw-contact.adv-form {
+	padding-bottom: 178px; // 178px down to the footer.
+}

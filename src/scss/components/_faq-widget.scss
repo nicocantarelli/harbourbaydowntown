@@ -1,0 +1,217 @@
+@use '../base/tokens' as *;
+@use '../base/mixins' as *;
+
+// Floating FAQ / chat widget — fixed bottom-right. A round button (FAB) toggles
+// a panel with an FAQ accordion and a WhatsApp CTA. Rendered site-wide via
+// wp_footer (inc/faq-widget.php); behaviour in src/js/modules/faq-widget.js.
+.faq-widget {
+	position: fixed;
+	right: 24px;
+	bottom: 24px;
+	z-index: 90;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	gap: 16px;
+	// Wrapper is transparent and shouldn't trap clicks around the button.
+	pointer-events: none;
+
+	> * {
+		pointer-events: auto;
+	}
+
+	&__toggle {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 68px;
+		height: 68px;
+		padding: 16px;
+		border: 0.5px solid $color-base;
+		border-radius: $radius-pill;
+		background-color: $color-base;
+		color: $color-contrast;
+		cursor: pointer;
+		box-shadow: 0 4px 6px rgba(118, 127, 140, 0.2);
+		backdrop-filter: blur(4px);
+		transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+		svg {
+			display: block;
+			width: 36px;
+			height: 36px;
+		}
+
+		&:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 8px 16px rgba(118, 127, 140, 0.28);
+		}
+
+		&:focus-visible {
+			outline: 2px solid $color-accent-light;
+			outline-offset: 2px;
+		}
+	}
+
+	// Icon swap: chat when closed, X when open.
+	&__icon {
+		display: inline-flex;
+	}
+
+	&__icon--close {
+		display: none;
+
+		svg {
+			width: 28px;
+			height: 28px;
+		}
+	}
+
+	&.is-open &__icon--chat {
+		display: none;
+	}
+
+	&.is-open &__icon--close {
+		display: inline-flex;
+	}
+
+	&__panel {
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+		width: 360px;
+		max-width: calc(100vw - 48px);
+		max-height: calc(100vh - 140px);
+		overflow-y: auto;
+		padding: 16px;
+		border-radius: $radius-card;
+		background-color: $color-base;
+		box-shadow: 0 4px 6px rgba(118, 127, 140, 0.2);
+		backdrop-filter: blur(4px);
+		// Hidden until open. JS removes the [hidden] attribute on init and hands
+		// visibility to this class so the open/close can animate.
+		opacity: 0;
+		visibility: hidden;
+		transform: translateY(8px);
+		transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+	}
+
+	&.is-open &__panel {
+		opacity: 1;
+		visibility: visible;
+		transform: translateY(0);
+	}
+
+	&__faq,
+	&__cta {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+	}
+
+	&__title,
+	&__cta-heading {
+		margin: 0;
+		font-size: var(--wp--preset--font-size--body-20);   // 20px
+		line-height: 22px;
+		letter-spacing: -0.8px;
+		color: $color-contrast;
+		text-align: left;
+		-webkit-text-stroke: 0.05px $color-contrast;
+	}
+
+	&__questions {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	&__cta-btn {
+		width: 100%;
+		margin: 0; // defeat any default block-button margin
+
+		// Override pill-big's Body_20 → Body_16 per the FAQ spec, full-width.
+		// Doubled class beats `.wp-block-button.is-style-pill-big .…__link`.
+		&.wp-block-button .wp-block-button__link {
+			width: 100%;
+			font-size: var(--wp--preset--font-size--body-16);   // 16px
+			line-height: 20px;
+			letter-spacing: 0.23px;
+		}
+	}
+}
+
+// Single FAQ accordion item.
+.faq-item {
+	background-color: $color-card-bg;
+	border-radius: 8px;
+
+	&__trigger {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 24px;
+		width: 100%;
+		padding: 12px;
+		border: 0;
+		background: transparent;
+		cursor: pointer;
+		text-align: left;
+		font: inherit;
+	}
+
+	&__q {
+		font-size: var(--wp--preset--font-size--body-16);   // 16px
+		line-height: 20px;
+		letter-spacing: 0.23px;
+		color: $color-contrast;
+	}
+
+	// Plus / minus drawn with two bars; the vertical bar fades out when expanded.
+	&__icon {
+		position: relative;
+		flex-shrink: 0;
+		width: 20px;
+		height: 20px;
+
+		&::before,
+		&::after {
+			content: '';
+			position: absolute;
+			background-color: $color-contrast;
+			transition: opacity 0.2s ease;
+		}
+
+		&::before {
+			top: 50%;
+			left: 25%;
+			right: 25%;
+			height: 1.5px;
+			transform: translateY(-50%);
+		}
+
+		&::after {
+			left: 50%;
+			top: 25%;
+			bottom: 25%;
+			width: 1.5px;
+			transform: translateX(-50%);
+		}
+	}
+
+	&__trigger[aria-expanded='true'] &__icon::after {
+		opacity: 0;
+	}
+
+	&__answer {
+		padding: 0 12px 12px;
+
+		p {
+			margin: 0;
+			font-size: 14px;
+			line-height: 16px;
+			letter-spacing: 0.23px;
+			color: $color-subtle;
+		}
+	}
+}

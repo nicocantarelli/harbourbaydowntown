@@ -1,0 +1,447 @@
+@use '../base/tokens' as *;
+@use '../base/mixins' as *;
+
+// ============================================================================
+// K Square Mall page. Hero reuses .page-hero--centered. The Free Shuttle title
+// reuses the staggered .about-place__title. The card shells, the 4-image About
+// collage, and the Nearby place cards are new.
+// ============================================================================
+
+// --- Free Shuttle: staggered title + a card (details left, image right) ------
+.ks-shuttle {
+	padding: 178px 24px 64px; // 178px from the hero, 64px (+64 About top = 128) below.
+	display: flex;
+	flex-direction: column;
+	gap: 64px;
+
+	&__card {
+		display: flex;
+		gap: 64px;
+		align-items: stretch;
+		min-height: 426px;
+		background-color: $color-card-bg;
+		border-radius: $radius-shell;
+		overflow: hidden;
+	}
+
+	&__body {
+		flex-shrink: 0;
+		width: 387px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: 48px; // Figma: 48px between the tag, details, and items groups.
+		padding: 24px 0 24px 24px;
+	}
+
+	&__tags {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+	}
+
+	// Pick-up / drop-off lines: dark label + grey value.
+	&__details {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		margin: 0;
+	}
+
+	&__detail {
+		font-size: var(--wp--preset--font-size--body-20);
+		line-height: 22px;
+		letter-spacing: -0.04em;
+		color: $color-subtle;
+		margin: 0;
+
+		dt {
+			display: inline;
+			color: $color-contrast;
+		}
+
+		dd {
+			display: inline;
+			margin: 0;
+		}
+	}
+
+	// Info items: icon + line of text.
+	&__items {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	&__item {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		font-size: var(--wp--preset--font-size--body-20);
+		line-height: 22px;
+		letter-spacing: -0.04em;
+		color: $color-subtle;
+	}
+
+	&__item-icon {
+		flex-shrink: 0;
+		display: inline-flex;
+		color: $color-contrast;
+
+		svg {
+			width: 20px;
+			height: 20px;
+			display: block;
+		}
+	}
+
+	&__media {
+		flex: 1 1 0;
+		min-width: 0;
+		position: relative;
+		overflow: hidden;
+		margin: 0;
+
+		img {
+			position: absolute;
+			inset: 0;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			display: block;
+		}
+	}
+
+	@include breakpoint-down(desktop) {
+		&__card {
+			flex-direction: column-reverse;
+		}
+
+		&__body {
+			width: 100%;
+			padding: 24px;
+		}
+
+		&__media {
+			flex: none;
+			width: 100%;
+			height: 280px;
+		}
+	}
+}
+
+// --- About: centered title + 4-image collage (left) + tag/body/social (right) -
+.ks-about {
+	padding: 114px 24px 64px; // 64px (shuttle bottom) + 114px = 178px from Free Shuttle.
+	display: flex;
+	flex-direction: column;
+	gap: 64px;
+
+	&__title {
+		text-align: center;
+		font-size: var(--wp--preset--font-size--title-64);
+		letter-spacing: -0.04em;
+		line-height: 1.05;
+		text-transform: uppercase;
+		margin: 0;
+	}
+
+	&__row {
+		display: flex;
+		gap: 64px;
+		align-items: stretch;
+		padding: 0 24px;
+	}
+
+	// Collage box: natural Figma size 885×620 → aspect-ratio drives the height so
+	// the %-positioned children scale together.
+	&__collage {
+		position: relative;
+		flex: 1 1 0;
+		min-width: 0;
+		aspect-ratio: 885 / 620;
+	}
+
+	&__img {
+		position: absolute;
+		margin: 0;
+		border-radius: $radius-card;
+		overflow: hidden;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			display: block;
+		}
+
+		&--1 { left: 0;       top: 0;       width: 25.31%; height: 48.23%; }
+		&--2 { left: 64.75%;  top: 0;       width: 35.25%; height: 67.26%; }
+		&--3 { left: 28.02%;  top: 17.42%;  width: 34.01%; height: 28.71%; }
+		&--4 { left: 28.02%;  top: 50%;     width: 34.01%; height: 39.03%; }
+	}
+
+	&__caption {
+		position: absolute;
+		display: flex;
+		align-items: flex-start;
+		gap: 16px;
+
+		&--1 { left: 0;      top: 52.1%; }
+		&--2 { left: 28.02%; top: 6.45%; }
+		&--3 { left: 64.75%; top: 71.13%; }
+		&--4 { left: 28.02%; top: 92.9%; }
+	}
+
+	// Dot + 48px line decoration (aligned with the first text line).
+	&__caption-line {
+		position: relative;
+		width: 52px;
+		height: 8px;
+		flex-shrink: 0;
+		margin-top: 7px;
+
+		&::before {
+			content: '';
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 8px;
+			height: 8px;
+			border-radius: 50%;
+			background-color: $color-contrast;
+		}
+
+		&::after {
+			content: '';
+			position: absolute;
+			left: 4px;
+			top: 50%;
+			width: 48px;
+			height: 1px;
+			transform: translateY(-50%);
+			background-color: $color-contrast;
+		}
+	}
+
+	&__caption-label {
+		max-width: 230px;
+		font-size: var(--wp--preset--font-size--body-20);
+		letter-spacing: -0.04em;
+		line-height: 22px;
+		color: $color-contrast;
+	}
+
+	&__info {
+		flex-shrink: 0;
+		width: 387px;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		gap: 48px;
+		padding: 24px 0;
+	}
+
+	&__copy {
+		display: flex;
+		flex-direction: column;
+		gap: 48px; // Figma: tag row → body.
+	}
+
+	&__tags {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+	}
+
+	&__body {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+
+		p {
+			font-size: var(--wp--preset--font-size--body-20);
+			letter-spacing: -0.04em;
+			line-height: 22px;
+			color: $color-subtle;
+			margin: 0;
+		}
+	}
+
+	&__social {
+		display: flex;
+		gap: 16px;
+
+		// Match the footer social icons — turn red on hover.
+		.icon-button:hover,
+		.icon-button:focus-visible {
+			background-color: $color-accent-red;
+			color: $color-base;
+		}
+	}
+
+	@include breakpoint-down(desktop) {
+		&__row {
+			flex-direction: column;
+			align-items: stretch;
+			padding: 0;
+		}
+
+		&__info {
+			width: 100%;
+		}
+
+		// Captions overlap the smaller images on phones — hide them.
+		&__caption {
+			display: none;
+		}
+	}
+}
+
+// --- Nearby Area: intro (left) + place cards (right) -------------------------
+.ks-nearby {
+	padding: 64px 24px 178px;
+	display: flex;
+	gap: 64px;
+	align-items: center;
+
+	&__intro {
+		flex-shrink: 0;
+		width: 560px;
+		max-width: 50%;
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+	}
+
+	&__title {
+		font-size: var(--wp--preset--font-size--title-64);
+		letter-spacing: -0.04em;
+		line-height: 1.05;
+		text-transform: uppercase;
+		white-space: nowrap; // keep each line (split by <br>) on one line → 2 lines, not 3
+		margin: 0;
+	}
+
+	&__body {
+		font-size: var(--wp--preset--font-size--body-20);
+		letter-spacing: -0.04em;
+		line-height: 22px;
+		color: $color-subtle;
+		margin: 0;
+	}
+
+	&__cards {
+		flex: 1 1 0;
+		min-width: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+	}
+
+	&__row {
+		display: flex;
+		gap: 24px;
+	}
+
+	@include breakpoint-down(desktop) {
+		flex-direction: column;
+		align-items: stretch;
+		gap: 48px;
+
+		&__intro {
+			width: 100%;
+			max-width: none;
+		}
+	}
+}
+
+// Place card — full-image card with a title and a 64px arrow button on top.
+.ks-place-card {
+	position: relative;
+	display: block;
+	flex: 1 1 0;
+	min-width: 0;
+	height: 140px;
+	padding: 24px;
+	border-radius: $radius-card;
+	overflow: hidden;
+	isolation: isolate;
+	color: $color-base;
+	text-decoration: none;
+	transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+
+	&--wide {
+		flex: none;
+		width: 100%;
+	}
+
+	&__media {
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		margin: 0;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			display: block;
+		}
+	}
+
+	// Dark gradient on the left so the white title stays legible.
+	&::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+		pointer-events: none;
+		background: linear-gradient(to right, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.2) 55%, rgba(0, 0, 0, 0) 100%);
+	}
+
+	&__top {
+		position: relative;
+		z-index: 1;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 16px;
+		width: 100%;
+	}
+
+	&__name {
+		font-size: var(--wp--preset--font-size--title-36);
+		letter-spacing: -0.04em;
+		line-height: normal;
+		text-transform: uppercase;
+		color: $color-base;
+		margin: 0;
+	}
+
+	&__arrow {
+		flex-shrink: 0;
+	}
+
+	// Whole-card hover (links only — the --link modifier is added in the pattern
+	// when a card has a URL). Cards with no link render as a plain <div> and stay
+	// inert: no lift, no arrow recolour.
+	&--link:hover,
+	&--link:focus-visible {
+		transform: translateY(-4px);
+	}
+
+	&--link:hover &__arrow,
+	&--link:focus-visible &__arrow {
+		background-color: $color-accent-red;
+		color: $color-base;
+	}
+
+	&--link:hover &__arrow svg,
+	&--link:focus-visible &__arrow svg {
+		transform: rotate(45deg);
+	}
+}

@@ -1,0 +1,73 @@
+@use '../base/tokens' as *;
+@use '../base/mixins' as *;
+
+.home-promotions {
+	padding: 128px 24px 178px;
+	display: flex;
+	flex-direction: column;
+	gap: 64px;
+
+	&__layout {
+		display: grid;
+		// minmax(0, 1fr) — not plain 1fr — so the carousel column can shrink
+		// below its content and the track clips the overflowing 3rd card at the
+		// right edge (same peek effect as the Explore carousel).
+		grid-template-columns: minmax(280px, 397px) minmax(0, 1fr);
+		gap: 64px;
+		align-items: center;
+		padding-left: 24px;
+	}
+
+	&__intro {
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+	}
+
+	&__title {
+		font-size: var(--wp--preset--font-size--title-64);
+		letter-spacing: -0.04em;
+		line-height: 1;
+		text-transform: uppercase;
+		margin: 0;
+	}
+
+	&__lede {
+		font-size: var(--wp--preset--font-size--body-20);
+		letter-spacing: -0.04em;
+		line-height: 22px;
+		color: $color-subtle;
+		margin: 0;
+	}
+
+	&__controls {
+		display: flex;
+		gap: 36px;
+		align-items: center;
+		justify-content: flex-start;
+		// Align the progress bar's start with the first card:
+		// layout padding-left (24) + intro column (397) + grid gap (64).
+		padding-left: calc(24px + 397px + 64px);
+
+		.progress-bar {
+			flex: none;
+			// Width chosen so the bar ENDS at the same x as the Explore carousel's
+			// bar (Explore: 24 + 852 = 876; here the bar starts at 24 + 485 = 509,
+			// so 876 − 509 = 367). That keeps the prev/next arrows that follow the
+			// bar on the same vertical line as Explore's, without moving them.
+			width: 367px;
+			min-width: 0;
+		}
+	}
+
+	@include breakpoint-down(desktop) {
+		&__layout {
+			grid-template-columns: 1fr;
+			padding-left: 0;
+		}
+
+		&__controls {
+			padding-left: 0;
+		}
+	}
+}

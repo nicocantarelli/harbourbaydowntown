@@ -1,0 +1,215 @@
+@use '../base/tokens' as *;
+@use '../base/mixins' as *;
+
+.home-hero {
+	position: relative;
+	width: auto;
+	border-radius: $radius-shell;
+	overflow: hidden;
+	isolation: isolate;
+	// Container query context — the heading sizes itself from `cqw` units
+	// (% of this container's inline-size) so it scales with the hero width.
+	container-type: inline-size;
+	container-name: hero;
+	height: calc(100vh - 8px);
+	min-height: 600px;
+	display: flex;
+	flex-direction: column;
+	// Top padding accounts for the absolute-positioned site-header overlay
+	// (~104px tall: 32px padding-top + 40px logo + 32px padding-bottom).
+	// Combined with __bottom margin-block-start: 48px, the title lands
+	// 48px below the header.
+	padding: 104px 32px 32px;
+	margin: 0 4px;
+	box-sizing: border-box;
+	background-color: $color-muted-bg;
+	color: $color-base;
+
+	// Defeat WP's `is-layout-flow > * + *` margin-block-start auto-spacing —
+	// we control vertical layout via flex inside the hero.
+	&.is-layout-flow > * + * {
+		margin-block-start: 0;
+	}
+
+	// 48px between header and the title/CTA group.
+	&.is-layout-flow > &__bottom {
+		margin-block-start: 48px;
+	}
+
+	// Z-INDEX STACK (within the hero's isolated stacking context):
+	//   0 — background image      (bottom)
+	//   1 — title heading         (between)
+	//   2 — foreground image      (overlaps title — masks lower portion)
+	//   3 — header, CTA, tagline  (always visible / clickable on top)
+	&__background,
+	&__foreground {
+		position: absolute;
+		inset: 0;
+		margin: 0;
+		pointer-events: none;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: bottom;
+			display: block;
+			// Hint to the rendering engine: prefer high-quality interpolation
+			// when scaling. Useful when the source must be slightly upscaled
+			// on ultra-wide / high-DPR viewports.
+			image-rendering: -webkit-optimize-contrast;
+			image-rendering: high-quality;
+		}
+	}
+
+	&__background {
+		z-index: 0;
+		// Extra height above the hero so the scroll parallax (which drifts the
+		// background downward) never exposes a gap at the top. The image stays
+		// anchored to the bottom, so the visible composition is unchanged at rest;
+		// the extra 140px simply overflows above and is clipped until needed.
+		top: -140px;
+	}
+
+	&__foreground {
+		z-index: 2;
+	}
+
+	&__header {
+		position: relative;
+		z-index: 3;
+	}
+
+	&__tagline {
+		position: absolute;
+		z-index: 3;
+	}
+
+	&__top {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 24px;
+		width: 100%;
+		min-height: 40px;
+	}
+
+	&__logo {
+		height: 40px;
+		width: auto;
+		max-width: 240px;
+		flex-shrink: 0;
+		margin: 0;
+
+		// Override WP's `is-resized` width if it sneaks in.
+		&.is-resized {
+			width: auto !important;
+		}
+
+		a {
+			display: inline-block;
+			height: 100%;
+		}
+
+		img {
+			display: block;
+			height: 100%;
+			width: auto;
+			max-width: 100%;
+			object-fit: contain;
+		}
+	}
+
+	&__bottom {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 48px;
+	}
+
+	&__heading {
+		position: relative;
+		z-index: 1;
+		// Proportional sizing — 9% of the hero container's inline-size, matching
+		// the Figma ratio (128px at ~1432px hero width). Min/max guards the text
+		// against being unreadably small on narrow viewports or absurdly large
+		// on ultra-wide screens. The hero is full-bleed minus 8px so cqw ≈ vw
+		// on desktop, but using container units lets the heading respond to a
+		// future redesign where the hero might not be full-bleed.
+		font-size: clamp(3rem, 9cqw, 14rem);
+		line-height: 1.02;
+		letter-spacing: -0.04em;
+		text-transform: uppercase;
+		color: $color-base;
+		margin: 0;
+
+		// Progressive enhancement — when browsers ship the proposed CSS
+		// `text-fit` property (https://chromestatus.com/feature/5104141688635392),
+		// it will auto-fit each line to the container width, superseding the
+		// cqw-based size.
+		@supports (text-fit: auto) {
+			text-fit: auto;
+		}
+	}
+
+	&__tagline {
+		position: absolute;
+		z-index: 3;
+		// Sits clear of the "Others" dropdown, which opens top-right and extends
+		// to ~420px down. Keeping the tagline below it avoids the overlap while
+		// the dropdown stays translucent (consistent with the navbar).
+		top: 460px;
+		right: 32px;
+		display: flex;
+		align-items: center;
+		gap: 16px;
+		color: $color-base;
+		font-size: var(--wp--preset--font-size--body-20);
+		line-height: 22px;
+		letter-spacing: -0.04em;
+	}
+
+	&__tagline-dash {
+		display: inline-flex;
+		align-items: center;
+		gap: 0;
+
+		&::before {
+			content: '';
+			width: 8px;
+			height: 8px;
+			border-radius: 50%;
+			background-color: $color-base;
+		}
+
+		&::after {
+			content: '';
+			display: inline-block;
+			width: 48px;
+			height: 1px;
+			background-color: $color-base;
+		}
+	}
+
+	&__cta {
+		position: relative;
+		z-index: 3;
+		margin-top: 0;
+		align-self: flex-start;
+	}
+
+	@include breakpoint-down(tablet) {
+		min-height: 600px;
+		padding: 16px;
+
+		&__heading {
+			max-width: 100%;
+		}
+
+		&__tagline {
+			position: static;
+			margin-top: 16px;
+		}
+	}
+}
+

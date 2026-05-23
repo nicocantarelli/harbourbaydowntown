@@ -1,0 +1,290 @@
+@use '../base/tokens' as *;
+@use '../base/mixins' as *;
+
+// ============================================================================
+// Shop page. Mirrors the Dine page; only Special Promotions uses different cards.
+// Shop Guides reuses .stay-guides. Categories + Shops mirror the Dine layouts
+// under shop-prefixed classes so the page stays independently adjustable.
+// ============================================================================
+
+// --- Categories: segmented filter + a row of promo cards (static) -----------
+.shop-categories {
+	// 114px top + Guides' 64px bottom = 178px above; 64px bottom (+114 promo top = 178).
+	padding: 114px 24px 64px;
+	display: flex;
+	flex-direction: column;
+	gap: 48px;
+
+	&__switch {
+		display: inline-flex;
+		align-self: flex-start;
+		align-items: center;
+		padding: 4px;
+		background-color: $color-card-bg;
+		border-radius: $radius-pill;
+		flex-wrap: wrap;
+	}
+
+	&__tab {
+		appearance: none;
+		border: 0;
+		background-color: transparent;
+		cursor: pointer;
+		padding: 8px 24px;
+		border-radius: $radius-pill;
+		font-size: var(--wp--preset--font-size--body-16);
+		line-height: 20px;
+		letter-spacing: 0.014em;
+		color: #9ea5af;
+		white-space: nowrap;
+		transition: background-color 0.2s ease, color 0.2s ease;
+
+		&.is-active {
+			background-color: $color-card-chip;
+			color: $color-contrast;
+		}
+	}
+
+	&__cards {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 24px;
+
+		@include breakpoint-down(desktop) {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		@include breakpoint-down(tablet) {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.card--type-3 {
+		width: auto;
+	}
+
+	// Hidden tab panels (the active panel stays a grid).
+	&__cards[hidden] {
+		display: none;
+	}
+}
+
+// --- Special Promotions: reuses .home-promotions layout; group cards ---------
+.home-promotions.shop-promotions {
+	// 114px top + Categories' 64px bottom = 178px above; 64px bottom (+114 shops top = 178).
+	padding: 114px 24px 64px;
+}
+
+// One carousel slide = a large feature card + a stacked pair of mini cards.
+.shop-promo-group {
+	display: flex;
+	gap: 24px;
+	flex-shrink: 0;
+	width: 904px;
+	max-width: 100%;
+}
+
+.shop-promo-stack {
+	flex-shrink: 0;
+	width: 330px;
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+}
+
+// Large image promo card.
+.shop-promo {
+	position: relative;
+	flex-shrink: 0;
+	width: 550px;
+	height: 354px;
+	padding: 24px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	border-radius: $radius-card;
+	overflow: hidden;
+	isolation: isolate;
+	border: 0.5px solid $color-base;
+	background-color: $color-contrast;
+	color: $color-base;
+
+	&__image {
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		margin: 0;
+		border-radius: inherit;
+		overflow: hidden;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: bottom;
+		}
+	}
+
+	// Bottom fade so the title/desc stay legible.
+	&::after {
+		content: '';
+		position: absolute;
+		inset: 47% 0 0 0;
+		background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.85) 100%);
+		z-index: 0;
+		pointer-events: none;
+	}
+
+	&__top {
+		position: relative;
+		z-index: 1;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 16px;
+	}
+
+	&__tags {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+	}
+
+	// White pills on the dark image.
+	.tag-chip {
+		border-color: $color-base;
+		color: $color-base;
+	}
+
+	&__arrow {
+		flex-shrink: 0;
+	}
+
+	&__text {
+		position: relative;
+		z-index: 1;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 16px;
+	}
+
+	&__title {
+		font-size: var(--wp--preset--font-size--title-36);
+		letter-spacing: -0.04em;
+		line-height: 1;
+		text-transform: uppercase;
+		color: $color-base;
+		margin: 0;
+	}
+
+	&__desc {
+		font-size: var(--wp--preset--font-size--body-16);
+		line-height: 20px;
+		letter-spacing: 0.014em;
+		color: $color-base;
+		margin: 0;
+	}
+}
+
+// Small text-only promo card.
+.shop-mini {
+	flex: 1;
+	min-height: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	padding: 16px;
+	border-radius: $radius-card;
+	background-color: $color-card-bg;
+	color: $color-contrast;
+
+	&__top {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 16px;
+	}
+
+	&__text {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+	}
+
+	&__title {
+		font-size: var(--wp--preset--font-size--body-24);
+		letter-spacing: -0.04em;
+		line-height: 1;
+		text-transform: uppercase;
+		color: $color-contrast;
+		margin: 0;
+	}
+
+	&__desc {
+		font-size: var(--wp--preset--font-size--body-16);
+		line-height: 20px;
+		letter-spacing: 0.014em;
+		color: $color-muted-fg;
+		margin: 0;
+	}
+}
+
+// --- Shops: Card_Type_5 grid as a two-row scrolling carousel ----------------
+.shop-shops {
+	// 114px top + Promotions' 64px bottom = 178px above; 128px to the footer.
+	padding: 114px 24px 128px;
+	display: flex;
+	flex-direction: column;
+	gap: 64px;
+
+	&__title {
+		text-align: center;
+		font-size: var(--wp--preset--font-size--title-64);
+		letter-spacing: -0.04em;
+		line-height: 1.05;
+		text-transform: uppercase;
+		margin: 0;
+	}
+
+	&__track {
+		display: grid;
+		grid-auto-flow: column;
+		grid-template-rows: repeat(2, 420px);
+		grid-auto-columns: calc((100% - 48px) / 3);
+		gap: 24px;
+		// Headroom for the card hover lift (overflow-x:auto also clips the top);
+		// the negative margin cancels it so nothing shifts.
+		padding-top: 8px;
+		margin-top: -8px;
+		overflow-x: auto;
+		overscroll-behavior-x: contain;
+		scrollbar-width: none;
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+
+		@include breakpoint-down(desktop) {
+			grid-auto-columns: calc((100% - 24px) / 2);
+		}
+
+		@include breakpoint-down(tablet) {
+			grid-auto-columns: 100%;
+		}
+	}
+
+	&__controls {
+		display: flex;
+		gap: 36px;
+		align-items: center;
+		justify-content: flex-start;
+
+		.progress-bar {
+			flex: none;
+			width: 862px;
+			max-width: 100%;
+			min-width: 0;
+		}
+	}
+}

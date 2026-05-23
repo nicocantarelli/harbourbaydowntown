@@ -1,0 +1,449 @@
+@use '../base/tokens' as *;
+@use '../base/mixins' as *;
+
+.card {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	border-radius: $radius-card;
+	overflow: hidden;
+	color: $color-base;
+	isolation: isolate;
+}
+
+// Whole-card link (Guides). The entire card is an <a>; lift + shadow on hover so
+// it's clear the card is interactive and highlighted.
+.card--link {
+	text-decoration: none;
+	color: inherit;
+	cursor: pointer;
+	transition:
+		transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+		box-shadow 0.25s ease;
+
+	&:hover,
+	&:focus-visible {
+		transform: translateY(-4px);
+	}
+}
+
+// Card_Type_1 — Explore cards (Stay/Dine/Shop/Nightlife).
+//
+// Layout & states:
+//   DEFAULT  — title at top, body at bottom, CTA hidden.
+//   HOVER    — title at top, body slides up to just below the title,
+//              CTA fades in at the bottom.
+//
+// To animate the body smoothly between two positions, it's absolute-positioned
+// (anchored at its HOVER spot just under the title). A `translateY` push-down
+// puts it visually at the bottom of the card by default; the hover state
+// returns it to `translateY(0)`. The CTA is absolute-bottom, opacity-toggled.
+.card--type-1 {
+	width: 374px;
+	height: 420px;
+	padding: 24px;
+	background-color: $color-base;
+	border: 0.5px solid $color-base;
+	flex-shrink: 0;
+	position: relative;
+
+	.card__image {
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		margin: 0; // reset WP core :where(figure){margin:0 0 1em} so the image fills to the card's bottom edge
+		border-radius: inherit;
+		overflow: hidden;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+
+	// Gradient at the bottom so white text stays readable on any image.
+	&::after {
+		content: '';
+		position: absolute;
+		inset: auto 0 0 0;
+		height: 70%;
+		background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);
+		z-index: 0;
+		pointer-events: none;
+		border-bottom-left-radius: inherit;
+		border-bottom-right-radius: inherit;
+	}
+
+	.card__title {
+		position: relative;
+		z-index: 1;
+		font-size: var(--wp--preset--font-size--title-36);
+		letter-spacing: -0.04em;
+		text-transform: uppercase;
+		line-height: 1;
+		color: $color-base;
+		margin: 0;
+	}
+
+	// Anchor at the "below the title" position (24px padding + 36px title + 24px gap).
+	// Default `translateY(228px)` shifts it visually to the bottom; hover returns to 0.
+	.card__body {
+		position: absolute;
+		top: 84px;
+		left: 24px;
+		right: 24px;
+		z-index: 1;
+		max-width: 324px;
+		font-size: var(--wp--preset--font-size--body-16);
+		line-height: 20px;
+		letter-spacing: 0.014em;
+		color: $color-base;
+		margin: 0;
+		transform: translateY(228px);
+		transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	.card__cta {
+		position: absolute;
+		left: 24px;
+		right: 24px;
+		bottom: 24px;
+		z-index: 1;
+		opacity: 0;
+		transform: translateY(12px);
+		transition: opacity 0.5s ease 0.15s, transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.15s;
+
+		// Full-width pill (label left, arrow right) like the promo cards.
+		.wp-block-button {
+			width: 100%;
+		}
+
+		.wp-block-button__link {
+			width: 100%;
+		}
+	}
+
+	&:hover .card__body,
+	&:focus-within .card__body {
+		transform: translateY(0);
+	}
+
+	&:hover .card__cta,
+	&:focus-within .card__cta {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+// Card_Type_2 — Event cards. Image bg with dark gradient bottom, title and arrow button.
+.card--type-2 {
+	// Grow proportionally (250 share) so the row fills the section width and the
+	// last card's edge aligns with other sections. Ratio held against the wide
+	// card's 562 share.
+	flex: 250 1 0;
+	min-width: 0;
+	height: 420px;
+	padding: 24px;
+	justify-content: space-between;
+	background-color: $color-base;
+	border: 0.5px solid $color-base;
+
+	.card__image {
+		position: absolute;
+		inset: 0;
+		z-index: -2;
+		margin: 0; // reset WP core :where(figure){margin:0 0 1em} so the image fills to the card's bottom edge
+		border-radius: inherit;
+		overflow: hidden;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+
+	&::before {
+		content: '';
+		position: absolute;
+		inset: auto 0 0 0;
+		height: 50%;
+		background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
+		z-index: -1;
+		pointer-events: none;
+	}
+
+	.card__head {
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
+		width: 100%;
+	}
+
+	.card__chips {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 4px;
+		align-items: center;
+		max-width: 70%;
+
+		// Event tags use the larger 8×16 padding (taller than the 32px ring),
+		// matching the Highlights pill — not the 4×8 of the Guide/promo chips.
+		.tag-chip {
+			padding: 8px 16px;
+		}
+	}
+
+	.card__title {
+		font-size: var(--wp--preset--font-size--title-36);
+		letter-spacing: -0.04em;
+		text-transform: uppercase;
+		line-height: 1;
+		color: $color-base;
+		margin: 0;
+	}
+
+	.card__body {
+		font-size: var(--wp--preset--font-size--body-16);
+		line-height: 20px;
+		letter-spacing: 0.014em;
+		color: $color-base;
+		margin: 0;
+		max-width: 455px;
+	}
+}
+
+.card--type-2-wide {
+	flex-grow: 562; // wider share of the row (562 : 250)
+
+	.card__head {
+		justify-content: space-between;
+	}
+}
+
+// Card_Type_3 — Promotion cards. Full image bg, title + date chip on top, full-width pill button bottom.
+.card--type-3 {
+	width: 320px;
+	height: 420px;
+	padding: 24px;
+	justify-content: space-between;
+	background-color: $color-base;
+	flex-shrink: 0;
+
+	.card__image {
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		margin: 0; // reset WP core :where(figure){margin:0 0 1em} so the image fills to the card's bottom edge
+		border-radius: inherit;
+		overflow: hidden;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+
+	.card__title {
+		font-size: var(--wp--preset--font-size--title-36);
+		letter-spacing: -0.04em;
+		text-transform: uppercase;
+		line-height: 1;
+		color: $color-base;
+		margin: 0 0 12px 0;
+	}
+
+	.card__cta {
+		width: 100%;
+
+		// The button wrapper hugs its text by default; force it full-width so
+		// the pill spans the card content area.
+		.wp-block-button {
+			width: 100%;
+		}
+
+		.wp-block-button__link {
+			width: 100%;
+			justify-content: space-between;
+		}
+	}
+}
+
+// Card_Type_4 — Guide article cards. Light background, image + text panels.
+.card--type-4 {
+	background-color: $color-card-bg;
+	padding-bottom: 16px;
+	color: $color-contrast;
+	height: 100%; // stretch to fill grid cell so feature card matches right-column height
+
+	.card__image {
+		flex: 1; // image grows to fill the card minus content (only relevant in vertical .card--type-4)
+		min-height: 0;
+		position: relative;
+		border-radius: $radius-card $radius-card 0 0;
+		overflow: hidden;
+
+		// Image is absolutely positioned so it doesn't contribute to the card's
+		// intrinsic height — that lets the grid row size to the right column's
+		// stack height and the feature card stretch to match it.
+		figure {
+			margin: 0;
+		}
+
+		img {
+			position: absolute;
+			inset: 0;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			display: block;
+		}
+	}
+
+	.card__chip-tl {
+		position: absolute;
+		top: 12px;
+		left: 12px;
+	}
+
+	.card__content {
+		padding: 0 16px;
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+		margin-top: 16px;
+	}
+
+	.card__head {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 8px;
+		flex-wrap: wrap;
+	}
+
+	.card__title {
+		font-size: var(--wp--preset--font-size--body-24);
+		letter-spacing: -0.04em;
+		text-transform: uppercase;
+		line-height: 1;
+		color: $color-contrast;
+		margin: 0;
+	}
+
+	.card__body {
+		font-size: var(--wp--preset--font-size--body-16);
+		line-height: 20px;
+		letter-spacing: 0.014em;
+		color: $color-muted-fg;
+		margin: 0;
+		// Character-level truncation is handled in PHP (hbd_truncate_text).
+		// These line clamps are a vertical safety net so text never overflows
+		// the card on narrow screens where it may wrap.
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2;
+		line-clamp: 2;
+		overflow: hidden;
+	}
+
+	.card__meta {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+		align-items: center;
+	}
+}
+
+// Top scrim for full-image cards whose top-aligned text (pills / titles) would
+// otherwise be unreadable on bright photos. It lives INSIDE .card__image, which
+// already sits behind all card content, so it darkens only the top of the photo
+// — never the text. The bottom gradients for the grid/title cards are defined
+// per type above. (Card_Type_7 already carries its own top + bottom scrim.)
+.card--type-1,
+.card--type-2,
+.card--type-3,
+.card--type-5 {
+	.card__image::after {
+		content: '';
+		position: absolute;
+		inset: 0 0 auto 0;
+		height: 65%;
+		background: linear-gradient(
+			to bottom,
+			rgba(0, 0, 0, 0.7) 0%,
+			rgba(0, 0, 0, 0.2) 45%,
+			rgba(0, 0, 0, 0) 100%
+		);
+		pointer-events: none;
+		z-index: 1;
+	}
+}
+
+// Subtle top scrim on the guide feature image so the "Guide" chip (top-left)
+// stays legible on bright photos. The chip is lifted above the scrim.
+.card--type-4 {
+	.card__image::after {
+		content: '';
+		position: absolute;
+		inset: 0 0 auto 0;
+		height: 45%;
+		background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 100%);
+		pointer-events: none;
+		z-index: 1;
+	}
+
+	.card__chip-tl {
+		z-index: 2;
+	}
+}
+
+// Compact horizontal variant of Card_Type_4.
+.card--type-4-sm {
+	flex-direction: row;
+	gap: 16px;
+	padding: 0;
+	background-color: $color-card-bg;
+	border-radius: $radius-card;
+	overflow: hidden;
+	// Cancel flex:1/height:100% inherited from .card--type-4 so the card hugs
+	// its content instead of stretching to the stack's column height.
+	flex: none;
+	height: auto;
+	align-self: stretch; // fill the column width so the card right-edge meets the section edge
+	width: 100%;
+
+	.card__image {
+		width: 240px;
+		min-width: 240px;
+		height: auto;
+		aspect-ratio: auto; // override .card--type-4's 2/1 — width is fixed, height stretches
+		border-radius: $radius-card 0 0 $radius-card;
+		background-color: $color-card-chip;
+		flex: none;
+		align-self: stretch; // image fills the card vertically
+	}
+
+	.card__content {
+		padding: 16px 24px 16px 0;
+		margin-top: 0;
+		gap: 12px; // applies between title and body
+		flex: 1;
+		min-width: 0;
+	}
+
+	.card__head {
+		margin-bottom: 4px; // gap(12) + 4 = 16 between chip row and title
+	}
+
+	.card__title {
+		font-size: var(--wp--preset--font-size--body-24);
+	}
+
+	.card__body {
+		-webkit-line-clamp: 2; // compact cards truncate after two lines
+		line-clamp: 2;
+	}
+}

@@ -1,0 +1,73 @@
+@use '../base/tokens' as *;
+@use '../base/mixins' as *;
+
+.home-explore {
+	position: relative;       // anchor for the absolutely-positioned decor word
+	padding: 128px 24px 100px;    // 128px above the title, 100px below the carousel
+	display: flex;
+	flex-direction: column;
+	gap: 64px;
+	overflow: clip; // contain the absolutely-positioned decor text
+
+	&__head {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		// No min-height — head wraps the title tightly so the section's
+		// `gap: 64px` yields exactly 64px between the title and the cards.
+	}
+
+	// "downtown" sub-word — below "EXPLORE" but offset to the RIGHT (its left
+	// edge starts at section center). Matches the Figma layout where
+	// `left: 716px` in a 1432-wide section = left edge at 50%. The cards
+	// (z-index: 1) clip the decor's lower edge.
+	&__decor {
+		position: absolute;
+		top: 206px;             // ~3px visible clip behind the cards top (y=256)
+		left: 50%;
+		transform: translateX(0);
+		z-index: 0;
+		margin: 0;
+		pointer-events: none;
+	}
+
+	&__title {
+		position: relative;
+		z-index: 2;
+		font-size: var(--wp--preset--font-size--title-64);
+		letter-spacing: -0.04em;
+		line-height: 1;
+		text-transform: uppercase;
+		margin: 0;
+	}
+
+	&__carousel {
+		position: relative;
+		z-index: 1;
+
+		.carousel__track {
+			padding-left: 0;
+		}
+	}
+
+	&__controls {
+		display: flex;
+		gap: 36px;
+		align-items: center;
+		justify-content: flex-start;
+		padding: 0 24px 0 0;
+
+		.progress-bar {
+			flex: none;
+			width: 852px;
+			max-width: 100%;
+			min-width: 0;
+		}
+	}
+
+	@include breakpoint-down(tablet) {
+		&__decor {
+			display: none;
+		}
+	}
+}

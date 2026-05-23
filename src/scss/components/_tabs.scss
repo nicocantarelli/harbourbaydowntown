@@ -1,0 +1,39 @@
+@use '../base/tokens' as *;
+
+.tabs {
+	display: inline-flex;
+	align-items: center;
+	gap: 0;
+	padding: 4px;
+	background-color: $color-card-bg;
+	border-radius: $radius-pill;
+}
+
+.tab {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	height: 36px;
+	padding: 8px 24px;
+	border: 0;
+	border-radius: $radius-pill;
+	font-family: var(--wp--preset--font-family--questrial);
+	font-size: var(--wp--preset--font-size--body-16);
+	line-height: 20px;
+	letter-spacing: 0.014em;
+	color: $color-muted-fg;
+	background-color: transparent;
+	cursor: pointer;
+	transition: background-color 0.2s ease, color 0.2s ease;
+	white-space: nowrap;
+
+	&.is-active {
+		background-color: $color-card-chip;
+		color: $color-contrast;
+	}
+
+	&:focus-visible {
+		outline: 2px solid $color-accent-light;
+		outline-offset: 2px;
+	}
+}
