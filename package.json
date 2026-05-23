@@ -1,9 +1,10 @@
 {
 	"name": "harbour-bay-downtown",
-	"version": "0.1.0",
+	"version": "1.0.0",
 	"private": true,
 	"type": "module",
 	"description": "Custom WordPress block theme for Harbour Bay Downtown.",
+	"author": "Zonda Studio (https://zondastudio.com)",
 	"scripts": {
 		"dev": "vite build --watch --mode development",
 		"build": "vite build",
