@@ -15,6 +15,15 @@
 	flex-direction: column;
 	gap: 64px;
 
+	// 178px from the header is too tall on phones/tablets — trim to the page rhythm.
+	@include breakpoint-down(tablet) {
+		padding: 96px 24px 64px;
+
+		&__title {
+			text-align: left; // Left-align on mobile.
+		}
+	}
+
 	&__title {
 		text-align: center;
 		font-size: var(--wp--preset--font-size--title-64);
@@ -29,12 +38,9 @@
 		grid-template-columns: repeat(4, 1fr);
 		gap: 24px;
 
+		// 2×2 from the desktop breakpoint down through mobile (no single-column step).
 		@include breakpoint-down(desktop) {
 			grid-template-columns: repeat(2, 1fr);
-		}
-
-		@include breakpoint-down(tablet) {
-			grid-template-columns: 1fr;
 		}
 	}
 }
@@ -164,8 +170,32 @@
 	}
 
 	@include breakpoint-down(tablet) {
+		// Trim the oversized vertical padding on phones/tablets.
+		padding: 80px 24px 64px;
+
+		// Keep the three country cards in one row on phones; compact them so the
+		// percentage + label fit, and drop the landmark illustration (too small to
+		// read at this width).
 		&__cards {
-			grid-template-columns: 1fr;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 8px;
+		}
+
+		&__card {
+			min-height: 0;
+			padding: 12px;
+		}
+
+		&__percent {
+			font-size: var(--wp--preset--font-size--title-48);
+		}
+
+		&__label {
+			font-size: var(--wp--preset--font-size--body-12);
+		}
+
+		&__illustration {
+			display: none;
 		}
 	}
 }
@@ -335,9 +365,37 @@
 	}
 
 	@include breakpoint-down(tablet) {
+		// Trim the oversized vertical padding, and pull the title closer to the pill.
+		padding: 80px 24px 64px;
+		gap: 24px;
+
+		&__title {
+			text-align: left; // Left-align on mobile.
+		}
+
 		// Captions overlap the smaller images on phones — hide them.
 		&__caption {
 			display: none;
+		}
+
+		// Replace the desktop absolute collage with a simple grid: a big lead image
+		// across the top, then the remaining photos in a 2×2 beneath it.
+		&__collage {
+			aspect-ratio: auto;
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			gap: 16px;
+		}
+
+		&__img {
+			position: static;
+			width: auto;
+			height: auto;
+			aspect-ratio: 16 / 10;
+
+			&:first-child {
+				grid-column: 1 / -1; // big lead image spanning the full width
+			}
 		}
 	}
 }
@@ -400,10 +458,20 @@
 			max-width: none;
 		}
 	}
+
+	@include breakpoint-down(tablet) {
+		// Trim the oversized vertical padding on phones/tablets.
+		padding: 80px 24px 64px;
+	}
 }
 
 // --- Enquiry form: reuses .lw-contact / .contact-message; extra footer spacing.
 // Keeps the 114px top from .contact-message (64px CTA bottom + 114px = 178px gap).
 .lw-contact.adv-form {
 	padding-bottom: 178px; // 178px down to the footer.
+
+	// Trim the oversized footer gap on phones/tablets.
+	@include breakpoint-down(tablet) {
+		padding-bottom: 64px;
+	}
 }

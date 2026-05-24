@@ -163,3 +163,28 @@
 		transform: translateY(0);
 	}
 }
+
+// Tighter insets on phones so the logo + hamburger row isn't cramped. The pill
+// itself is swapped for the hamburger below the desktop breakpoint (see
+// _mobile-nav.scss); this just trims the surrounding padding.
+@include breakpoint-down(tablet) {
+	.site-header {
+		padding: 16px 20px;
+
+		&__logo {
+			height: 32px;
+		}
+
+		&--overlay {
+			padding: 20px;
+		}
+	}
+
+	.site-header:not(.site-header--overlay) {
+		padding: 20px;
+	}
+
+	.sticky-nav {
+		padding: 16px 20px;
+	}
+}

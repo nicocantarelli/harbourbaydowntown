@@ -1712,7 +1712,7 @@ function hbd_customize_register( $wp_customize ) {
 		array(
 			'type'              => 'theme_mod',
 			'sanitize_callback' => 'sanitize_textarea_field',
-			'default'           => "A Smarter Way to\nSpend the Evening",
+			'default'           => "A Smarter Way\nto Spend the Evening",
 			'transport'         => 'refresh',
 		)
 	);

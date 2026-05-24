@@ -8,7 +8,7 @@
  * Viewport Width: 1440
  */
 
-$title_lines = explode( "\n", (string) get_theme_mod( 'hbd_nightlife_evening_title', "A Smarter Way to\nSpend the Evening" ) );
+$title_lines = explode( "\n", (string) get_theme_mod( 'hbd_nightlife_evening_title', "A Smarter Way\nto Spend the Evening" ) );
 $tag         = get_theme_mod( 'hbd_nightlife_evening_tag', 'Night Strolls' );
 $img         = hbd_resolve_image( 'hbd_nightlife_evening_image_id', 'nightlife-evening.png' );
 

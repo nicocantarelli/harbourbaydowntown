@@ -70,10 +70,15 @@
 			flex: none;
 			max-width: none;
 			align-self: stretch;
+			order: -1; // "Stay In Touch" intro sits above the cards when stacked
+			gap: 24px; // pull the pill closer to the intro text
 		}
 	}
 
 	@include breakpoint-down(tablet) {
+		// Trim the oversized header offset / bottom gap on phones.
+		padding: 96px 24px 64px; // 178px → 96px (large header offset), 114px → 64px.
+
 		&__group {
 			flex-direction: column;
 		}
@@ -175,6 +180,10 @@
 	.lw-field__textarea {
 		min-height: 120px;
 	}
+
+	@include breakpoint-down(tablet) {
+		padding: 64px 24px; // 114px → 64px each side on phones.
+	}
 }
 
 // --- Location: address column (left) + Google Map (right) -------------------
@@ -264,10 +273,23 @@
 		&__info {
 			flex: none;
 			max-width: none;
+			gap: 24px; // pull the pill closer to the title/address on mobile
 		}
 
 		&__map {
+			// In the stacked column, flex:1 1 0 (from the base) would set the
+			// map's HEIGHT to 0 and suppress the aspect-ratio, so the iframe
+			// collapses and no map shows. flex:none lets aspect-ratio drive height.
+			flex: none;
 			aspect-ratio: 16 / 10;
+		}
+	}
+
+	@include breakpoint-down(tablet) {
+		padding: 64px 24px 96px; // 114px → 64px after the form, 178px → 96px (large footer gap).
+
+		&__title {
+			text-align: left; // Left-align on mobile.
 		}
 	}
 }

@@ -6,16 +6,21 @@ const SELECTOR_TRACK = '[data-carousel-track]';
 const SELECTOR_PREV = '[data-carousel-prev]';
 const SELECTOR_NEXT = '[data-carousel-next]';
 const SELECTOR_PROGRESS = '[data-carousel-progress]';
+const SELECTOR_CONTROLS = '.carousel__controls';
 
 function getStep(track) {
-	const firstCard = track.firstElementChild;
-	if (!firstCard) return 0;
-
-	const cardWidth = firstCard.getBoundingClientRect().width;
+	// Measure the first actual card — not firstElementChild — because WordPress's
+	// block-layout support can inject a zero-width <style> element as the first
+	// child, which would make the step ~0 and the arrows appear dead.
+	const card = track.querySelector('.card') || track.firstElementChild;
+	const cardWidth = card ? card.getBoundingClientRect().width : 0;
 	const trackStyle = window.getComputedStyle(track);
 	const gap = parseFloat(trackStyle.columnGap || trackStyle.gap) || 0;
 
-	return cardWidth + gap;
+	const step = cardWidth + gap;
+	// Fallback: if no card can be measured (e.g. a hidden tab panel), advance by
+	// most of the visible track width so a click still moves the carousel.
+	return step > 1 ? step : Math.max(track.clientWidth * 0.8, 1);
 }
 
 function syncProgress(track, progressEl) {
@@ -40,6 +45,7 @@ function initCarousel(root) {
 	const prev = root.querySelector(SELECTOR_PREV);
 	const next = root.querySelector(SELECTOR_NEXT);
 	const progress = root.querySelector(SELECTOR_PROGRESS);
+	const controls = root.querySelector(SELECTOR_CONTROLS);
 
 	const scrollBy = (direction) => {
 		const step = getStep(track);
@@ -51,13 +57,27 @@ function initCarousel(root) {
 	prev?.addEventListener('click', () => scrollBy(-1));
 	next?.addEventListener('click', () => scrollBy(1));
 
+	// Hide the controls when the track has nothing to scroll (e.g. only a couple
+	// of cards that already fit), and bring them back if a resize makes the cards
+	// overflow. Avoids dead-looking arrows on short carousels.
+	const refresh = () => {
+		if (controls) {
+			const scrollable = track.scrollWidth - track.clientWidth > 1;
+			controls.style.display = scrollable ? '' : 'none';
+		}
+		syncProgress(track, progress);
+	};
+
 	if (progress) {
 		track.addEventListener('scroll', () => syncProgress(track, progress), { passive: true });
-		syncProgress(track, progress);
+	}
 
-		if (typeof ResizeObserver !== 'undefined') {
-			new ResizeObserver(() => syncProgress(track, progress)).observe(track);
-		}
+	refresh();
+
+	if (typeof ResizeObserver !== 'undefined') {
+		new ResizeObserver(refresh).observe(track);
+	} else {
+		window.addEventListener('resize', refresh, { passive: true });
 	}
 }
 

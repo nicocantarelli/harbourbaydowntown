@@ -50,12 +50,34 @@
 	}
 
 	@include breakpoint-down(desktop) {
+		// Stack the featured + event cards. The cards use flex-basis:0 + grow, so
+		// in a column they'd collapse — reset to `flex: none` to keep their
+		// intrinsic height while stretching full-width.
 		&__grid {
-			flex-wrap: wrap;
+			flex-direction: column;
+		}
+
+		.card--type-2 {
+			flex: none;
+		}
+
+		// Mobile/tablet: show the decor as a plain second line of the heading
+		// (e.g. "WHAT'S ON" / "AT HARBOUR BAY") instead of the desktop faint
+		// background word. DOM order is decor → title, so reverse to title-first.
+		// Left-align the heading to match the rest of the page.
+		&__head {
+			flex-direction: column-reverse;
+			align-items: flex-start;
 		}
 
 		&__decor {
-			display: none;
+			position: static;
+			transform: none;
+			color: $color-contrast;
 		}
+	}
+
+	@include breakpoint-down(tablet) {
+		padding: 80px 24px 64px;
 	}
 }

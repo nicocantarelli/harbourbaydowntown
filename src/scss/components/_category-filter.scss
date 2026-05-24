@@ -1,0 +1,84 @@
+@use '../base/tokens' as *;
+@use '../base/mixins' as *;
+
+// ============================================================================
+// Category filter (Dine / Shop). On desktop it stays the inline pill row of
+// tabs (styled by .dine-categories__switch / .shop-categories__switch). On
+// tablet and mobile it collapses into a custom pill dropdown: a toggle shows the
+// active category; tapping reveals the tab list as a panel. Tab activation +
+// panel switching remain handled by the tabs JS — the dropdown only adds
+// open/close + label sync (src/js/modules/category-filter.js).
+// ============================================================================
+
+.category-filter {
+	position: relative;
+	align-self: flex-start; // hug the left within the section's flex column
+
+	// Desktop: the inline pill row of tabs shows; the toggle is hidden.
+	&__toggle {
+		display: none;
+	}
+}
+
+@include breakpoint-down(desktop) {
+	.category-filter {
+		// Toggle — a pill showing the current category + a chevron.
+		&__toggle {
+			display: inline-flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 8px;
+			min-width: 220px;
+			padding: 10px 16px 10px 24px;
+			border: 0;
+			border-radius: $radius-pill;
+			background-color: $color-card-bg;
+			color: $color-contrast;
+			font-family: var(--wp--preset--font-family--questrial);
+			font-size: var(--wp--preset--font-size--body-16);
+			line-height: 20px;
+			letter-spacing: 0.014em;
+			cursor: pointer;
+		}
+
+		&__chevron {
+			flex-shrink: 0;
+			transition: transform 0.2s ease;
+		}
+
+		&.is-open &__chevron {
+			transform: rotate(180deg);
+		}
+
+		// The tab list becomes an absolute dropdown panel. The descendant
+		// selector (.category-filter .category-filter__menu, 0-2-0) outranks the
+		// section's .dine-categories__switch / .shop-categories__switch (0-1-0)
+		// base rule regardless of import order.
+		.category-filter__menu {
+			position: absolute;
+			top: calc(100% + 8px);
+			left: 0;
+			z-index: 30;
+			display: none;
+			flex-direction: column;
+			align-items: stretch;
+			flex-wrap: nowrap;
+			min-width: 220px;
+			padding: 4px;
+			border-radius: $radius-card;
+			box-shadow: 0 16px 40px rgba(0, 0, 0, 0.16);
+		}
+
+		&.is-open .category-filter__menu {
+			display: flex;
+		}
+
+		// Tabs become full-width, left-aligned rows inside the dropdown.
+		.category-filter__menu button {
+			display: block;
+			width: 100%;
+			text-align: left;
+			white-space: normal;
+		}
+	}
+}

@@ -186,5 +186,16 @@
 				color: $color-accent-red;
 			}
 		}
+
+		// Mark the current page with colour, not the pill's underline indicator —
+		// that underline (positioned for the 24px-padded pill) renders as a stray
+		// line across the footer links.
+		.hbd-menu__item--active > .hbd-menu__link {
+			color: $color-accent-red;
+
+			&::before {
+				display: none;
+			}
+		}
 	}
 }

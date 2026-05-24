@@ -1,8 +1,52 @@
 // Typography refinements layered on top of theme.json defaults.
 
+@use 'mixins' as *;
+
 body {
 	// No -webkit-font-smoothing override: the default (subpixel) rendering
 	// matches Figma's text weight. Forcing `antialiased` thinned Questrial
 	// noticeably on macOS.
 	text-rendering: optimizeLegibility;
+}
+
+// --- Mobile heading scale ----------------------------------------------------
+// title-64 / title-128 are fluid and shrink on small screens, but title-48 and
+// title-36 are fixed in theme.json — so on mobile they DON'T shrink and the
+// heading hierarchy flattens/inverts (h3 48px > h2 ~36px; h4 36px == h2 36px).
+// Scale the two fixed presets down via their custom properties so headings step
+// cleanly on phones: h1 56 > h2 36 > h3 28 > h4 24 > body 24/20/16. Desktop is
+// untouched (the presets keep their theme.json sizes above this breakpoint).
+@include breakpoint-down(tablet) {
+	:root {
+		--wp--preset--font-size--title-48: 1.75rem; // 28px (desktop: 48px)
+		--wp--preset--font-size--title-36: 1.5rem;  // 24px (desktop: 36px)
+	}
+}
+
+// --- Mobile section-title alignment ------------------------------------------
+// Section titles are output with WordPress's `has-text-align-center` class
+// (`text-align: center !important`), which beats per-section `text-align: left`
+// overrides. Re-assert left alignment on mobile for the section headings so they
+// read consistently. Heroes and page-top titles (Contact, Map, blog) are
+// intentionally omitted and stay centered.
+@include breakpoint-down(tablet) {
+	.home-map__title,
+	.about-story__title,
+	.adv-numbers__title,
+	.adv-opportunities__title,
+	.contact-location__title,
+	.dine-restaurants__title,
+	.ferry-routes__title,
+	.ks-about__title,
+	.lw-building__title,
+	.magazine-inside__title,
+	.magazine-inside__subtitle,
+	.sl-why__title,
+	.sl-environment__title,
+	.sl-opportunities__title,
+	.sl-opportunities__subtitle,
+	.stay-hotels__title,
+	.wellness-beauty__title {
+		text-align: left !important;
+	}
 }

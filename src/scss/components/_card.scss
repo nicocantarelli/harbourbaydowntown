@@ -447,3 +447,34 @@
 		line-clamp: 2;
 	}
 }
+
+// Touch devices can't hover, so on tablet and mobile reveal Card_Type_1's hover
+// state by default — the body raised to just below the title and the Explore CTA
+// shown — so the button is always reachable.
+@include breakpoint-down(desktop) {
+	.card--type-1 {
+		.card__body {
+			transform: translateY(0);
+		}
+
+		.card__cta {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+}
+
+// Mobile: shrink the fixed-width carousel cards so one card plus a peek of the
+// next fits a phone screen, and slim the compact guide card's fixed image.
+// Placed last so these win over the base widths at the same specificity.
+@include breakpoint-down(mobile) {
+	.card--type-1,
+	.card--type-3 {
+		width: 280px;
+	}
+
+	.card--type-4-sm .card__image {
+		width: 128px;
+		min-width: 128px;
+	}
+}

@@ -66,12 +66,22 @@
 	&__cards[hidden] {
 		display: none;
 	}
+
+	// Reduce the oversized 114px top padding on phones/tablets.
+	@include breakpoint-down(tablet) {
+		padding: 80px 24px 64px;
+	}
 }
 
 // --- Special Promotions: reuses .home-promotions layout; wide cards ----------
 .home-promotions.dine-promotions {
 	// 114px top + Categories' 64px bottom = 178px between the two sections.
 	padding: 114px 24px 64px;
+
+	// Reduce the oversized 114px top padding on phones/tablets.
+	@include breakpoint-down(tablet) {
+		padding: 80px 24px 64px;
+	}
 }
 
 // Card_Type_6 — wide dark date-range promo card.
@@ -218,6 +228,25 @@
 			background-color: $color-base;
 		}
 	}
+
+	// On tablet the 549px fixed width crushes; let it fill the column.
+	@include breakpoint-down(desktop) {
+		width: 100%;
+		max-width: 549px;
+	}
+
+	// On phones the 198px image + body row is too tight; stack vertically
+	// and free the fixed height so content can grow.
+	@include breakpoint-down(tablet) {
+		flex-direction: column;
+		align-items: stretch;
+		height: auto;
+
+		.card__image {
+			width: 100%;
+			height: 200px;
+		}
+	}
 }
 
 // --- Restaurants: Hotels grid (Card_Type_5) as a two-row scrolling carousel --
@@ -262,7 +291,10 @@
 		}
 
 		@include breakpoint-down(tablet) {
-			grid-auto-columns: 100%;
+			// 2 columns → a 2×2 grid per view on phones (was one column). Shorter
+			// rows keep the cards proportional when narrower.
+			grid-auto-columns: calc((100% - 24px) / 2);
+			grid-template-rows: repeat(2, 240px);
 		}
 	}
 
@@ -277,6 +309,15 @@
 			width: 862px;
 			max-width: 100%;
 			min-width: 0;
+		}
+	}
+
+	// Reduce the oversized 114px top / 128px bottom padding on phones/tablets.
+	@include breakpoint-down(tablet) {
+		padding: 80px 24px 64px;
+
+		&__title {
+			text-align: left; // Left-align on mobile.
 		}
 	}
 }

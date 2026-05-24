@@ -66,8 +66,33 @@
 	}
 
 	@include breakpoint-down(tablet) {
+		padding: 80px 24px 64px;
+
+		// Mobile: drop the desktop faint background word and show the decor as a
+		// plain second line of the heading instead — e.g. "EXPLORE" / "DOWNTOWN".
+		// The DOM order is decor → title, so column-reverse stacks it title-first.
+		// Left-align the heading to match the rest of the page.
+		&__head {
+			flex-direction: column-reverse;
+			align-items: flex-start;
+		}
+
 		&__decor {
-			display: none;
+			position: static;
+			transform: none;
+			color: $color-contrast; // plain heading colour, not the faint grey
+		}
+
+		// The fixed 852px progress bar must give way to the prev/next arrows on
+		// phones — let it flex so the control row fits.
+		&__controls {
+			gap: 16px;
+			padding-right: 0;
+
+			.progress-bar {
+				flex: 1 1 auto;
+				width: auto;
+			}
 		}
 	}
 }

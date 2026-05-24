@@ -48,6 +48,11 @@
 			grid-template-columns: 1fr;
 		}
 	}
+
+	@include breakpoint-down(tablet) {
+		// 178px from the hero is too tall on phones/tablets — trim to the page rhythm.
+		padding: 96px 24px 64px; // 96px for the 178px hero gap per the spacing rule.
+	}
 }
 
 // --- Feature card -----------------------------------------------------------
@@ -211,6 +216,17 @@
 		text-transform: uppercase;
 		color: $color-base;
 	}
+
+	@include breakpoint-down(mobile) {
+		// Shrink the thumbnail on narrow phones so the title/meta keep enough room.
+		gap: 16px;
+
+		&__image {
+			flex: 0 0 120px;
+			width: 120px;
+			height: 80px;
+		}
+	}
 }
 
 // Dot + line + text location row (used on the feature and small event cards).
@@ -250,4 +266,9 @@
 // rhythm (64px after Featured Events → 128px gap; 128px down to the footer). ---
 .site-content--whats-on .home-promotions {
 	padding: 64px 24px 128px;
+
+	// Trim the oversized footer gap on phones/tablets.
+	@include breakpoint-down(tablet) {
+		padding: 64px 24px 64px;
+	}
 }

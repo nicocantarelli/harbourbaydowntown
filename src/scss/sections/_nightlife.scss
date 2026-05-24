@@ -24,6 +24,14 @@
 	.page-hero__title {
 		text-align: center;
 	}
+
+	// Let the centered inner column use the full width on phones/tablets
+	// (the 900px cap shadows the base .page-hero tablet reset otherwise).
+	@include breakpoint-down(tablet) {
+		.page-hero__inner {
+			max-width: 100%;
+		}
+	}
 }
 
 .page-hero__sub {
@@ -77,12 +85,24 @@
 // 128px from the hero down to the title (overrides the shared .about-place 100px).
 .about-place.nightlife-waterfront {
 	padding-top: 128px;
+
+	// Trim the oversized top padding on phones/tablets.
+	@include breakpoint-down(tablet) {
+		padding-top: 80px;
+	}
 }
 
 // --- A Smarter Way: last section before the footer --------------------------
 // 178px from the section down to the footer (overrides the shared .about-story 100px).
 .about-story.nightlife-evening {
 	padding-bottom: 178px;
+
+	// Trim the oversized bottom padding on phones/tablets. (The title is left-
+	// aligned at the standard section size via the shared .about-place__title
+	// rules in _about.scss.)
+	@include breakpoint-down(tablet) {
+		padding-bottom: 96px;
+	}
 }
 
 // --- Bars & Lounges: Special Promotions layout with a pill above the heading -
@@ -96,6 +116,7 @@
 
 	.nightlife-bars__tags {
 		display: flex;
+		flex-wrap: wrap; // pill row wraps instead of overflowing on narrow screens.
 		align-items: center;
 		gap: 4px;
 	}
@@ -104,5 +125,11 @@
 		display: flex;
 		flex-direction: column;
 		gap: 24px; // Figma: 24px between heading and body.
+	}
+
+	// The 100px override clobbers the base .home-promotions tablet reduction
+	// (80/96) — restate the trimmed vertical padding for phones/tablets.
+	@include breakpoint-down(tablet) {
+		padding: 80px 24px 96px;
 	}
 }

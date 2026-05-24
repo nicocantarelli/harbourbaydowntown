@@ -29,6 +29,20 @@ $cta_url      = get_theme_mod( 'hbd_hero_cta_url', '#explore' );
 		<h1 class="wp-block-heading home-hero__heading has-base-color has-text-color"><?php echo $heading_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped — already escaped via esc_html() above ?></h1>
 		<!-- /wp:heading -->
 
+		<?php // Tagline sits here (heading → tagline → button) when stacked on mobile;
+			// on desktop it's absolutely positioned, so this DOM spot is layout-neutral. ?>
+		<!-- wp:group {"className":"home-hero__tagline","layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
+		<div class="wp-block-group home-hero__tagline">
+			<!-- wp:html -->
+			<span class="home-hero__tagline-dash" aria-hidden="true"></span>
+			<!-- /wp:html -->
+
+			<!-- wp:paragraph {"className":"home-hero__tagline-text","textColor":"base","fontSize":"body-20"} -->
+			<p class="home-hero__tagline-text has-base-color has-text-color has-body-20-font-size"><?php echo esc_html( $tagline ); ?></p>
+			<!-- /wp:paragraph -->
+		</div>
+		<!-- /wp:group -->
+
 		<!-- wp:buttons {"className":"home-hero__cta"} -->
 		<div class="wp-block-buttons home-hero__cta">
 			<!-- wp:button {"className":"is-style-pill-big"} -->
@@ -42,17 +56,5 @@ $cta_url      = get_theme_mod( 'hbd_hero_cta_url', '#explore' );
 	<!-- wp:html -->
 	<figure class="home-hero__foreground"><img src="<?php echo esc_url( $fg_url ); ?>" alt=""/></figure>
 	<!-- /wp:html -->
-
-	<!-- wp:group {"className":"home-hero__tagline","layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
-	<div class="wp-block-group home-hero__tagline">
-		<!-- wp:html -->
-		<span class="home-hero__tagline-dash" aria-hidden="true"></span>
-		<!-- /wp:html -->
-
-		<!-- wp:paragraph {"className":"home-hero__tagline-text","textColor":"base","fontSize":"body-20"} -->
-		<p class="home-hero__tagline-text has-base-color has-text-color has-body-20-font-size"><?php echo esc_html( $tagline ); ?></p>
-		<!-- /wp:paragraph -->
-	</div>
-	<!-- /wp:group -->
 </section>
 <!-- /wp:group -->

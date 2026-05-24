@@ -13,6 +13,13 @@
 		align-items: center;
 		gap: 24px;
 		flex-wrap: wrap;
+
+		// The filter (tab pill on desktop, dropdown on mobile) shares this row with
+		// the Read More button — center it rather than top-align (the base
+		// .category-filter uses flex-start for its column context on Dine/Shop).
+		.category-filter {
+			align-self: center;
+		}
 	}
 
 	&__grid {
@@ -57,5 +64,9 @@
 		&__grid {
 			grid-template-columns: 1fr;
 		}
+	}
+
+	@include breakpoint-down(tablet) {
+		padding: 80px 24px 64px;
 	}
 }

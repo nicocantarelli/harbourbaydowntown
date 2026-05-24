@@ -120,6 +120,12 @@
 	}
 
 	@include breakpoint-down(mobile) {
-		grid-template-columns: 1fr;
+		// Keep two columns instead of collapsing to one very long column; tighten
+		// the column gap and shrink the links so the longer labels still fit.
+		column-gap: 16px;
+
+		.hbd-menu__link {
+			font-size: var(--wp--preset--font-size--body-16);
+		}
 	}
 }

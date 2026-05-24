@@ -24,6 +24,16 @@
 		gap: 24px;
 	}
 
+	// The carousel column. Without min-width:0 this grid item keeps its
+	// min-content width (the non-shrinking cards), forcing the column wider than
+	// the viewport so the track overflows the PAGE instead of scrolling inside.
+	// min-width:0 lets it shrink to the column so the track (overflow-x:auto)
+	// scrolls internally — matching the Explore carousel (whose track is a flex
+	// item and shrinks automatically).
+	&__carousel {
+		min-width: 0;
+	}
+
 	&__title {
 		font-size: var(--wp--preset--font-size--title-64);
 		letter-spacing: -0.04em;
@@ -68,6 +78,17 @@
 
 		&__controls {
 			padding-left: 0;
+			gap: 16px;
+
+			// Drop the fixed 367px width so the bar shares the row with the arrows.
+			.progress-bar {
+				flex: 1 1 auto;
+				width: auto;
+			}
 		}
+	}
+
+	@include breakpoint-down(tablet) {
+		padding: 80px 24px 96px;
 	}
 }

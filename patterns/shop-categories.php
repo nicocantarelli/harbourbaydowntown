@@ -22,10 +22,16 @@ $controls = '<div class="carousel__controls">'
 <section class="wp-block-group shop-categories">
 	<!-- wp:html -->
 	<?php if ( ! empty( $tabs_data ) ) : ?>
-		<div class="shop-categories__switch" data-tabs role="tablist" aria-label="Shop categories">
-			<?php $first = true; foreach ( $tabs_data as $tab ) : ?>
-				<button type="button" class="shop-categories__tab<?php echo $first ? ' is-active' : ''; ?>" data-tab="<?php echo esc_attr( $tab['term']->slug ); ?>" role="tab" aria-selected="<?php echo $first ? 'true' : 'false'; ?>"><?php echo esc_html( $tab['term']->name ); ?></button>
-			<?php $first = false; endforeach; ?>
+		<div class="shop-categories__filter category-filter" data-category-filter>
+			<button type="button" class="category-filter__toggle" data-category-filter-toggle aria-haspopup="true" aria-expanded="false">
+				<span class="category-filter__label" data-category-filter-label><?php echo esc_html( $tabs_data[0]['term']->name ); ?></span>
+				<svg class="category-filter__chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 6L8 10L12 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
+			</button>
+			<div class="shop-categories__switch category-filter__menu" data-tabs role="tablist" aria-label="Shop categories">
+				<?php $first = true; foreach ( $tabs_data as $tab ) : ?>
+					<button type="button" class="shop-categories__tab<?php echo $first ? ' is-active' : ''; ?>" data-tab="<?php echo esc_attr( $tab['term']->slug ); ?>" role="tab" aria-selected="<?php echo $first ? 'true' : 'false'; ?>"><?php echo esc_html( $tab['term']->name ); ?></button>
+				<?php $first = false; endforeach; ?>
+			</div>
 		</div>
 
 		<?php $first = true; foreach ( $tabs_data as $tab ) : ?>
@@ -64,10 +70,16 @@ $controls = '<div class="carousel__controls">'
 			array( 'image' => 'promo-surf.png',   'title' => 'TechHub Batam',     'date' => 'Daily' ),
 		);
 		?>
-		<div class="shop-categories__switch" role="tablist" aria-label="Shop categories">
-			<?php foreach ( $ph_tabs as $i => $tab ) : ?>
-				<button type="button" class="shop-categories__tab<?php echo 0 === $i ? ' is-active' : ''; ?>" role="tab" aria-selected="<?php echo 0 === $i ? 'true' : 'false'; ?>"><?php echo esc_html( $tab ); ?></button>
-			<?php endforeach; ?>
+		<div class="shop-categories__filter category-filter" data-category-filter>
+			<button type="button" class="category-filter__toggle" data-category-filter-toggle aria-haspopup="true" aria-expanded="false">
+				<span class="category-filter__label" data-category-filter-label><?php echo esc_html( $ph_tabs[0] ); ?></span>
+				<svg class="category-filter__chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 6L8 10L12 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
+			</button>
+			<div class="shop-categories__switch category-filter__menu" role="tablist" aria-label="Shop categories">
+				<?php foreach ( $ph_tabs as $i => $tab ) : ?>
+					<button type="button" class="shop-categories__tab<?php echo 0 === $i ? ' is-active' : ''; ?>" role="tab" aria-selected="<?php echo 0 === $i ? 'true' : 'false'; ?>"><?php echo esc_html( $tab ); ?></button>
+				<?php endforeach; ?>
+			</div>
 		</div>
 
 		<div class="shop-categories__cards">

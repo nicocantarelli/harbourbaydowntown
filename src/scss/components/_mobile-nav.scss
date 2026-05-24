@@ -1,0 +1,272 @@
+@use '../base/tokens' as *;
+@use '../base/mixins' as *;
+
+// ============================================================================
+// Mobile navigation — a hamburger toggle (in the static header and the sticky
+// nav) opens a slide-in drawer that reuses the [hbd_menu] output, re-skinned
+// vertical with accordion submenus. Shown below the desktop breakpoint, where
+// the horizontal pill nav is hidden.
+// ============================================================================
+
+// Hamburger toggle — hidden on desktop, revealed when the pill is hidden. It
+// mirrors the pill's chrome so it reads in each header context: translucent
+// white over the hero, tinted card chip on the solid header, dark glass on the
+// sticky nav (where bare white bars would vanish over light page content).
+.site-header__toggle {
+	display: none;
+	flex-direction: column;
+	justify-content: center;
+	gap: 5px;
+	width: 44px;
+	height: 44px;
+	padding: 11px 9px;
+	margin: 0;
+	border: 0.5px solid currentColor;
+	border-radius: $radius-pill;
+	background-color: rgba(255, 255, 255, 0.18);
+	backdrop-filter: blur(16px);
+	color: inherit; // white over the hero, dark on the solid header
+	cursor: pointer;
+
+	span {
+		display: block;
+		width: 100%;
+		height: 2px;
+		border-radius: 2px;
+		background-color: currentColor;
+	}
+}
+
+// Solid header (non-hero pages): tinted chip + dark bars, like the solid pill.
+.site-header:not(.site-header--overlay) .site-header__toggle {
+	background-color: $color-card-bg;
+	border-color: $color-card-border;
+}
+
+@include breakpoint-down(desktop) {
+	// Swap the pill for the hamburger in both the static header and the
+	// scroll-reveal sticky nav.
+	.site-header .hbd-menu,
+	.sticky-nav .hbd-menu {
+		display: none;
+	}
+
+	.site-header__toggle {
+		display: flex;
+	}
+
+	// The sticky-nav wrapper passes clicks through except on interactive bits;
+	// the toggle must stay clickable. Dark glass + white bars match the sticky
+	// pill and stay visible over light page content while scrolled.
+	.sticky-nav .site-header__toggle {
+		pointer-events: auto;
+		background-color: rgba(21, 21, 21, 0.92);
+		backdrop-filter: blur(12px);
+		border-color: rgba(255, 255, 255, 0.25);
+		color: $color-base;
+	}
+}
+
+// ----------------------------------------------------------------------------
+// Drawer overlay + sliding panel
+// ----------------------------------------------------------------------------
+.mobile-nav {
+	position: fixed;
+	inset: 0;
+	z-index: 200;
+
+	&[hidden] {
+		display: none;
+	}
+
+	&__backdrop {
+		position: absolute;
+		inset: 0;
+		background-color: rgba(21, 21, 21, 0.5);
+		opacity: 0;
+		transition: opacity 0.3s ease;
+	}
+
+	&__panel {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		width: min(360px, 86vw);
+		display: flex;
+		flex-direction: column;
+		padding: 20px;
+		overflow-y: auto;
+		background-color: $color-base;
+		color: $color-contrast;
+		transform: translateX(100%);
+		transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+	}
+
+	&.is-open {
+		.mobile-nav__backdrop {
+			opacity: 1;
+		}
+
+		.mobile-nav__panel {
+			transform: translateX(0);
+		}
+	}
+
+	&__head {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 16px;
+		margin-bottom: 8px;
+	}
+
+	&__logo {
+		height: 32px;
+	}
+
+	&__close {
+		position: relative;
+		width: 44px;
+		height: 44px;
+		flex-shrink: 0;
+		padding: 0;
+		border: 0;
+		border-radius: $radius-pill;
+		background-color: transparent;
+		color: inherit;
+		cursor: pointer;
+
+		span {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			width: 20px;
+			height: 2px;
+			border-radius: 2px;
+			background-color: currentColor;
+		}
+
+		span:first-child {
+			transform: translate(-50%, -50%) rotate(45deg);
+		}
+
+		span:last-child {
+			transform: translate(-50%, -50%) rotate(-45deg);
+		}
+	}
+}
+
+// ----------------------------------------------------------------------------
+// Re-skin the reused [hbd_menu] for the drawer: vertical, no pill chrome,
+// full-width tap targets, submenus as inline accordions (JS toggles
+// `.is-expanded`). Specificity (`.mobile-nav .hbd-menu …`) overrides the
+// pill's hover/focus dropdown behaviour from _pill-nav.scss.
+// ----------------------------------------------------------------------------
+.mobile-nav .hbd-menu {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	gap: 0;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	border-radius: 0;
+	background: transparent;
+	backdrop-filter: none;
+
+	.hbd-menu__item {
+		width: 100%;
+		border-bottom: 1px solid $color-card-border;
+	}
+
+	.hbd-menu__link {
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		width: 100%;
+		height: auto;
+		min-height: 48px;
+		padding: 12px 8px;
+		border-radius: 0;
+		font-size: var(--wp--preset--font-size--body-20);
+		letter-spacing: -0.02em;
+		text-align: left;
+		white-space: normal;
+		color: inherit;
+
+		&:hover,
+		&:focus-visible {
+			background-color: $color-card-chip;
+		}
+	}
+
+	// Parent rows: push the chevron to the right; it rotates when expanded.
+	.hbd-menu__item--has-children > .hbd-menu__link {
+		justify-content: space-between;
+
+		&::after {
+			margin-left: auto;
+			transition: transform 0.2s ease;
+			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M4 6L8 10L12 6' stroke='%23151515' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+		}
+	}
+
+	.hbd-menu__item--has-children.is-expanded > .hbd-menu__link::after {
+		transform: rotate(180deg);
+	}
+
+	// The pill's hover-bridge pseudo isn't needed in the drawer.
+	.hbd-menu__item--has-children::before {
+		display: none;
+	}
+
+	// Submenu — collapsed accordion by default, indented. Override the pill's
+	// absolute positioning and its hover/focus auto-reveal.
+	.hbd-menu__submenu {
+		display: none;
+		position: static;
+		min-width: 0;
+		margin: 0;
+		padding: 0 0 8px 16px;
+		border: 0;
+		border-radius: 0;
+		background: transparent;
+		backdrop-filter: none;
+
+		.hbd-menu__item {
+			border-bottom: 0;
+		}
+
+		.hbd-menu__link {
+			min-height: 44px;
+			padding: 8px;
+			font-size: var(--wp--preset--font-size--body-16);
+		}
+	}
+
+	.hbd-menu__item:hover > .hbd-menu__submenu,
+	.hbd-menu__item:focus-within > .hbd-menu__submenu {
+		display: none;
+	}
+
+	.hbd-menu__item--has-children.is-expanded > .hbd-menu__submenu {
+		display: block;
+	}
+
+	// The pill's underline indicator doesn't fit a vertical list — mark the
+	// active item with the chip tint instead.
+	& > .hbd-menu__item--active > .hbd-menu__link::before {
+		display: none;
+	}
+
+	.hbd-menu__item--active > .hbd-menu__link {
+		background-color: $color-card-chip;
+	}
+}
+
+// Lock the page behind the open drawer.
+body.mobile-nav-open {
+	overflow: hidden;
+}

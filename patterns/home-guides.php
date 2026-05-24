@@ -28,16 +28,23 @@ if ( ! $read_more_url ) {
 	<!-- wp:group {"className":"home-guides__head","layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between","verticalAlignment":"center"}} -->
 	<div class="wp-block-group home-guides__head">
 		<!-- wp:html -->
-		<div class="tabs" data-tabs role="tablist" aria-label="<?php esc_attr_e( 'Guide audience', 'harbour-bay-downtown' ); ?>">
-			<?php
-			$is_first = true;
-			foreach ( $guides_data as $slug => $group ) :
-				?>
-				<button type="button" class="tab<?php echo $is_first ? ' is-active' : ''; ?>" data-tab="<?php echo esc_attr( $slug ); ?>" role="tab" aria-selected="<?php echo $is_first ? 'true' : 'false'; ?>" aria-controls="guides-panel-<?php echo esc_attr( $slug ); ?>"><?php echo esc_html( $group['term']->name ); ?></button>
+		<?php $first_group = reset( $guides_data ); ?>
+		<div class="category-filter" data-category-filter>
+			<button type="button" class="category-filter__toggle" data-category-filter-toggle aria-haspopup="true" aria-expanded="false">
+				<span class="category-filter__label" data-category-filter-label><?php echo esc_html( $first_group ? $first_group['term']->name : '' ); ?></span>
+				<svg class="category-filter__chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 6L8 10L12 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
+			</button>
+			<div class="tabs category-filter__menu" data-tabs role="tablist" aria-label="<?php esc_attr_e( 'Guide audience', 'harbour-bay-downtown' ); ?>">
 				<?php
-				$is_first = false;
-			endforeach;
-			?>
+				$is_first = true;
+				foreach ( $guides_data as $slug => $group ) :
+					?>
+					<button type="button" class="tab<?php echo $is_first ? ' is-active' : ''; ?>" data-tab="<?php echo esc_attr( $slug ); ?>" role="tab" aria-selected="<?php echo $is_first ? 'true' : 'false'; ?>" aria-controls="guides-panel-<?php echo esc_attr( $slug ); ?>"><?php echo esc_html( $group['term']->name ); ?></button>
+					<?php
+					$is_first = false;
+				endforeach;
+				?>
+			</div>
 		</div>
 		<!-- /wp:html -->
 

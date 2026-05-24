@@ -131,6 +131,10 @@
 			height: 280px;
 		}
 	}
+
+	@include breakpoint-down(tablet) {
+		padding: 96px 24px 64px; // 178px → 96px (large hero offset), keep 64px bottom.
+	}
 }
 
 // --- About: centered title + 4-image collage (left) + tag/body/social (right) -
@@ -299,6 +303,10 @@
 			display: none;
 		}
 	}
+
+	@include breakpoint-down(tablet) {
+		padding: 64px 24px; // 114px → 64px top, keep 64px bottom on phones.
+	}
 }
 
 // --- Nearby Area: intro (left) + place cards (right) -------------------------
@@ -355,6 +363,20 @@
 		&__intro {
 			width: 100%;
 			max-width: none;
+		}
+	}
+
+	@include breakpoint-down(tablet) {
+		padding: 64px 24px 96px; // keep 64px top, 178px → 96px (large footer gap).
+
+		// Let the two-line title wrap freely instead of overflowing the viewport.
+		&__title {
+			white-space: normal;
+		}
+
+		// Place cards crush when sat side-by-side on phones — stack them.
+		&__row {
+			flex-direction: column;
 		}
 	}
 }
@@ -443,5 +465,13 @@
 	&--link:hover &__arrow svg,
 	&--link:focus-visible &__arrow svg {
 		transform: rotate(45deg);
+	}
+
+	// Taller on phones, where the cards stack full-width and 140px feels cramped.
+	// Use min-height (not height): the row cards are flex:1 1 0, so a fixed height
+	// collapses in the stacked column — min-height holds them all at 200px.
+	@include breakpoint-down(tablet) {
+		height: auto;
+		min-height: 200px;
 	}
 }

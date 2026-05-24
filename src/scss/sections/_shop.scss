@@ -67,12 +67,22 @@
 	&__cards[hidden] {
 		display: none;
 	}
+
+	// Reduce the oversized 114px top padding on phones/tablets.
+	@include breakpoint-down(tablet) {
+		padding: 80px 24px 64px;
+	}
 }
 
 // --- Special Promotions: reuses .home-promotions layout; group cards ---------
 .home-promotions.shop-promotions {
 	// 114px top + Categories' 64px bottom = 178px above; 64px bottom (+114 shops top = 178).
 	padding: 114px 24px 64px;
+
+	// Reduce the oversized 114px top padding on phones/tablets.
+	@include breakpoint-down(tablet) {
+		padding: 80px 24px 64px;
+	}
 }
 
 // One carousel slide = a large feature card + a stacked pair of mini cards.
@@ -82,6 +92,13 @@
 	flex-shrink: 0;
 	width: 904px;
 	max-width: 100%;
+
+	// The 904px two-column row crushes below ~1280px; stack the feature card
+	// above the mini-card pair and let the slide fill the available width.
+	@include breakpoint-down(wide) {
+		flex-direction: column;
+		width: 100%;
+	}
 }
 
 .shop-promo-stack {
@@ -90,6 +107,11 @@
 	display: flex;
 	flex-direction: column;
 	gap: 24px;
+
+	// Once the group stacks, the mini pair spans the full slide width.
+	@include breakpoint-down(wide) {
+		width: 100%;
+	}
 }
 
 // Large image promo card.
@@ -185,6 +207,11 @@
 		color: $color-base;
 		margin: 0;
 	}
+
+	// When the group stacks, the 550px feature card fills the slide width.
+	@include breakpoint-down(wide) {
+		width: 100%;
+	}
 }
 
 // Small text-only promo card.
@@ -270,7 +297,10 @@
 		}
 
 		@include breakpoint-down(tablet) {
-			grid-auto-columns: 100%;
+			// 2 columns → a 2×2 grid per view on phones (was one column). Shorter
+			// rows keep the cards proportional when narrower.
+			grid-auto-columns: calc((100% - 24px) / 2);
+			grid-template-rows: repeat(2, 240px);
 		}
 	}
 
@@ -285,6 +315,15 @@
 			width: 862px;
 			max-width: 100%;
 			min-width: 0;
+		}
+	}
+
+	// Reduce the oversized 114px top / 128px bottom padding on phones/tablets.
+	@include breakpoint-down(tablet) {
+		padding: 80px 24px 64px;
+
+		&__title {
+			text-align: left; // Left-align on mobile.
 		}
 	}
 }

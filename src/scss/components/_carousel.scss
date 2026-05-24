@@ -101,3 +101,19 @@
 		}
 	}
 }
+
+// Keep the prev/next arrows on-screen on phones/tablets across EVERY carousel.
+// Many sections give the progress bar a fixed width (e.g. 862px) with
+// `max-width: 100%`, which fills the row on small screens and pushes the arrows
+// off the edge (then clipped). Let the bar flex instead so the arrows stay put.
+// The doubled `.carousel__controls.carousel__controls` (0,3,0) outranks the
+// per-section `.X__controls .progress-bar` (0,2,0) rules regardless of import order.
+// Applied below desktop so tablets (768–1023) are covered too, where the fixed
+// bar would otherwise still crowd the arrows off the edge.
+@include breakpoint-down(desktop) {
+	.carousel__controls.carousel__controls .progress-bar {
+		flex: 1 1 auto;
+		width: auto;
+		min-width: 0;
+	}
+}

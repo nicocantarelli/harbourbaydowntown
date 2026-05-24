@@ -175,6 +175,29 @@
 		&__caption {
 			display: none;
 		}
+
+		// Trim the oversized vertical padding, and pull the title closer to the
+		// content below it.
+		padding: 80px 24px 64px;
+		gap: 24px;
+
+		// Left-align the staggered title (centered as a block on desktop) and drop
+		// the stagger so lines sit flush. Keep the standard section-title size so it
+		// matches the other headings. Shared by About, K-Square shuttle, and
+		// Nightlife titles.
+		&__title {
+			margin-left: 0;
+		}
+
+		&__title-line:not(:first-child) {
+			padding-left: 0;
+		}
+
+		// Drop the top inset that aligned the pill with the desktop photo, so the
+		// pill sits right under the title when stacked.
+		&__text {
+			padding-top: 0;
+		}
 	}
 }
 
@@ -274,6 +297,11 @@
 			padding: 0 24px;
 		}
 	}
+
+	@include breakpoint-down(tablet) {
+		// Trim the oversized vertical padding on phones/tablets.
+		padding: 80px 24px 64px;
+	}
 }
 
 // The "Everything Within Easy Reach" section reuses the homepage Special
@@ -281,10 +309,20 @@
 // padding for the About page rhythm.
 .home-promotions.about-easy-reach {
 	padding: 100px 24px;
+
+	// Trim the oversized vertical padding on phones/tablets.
+	@include breakpoint-down(tablet) {
+		padding: 80px 24px 64px;
+	}
 }
 
 // Extra breathing room between the last About section (the reused map) and the
 // footer. Scoped to the About page so the homepage map spacing is untouched.
 .site-content--about {
 	padding-bottom: 100px;
+
+	// Trim the oversized footer gap on phones/tablets.
+	@include breakpoint-down(tablet) {
+		padding-bottom: 64px;
+	}
 }

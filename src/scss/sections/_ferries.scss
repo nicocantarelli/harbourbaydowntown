@@ -10,6 +10,10 @@
 // --- Travel Guides: same as Stay/Dine/Shop guides; just re-tune the rhythm. --
 .home-promotions.ferry-guides {
 	padding: 178px 24px 114px; // 178px from the hero, 114px (+64 routes top = 178) below.
+
+	@include breakpoint-down(tablet) {
+		padding: 96px 24px 64px; // 178px → 96px (large hero offset), 114px → 64px on phones.
+	}
 }
 
 // --- Ferry Routes: heading + a two-column grid of ferry-operator cards -------
@@ -35,6 +39,14 @@
 
 		@include breakpoint-down(desktop) {
 			grid-template-columns: 1fr;
+		}
+	}
+
+	@include breakpoint-down(tablet) {
+		padding: 0 24px 64px; // drop the 64px top (header gap handled above) and trim 114px → 64px.
+
+		&__title {
+			text-align: left; // Left-align on mobile.
 		}
 	}
 }
@@ -193,11 +205,16 @@
 		&__cols {
 			flex-direction: column;
 			gap: 48px;
+			align-items: stretch; // fill the width so the FAQ accordions go full-width
 		}
 
 		&__title {
 			width: 100%;
 		}
+	}
+
+	@include breakpoint-down(tablet) {
+		padding: 64px 24px 96px; // 114px → 64px after the routes, 178px → 96px (large footer gap).
 	}
 }
 
@@ -210,6 +227,12 @@
 		text-transform: uppercase;
 		color: $color-contrast;
 		margin: 0 0 16px 0;
+
+		// On mobile the main title (title-64) clamps down to ~36px, matching these
+		// group subtitles — so step them down a little to keep the hierarchy.
+		@include breakpoint-down(tablet) {
+			font-size: var(--wp--preset--font-size--x-large);
+		}
 	}
 
 	&__items {

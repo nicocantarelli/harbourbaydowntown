@@ -192,11 +192,22 @@
 			padding: 0;
 		}
 	}
+
+	@include breakpoint-down(tablet) {
+		&__title {
+			text-align: left; // Left-align on mobile.
+		}
+	}
 }
 
 // 128px from the hero down to the first building.
 .site-content--livework .lw-building:first-child {
 	padding-top: 128px;
+
+	// Trim the oversized hero gap on phones/tablets.
+	@include breakpoint-down(tablet) {
+		padding-top: 96px;
+	}
 }
 
 // --- Coming Soon: a light card (title left, body + amenities right) ----------
@@ -384,6 +395,14 @@
 	@include breakpoint-down(tablet) {
 		&__form {
 			flex-direction: column;
+		}
+	}
+
+	@include breakpoint-down(mobile) {
+		// Full-width, comfortable tap target for the submit button on phones.
+		&__submit {
+			align-self: stretch;
+			justify-content: space-between;
 		}
 	}
 

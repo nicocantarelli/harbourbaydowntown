@@ -40,6 +40,25 @@
 			overflow: hidden;
 			text-overflow: ellipsis;
 		}
+
+		// Reserve two lines for the excerpt so every card's text block — and so
+		// its image height — is identical regardless of excerpt length (the
+		// line-clamp in _card.scss already caps the maximum at two lines).
+		.card__body {
+			min-height: 40px; // 2 × 20px line-height
+		}
+	}
+
+	// Trim the hero-tuned 178px top padding on phones/tablets.
+	@include breakpoint-down(tablet) {
+		padding: 96px 24px 64px;
+	}
+
+	// Shrink the fixed guide card so one card + a peek of the next fits a phone.
+	@include breakpoint-down(mobile) {
+		.card--type-4 {
+			width: 280px;
+		}
 	}
 }
 
@@ -83,7 +102,10 @@
 		}
 
 		@include breakpoint-down(tablet) {
-			grid-auto-columns: 100%;
+			// 2 columns → a 2×2 grid per view on phones (was one column). Shorter
+			// rows keep the cards proportional when narrower.
+			grid-auto-columns: calc((100% - 24px) / 2);
+			grid-template-rows: repeat(2, 240px);
 		}
 	}
 
@@ -98,6 +120,15 @@
 			width: 862px;
 			max-width: 100%;
 			min-width: 0;
+		}
+	}
+
+	// Trim the oversized 128px bottom padding on phones/tablets (top 64 is fine).
+	@include breakpoint-down(tablet) {
+		padding: 64px 24px 96px;
+
+		&__title {
+			text-align: left; // Left-align on mobile.
 		}
 	}
 }
@@ -185,5 +216,62 @@
 	&:hover .card__arrow svg,
 	&:focus-visible .card__arrow svg {
 		transform: rotate(45deg);
+	}
+}
+
+// On phones the Hotels / Restaurants / Shops / Beauty grids switch to a 2×2
+// layout (see each section's __track), so this shared card shrinks to fit the
+// narrower cell: tighter padding, a smaller arrow, no decorative ring, and a
+// clamped, smaller title — otherwise the top row overflows and the title
+// dominates the card.
+@include breakpoint-down(tablet) {
+	.card--type-5 {
+		height: 240px;
+		padding: 14px;
+
+		.card__top {
+			gap: 8px;
+		}
+
+		// Decorative ring crowds the chip + arrow on the narrow card.
+		.decor-ring {
+			display: none;
+		}
+
+		// Shrink the arrow so the chip and button fit the top row.
+		.card__arrow {
+			width: 32px;
+			height: 32px;
+
+			svg {
+				width: 20px;
+				height: 20px;
+			}
+		}
+
+		// Let the chip column shrink, and truncate a long label with an ellipsis
+		// instead of letting the pill overflow past the card edge.
+		.card__tags {
+			min-width: 0;
+		}
+
+		.tag-chip {
+			display: block;
+			min-width: 0;
+			max-width: 100%;
+			padding: 4px 10px;
+			font-size: var(--wp--preset--font-size--body-12);
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+
+		.card__title {
+			font-size: var(--wp--preset--font-size--body-16);
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
+			-webkit-line-clamp: 2;
+			line-clamp: 2;
+			overflow: hidden;
+		}
 	}
 }

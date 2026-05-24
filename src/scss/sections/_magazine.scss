@@ -40,9 +40,21 @@
 	}
 
 	@include breakpoint-down(desktop) {
+		// Stacked, text-first order: drop the card padding so the image sits flush
+		// to the card's bottom (rounded), and pad the text block — now at the top —
+		// so it isn't flush against the edge. (Same as Wellness "Easy to Fit".)
 		.about-story__card {
-			padding: 0 0 24px; // match the Our Story mobile reset (stacks vertically)
+			padding: 0;
 		}
+
+		.about-story__body {
+			padding: 32px 24px 0;
+		}
+	}
+
+	@include breakpoint-down(tablet) {
+		// Trim the oversized vertical padding on phones/tablets.
+		padding: 80px 24px 64px;
 	}
 }
 
@@ -170,17 +182,71 @@
 		}
 	}
 
-	// The labels overlap the image on smaller screens — hide them, keep the image.
+	// The absolute lollipop layout doesn't fit narrower screens: left-align the
+	// heading, then stack the image above a plain list of the feature labels —
+	// the lollipop connector is hidden, but the text (the actual info) is kept.
 	@include breakpoint-down(desktop) {
-		&__label {
-			display: none;
+		&__head {
+			align-items: flex-start;
+		}
+
+		&__stage {
+			aspect-ratio: auto;
+			display: flex;
+			flex-direction: column;
+			gap: 12px; // spacing between the list items
 		}
 
 		&__media {
 			position: relative;
 			left: auto;
+			top: auto;
+			bottom: auto;
 			width: 100%;
-			height: 100%;
+			aspect-ratio: auto; // show the whole magazine image, not a cropped band
+			overflow: visible;
+			margin-bottom: 32px; // clear separation from the feature list
+
+			img {
+				height: auto;
+				object-fit: contain;
+			}
+		}
+
+		// Labels become a tidy bulleted list under the image: the lollipop
+		// connector is hidden and replaced by a small dot before each feature.
+		&__label {
+			position: static;
+			white-space: normal;
+			align-items: center;
+			gap: 12px;
+
+			&::before {
+				content: '';
+				flex-shrink: 0;
+				width: 6px;
+				height: 6px;
+				border-radius: 50%;
+				background-color: $color-contrast;
+			}
+		}
+
+		&__line {
+			display: none;
+		}
+
+		&__label-text {
+			font-size: var(--wp--preset--font-size--body-16);
+		}
+	}
+
+	@include breakpoint-down(tablet) {
+		// Trim the oversized vertical padding on phones/tablets.
+		padding: 80px 24px 64px;
+
+		&__title,
+		&__subtitle {
+			text-align: left; // Left-align on mobile.
 		}
 	}
 }
@@ -219,6 +285,20 @@
 		left: 12px;
 		z-index: 1;
 	}
+
+	@include breakpoint-down(tablet) {
+		// Trim the oversized vertical padding on phones/tablets.
+		padding: 80px 24px 64px;
+	}
+
+	@include breakpoint-down(mobile) {
+		// Shrink the 328px preview card so a card + peek fits a narrow phone while
+		// the carousel keeps its horizontal swipe.
+		.magazine-read__card {
+			width: 280px;
+			height: 360px;
+		}
+	}
 }
 
 // --- Where to Find the Magazine: the "Coming Soon" card, with footer spacing --
@@ -230,5 +310,19 @@
 	.lw-coming__head {
 		flex-basis: 480px;
 		max-width: 48%;
+	}
+
+	// Once the card stacks (desktop-down) the widened title column must go full-width;
+	// our 48% override is more specific than the base reset, so restate it here.
+	@include breakpoint-down(desktop) {
+		.lw-coming__head {
+			flex-basis: auto;
+			max-width: none;
+		}
+	}
+
+	// Trim the oversized footer gap on phones/tablets.
+	@include breakpoint-down(tablet) {
+		padding-bottom: 64px;
 	}
 }

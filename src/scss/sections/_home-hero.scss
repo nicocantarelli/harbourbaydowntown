@@ -45,6 +45,15 @@
 	&__foreground {
 		position: absolute;
 		inset: 0;
+		// Extend BOTH layers 140px above the hero. This gives the drifting
+		// background headroom so it never exposes a gap at the top, and — because
+		// both layers now share identical box geometry — guarantees object-fit:
+		// cover scales and crops them the same at every aspect ratio. (With only
+		// the background taller, `cover` flips to height-driven on portrait/mobile
+		// and scales the two layers differently, so the skylines stop lining up.)
+		// The images are bottom-anchored, so the extra top area is clipped and the
+		// rest composition is unchanged.
+		top: -140px;
 		margin: 0;
 		pointer-events: none;
 
@@ -64,11 +73,6 @@
 
 	&__background {
 		z-index: 0;
-		// Extra height above the hero so the scroll parallax (which drifts the
-		// background downward) never exposes a gap at the top. The image stays
-		// anchored to the bottom, so the visible composition is unchanged at rest;
-		// the extra 140px simply overflows above and is clipped until needed.
-		top: -140px;
 	}
 
 	&__foreground {
@@ -200,7 +204,19 @@
 
 	@include breakpoint-down(tablet) {
 		min-height: 600px;
-		padding: 16px;
+		// Top padding clears the floating site-header (logo + hamburger) that
+		// overlays the hero, so the title lands just below it.
+		padding: 88px 16px 24px;
+
+		&.is-layout-flow > &__bottom {
+			margin-block-start: 24px;
+		}
+
+		// Stacked order on mobile is heading → tagline → button (tagline is moved
+		// into __bottom in the pattern); this gap spaces all three evenly.
+		&__bottom {
+			gap: 32px;
+		}
 
 		&__heading {
 			max-width: 100%;
@@ -208,7 +224,7 @@
 
 		&__tagline {
 			position: static;
-			margin-top: 16px;
+			margin-top: 0;
 		}
 	}
 }

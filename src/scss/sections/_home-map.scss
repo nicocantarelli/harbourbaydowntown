@@ -95,14 +95,25 @@
 		}
 	}
 
-	@include breakpoint-down(desktop) {
+	// Stack before the desktop breakpoint: at 1024–1279 the fixed 828px map column
+	// would crush the text column, so collapse to one column up to `wide`.
+	@include breakpoint-down(wide) {
 		&__grid {
 			grid-template-columns: 1fr;
 			padding-left: 0;
 		}
+	}
+
+	@include breakpoint-down(tablet) {
+		padding: 96px 24px 72px;
+
+		&__title {
+			text-align: left; // Left-align on mobile.
+		}
 
 		&__stats {
 			gap: 32px;
+			flex-wrap: wrap;
 		}
 	}
 }
@@ -340,5 +351,23 @@
 		font-size: var(--wp--preset--font-size--body-16);    // 16px
 		line-height: 20px;
 		letter-spacing: 0.014em;                             // 0.23px @ 16px
+	}
+
+	// Shrink the pins + tooltip on phones. At ~375px wide the map is only ~165px
+	// tall, so the 53×61 teardrop and 280px card swamp it. The %-based transform
+	// anchor and hover-scale keep working against the smaller box.
+	@include breakpoint-down(mobile) {
+		width: 38px;
+		height: 44px;
+
+		&__icon {
+			width: 16px;
+			height: 16px;
+			margin: -8px 0 0 -8px;
+		}
+
+		&__tooltip {
+			width: 240px;
+		}
 	}
 }

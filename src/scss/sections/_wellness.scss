@@ -47,9 +47,23 @@
 	}
 
 	@include breakpoint-down(desktop) {
+		// Stacked, text-first order (the opposite of the image-first About card):
+		// drop the card padding so the image sits flush to the card's bottom and
+		// rounds with it, and pad the text block — which is now at the top — so it
+		// isn't flush against the card edge.
 		.about-story__card {
-			padding: 0 0 24px; // match the Our Story mobile reset (stacks vertically)
+			padding: 0;
 		}
+
+		.about-story__body {
+			padding: 32px 24px 0;
+		}
+	}
+
+	// Trim the hero-tuned 178px top padding on phones/tablets (this override
+	// shadows the base .home-explore tablet padding, so restate it here).
+	@include breakpoint-down(tablet) {
+		padding: 96px 24px 80px;
 	}
 }
 
@@ -92,6 +106,11 @@
 			max-width: 100%;
 			min-width: 0;
 		}
+	}
+
+	// Trim the oversized vertical padding on phones/tablets.
+	@include breakpoint-down(tablet) {
+		padding: 80px 24px 64px;
 	}
 }
 
@@ -199,6 +218,11 @@
 	&:focus-within .card__arrow svg {
 		transform: rotate(45deg);
 	}
+
+	// Shrink the fixed spa card so one card + a peek of the next fits a phone.
+	@include breakpoint-down(mobile) {
+		width: 280px;
+	}
 }
 
 // --- Beauty & Grooming: Card_Type_5 grid as a two-row scrolling carousel -----
@@ -240,7 +264,10 @@
 		}
 
 		@include breakpoint-down(tablet) {
-			grid-auto-columns: 100%;
+			// 2 columns → a 2×2 grid per view on phones (was one column). Shorter
+			// rows keep the cards proportional when narrower.
+			grid-auto-columns: calc((100% - 24px) / 2);
+			grid-template-rows: repeat(2, 240px);
 		}
 	}
 
@@ -255,6 +282,15 @@
 			width: 862px;
 			max-width: 100%;
 			min-width: 0;
+		}
+	}
+
+	// Trim the oversized 128px bottom padding on phones/tablets (top 114 → 80).
+	@include breakpoint-down(tablet) {
+		padding: 80px 24px 96px;
+
+		&__title {
+			text-align: left; // Left-align on mobile.
 		}
 	}
 }

@@ -1,17 +1,42 @@
 // Minimal modern reset — extends WordPress defaults
 
+@use 'mixins' as *;
+
+// Shared horizontal page gutter. Sections adopt this (instead of hardcoded
+// 24/32px) so edge padding shrinks consistently on smaller screens.
+:root {
+	--section-gutter: 32px;
+
+	@include breakpoint-down(tablet) {
+		--section-gutter: 24px;
+	}
+
+	@include breakpoint-down(mobile) {
+		--section-gutter: 16px;
+	}
+}
+
 *,
 *::before,
 *::after {
 	box-sizing: border-box;
 }
 
+// Clip horizontal overflow at the page level so no absolutely-positioned
+// decorative element (background words, map pins/tooltips) can cause page-level
+// horizontal scroll. `clip` is preferred over `hidden` because it doesn't create
+// a new scroll container (so sticky positioning still works).
+//
+// It's set on BOTH html and body on purpose: spec says body's overflow should
+// propagate to the viewport, but WebKit/Safari doesn't propagate `clip` from
+// body reliably — without the rule on html, a few px of horizontal scroll leaks
+// through at every breakpoint.
+html {
+	overflow-x: clip;
+}
+
 body {
 	margin: 0;
-	// Belt-and-suspenders: clip horizontal overflow at the page level so
-	// no absolutely-positioned decorative element can ever cause page-level
-	// horizontal scroll. `clip` is preferred over `hidden` because it doesn't
-	// create a new scroll container (so sticky positioning still works).
 	overflow-x: clip;
 }
 
